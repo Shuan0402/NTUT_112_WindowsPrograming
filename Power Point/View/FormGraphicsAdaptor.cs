@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace Power_Point
 {
-    class FormsGraphicsAdaptor : IGraphics
+    public class FormsGraphicsAdaptor : IGraphics
     {
         // 變數
         float _startPointX;
@@ -20,6 +20,7 @@ namespace Power_Point
         float _width;
         float _height;
         readonly Graphics _graphics;
+        public Graphics GraphicsInstance => _graphics;
 
         // 常數
         const double THREE_POINT_EIGHT = 3.8;
@@ -32,6 +33,10 @@ namespace Power_Point
             this._graphics = graphics;
         }
 
+        public FormsGraphicsAdaptor()
+        {
+        }
+
         // 清除
         public void ClearAll()
         {
@@ -39,19 +44,19 @@ namespace Power_Point
         }
         
         // 畫線
-        public void DrawLine(Point firstPoint, Point endPoint)
+        public virtual void DrawLine(Point firstPoint, Point endPoint)
         {
             _graphics.DrawLine(Pens.Black, (float)firstPoint.X, (float)firstPoint.Y, (float)endPoint.X, (float)endPoint.Y);
         }
 
         // 繪製線縮圖
-        public void DrawButtonLine(Point firstPoint, Point endPoint)
+        public virtual void DrawButtonLine(Point firstPoint, Point endPoint)
         {
             _graphics.DrawLine(Pens.Black, (float)(firstPoint.X / THREE_POINT_EIGHT), (float)(firstPoint.Y / THREE_POINT_EIGHT), (float)(endPoint.X / THREE_POINT_EIGHT), (float)(endPoint.Y / THREE_POINT_EIGHT));
         }
 
         // 畫圓
-        public void DrawCircle(Point firstPoint, Point endPoint)
+        public virtual void DrawCircle(Point firstPoint, Point endPoint)
         {
             float pointX = GetMinPointX(firstPoint, endPoint);
             float pointY = GetMinPointY(firstPoint, endPoint);
@@ -62,7 +67,7 @@ namespace Power_Point
         }
 
         // 繪製圓縮圖
-        public void DrawButtonCircle(Point firstPoint, Point endPoint)
+        public virtual void DrawButtonCircle(Point firstPoint, Point endPoint)
         {
             float pointX = (float)(GetMinPointX(firstPoint, endPoint) / THREE_POINT_EIGHT);
             float pointY = (float)(GetMinPointY(firstPoint, endPoint) / THREE_POINT_EIGHT);
@@ -73,7 +78,7 @@ namespace Power_Point
         }
 
         // 畫矩形
-        public void DrawRectangle(Point firstPoint, Point endPoint)
+        public virtual void DrawRectangle(Point firstPoint, Point endPoint)
         {
             float pointX = GetMinPointX(firstPoint, endPoint);
             float pointY = GetMinPointY(firstPoint, endPoint);
@@ -84,7 +89,7 @@ namespace Power_Point
         }
 
         // 繪製矩形縮圖
-        public void DrawButtonRectangle(Point firstPoint, Point endPoint)
+        public virtual void DrawButtonRectangle(Point firstPoint, Point endPoint)
         {
             float pointX = (float)(GetMinPointX(firstPoint, endPoint) / THREE_POINT_EIGHT);
             float pointY = (float)(GetMinPointY(firstPoint, endPoint) / THREE_POINT_EIGHT);
@@ -95,7 +100,7 @@ namespace Power_Point
         }
 
         // 畫選取框
-        public void DrawSelect(Point firstPoint, Point endPoint)
+        public virtual void DrawSelect(Point firstPoint, Point endPoint)
         {
             SetSelect(firstPoint, endPoint);
 

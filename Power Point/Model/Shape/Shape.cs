@@ -14,14 +14,16 @@ namespace Power_Point
         {
             Name = SHAPE;
             Info = POINT_ZERO;
+            IsCalled = false;
         }
 
         // 使用的變數
-        public virtual string Name 
+        public virtual string Name
         {
             get;
             set;
         }
+
         public virtual string Info
         {
             get;
@@ -40,19 +42,28 @@ namespace Power_Point
             set;
         }
 
+        public bool IsCalled
+        {
+            get;
+            set;
+        }
+
         // DrawPannel 的框架
         public virtual void Draw(IGraphics graphics)
         {
+            IsCalled = true;
         }
 
         // DrawButton 的框架
         public virtual void DrawButton(IGraphics graphics)
         {
+            IsCalled = true;
         }
 
         // 是否在選取範圍內
         public virtual void DrawSelect(IGraphics graphics)
         {
+            IsCalled = true;
         }
 
         // DrawButton 的框架
@@ -60,8 +71,5 @@ namespace Power_Point
         {
             return false;
         }
-
-        // 計算座標數值
-        
     }
 }

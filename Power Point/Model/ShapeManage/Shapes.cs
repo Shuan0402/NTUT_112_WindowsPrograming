@@ -1,5 +1,4 @@
-﻿using Power_point;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,31 +9,47 @@ namespace Power_Point
         // 變數
         private readonly List<Shape> _shapes = new List<Shape>();
         private readonly ShapeFactory _shapeFactory = new ShapeFactory();
-        Shape _hint = new Shape();
-        int _selectedShape = -1;
-        bool _isSelected = false;
+        private Shape _temp;
+        private Shape _hint = new Shape();
 
         // 常數
         const string FIRST = "first";
         const string END = "end";
+        const string SHAPE = "Shape";
+        const int FIVE = 5;
+        const int ZERO = 0;
+        //const int MINUS_ONE = -1;
 
         public Shapes()
         {
         }
 
+        public int SelectedIndex
+        {
+            get;
+            set;
+        }
+
+        public bool IsSelected
+        {
+            get;
+            set;
+        }
+
         // 新增形狀
         public void CreateShape(string shape) 
         {
-            Shape temp = _shapeFactory.CreateShape(shape);
-            _shapes.Add(temp);
+            _temp = _shapeFactory.CreateShape(shape);
+            _shapes.Add(_temp);
         }
 
         // 刪除形狀
         public void DeleteShape(int index)
         {
-            if (_isSelected)
+            if (IsSelected)
             {
-                _isSelected = false;
+                IsSelected = false;
+                SelectedIndex = -1;
             }
             _shapes.RemoveAt(index);
         }
@@ -42,28 +57,29 @@ namespace Power_Point
         // 刪除選取形狀
         public void DeleteSelectedShape()
         {
-            if (_isSelected)
+            if (IsSelected)
             {
-                _shapes.RemoveAt(_selectedShape);
+                _shapes.RemoveAt(SelectedIndex);
             }
-            _isSelected = false;
+            IsSelected = false;
+            SelectedIndex = -1;
         }
 
         // 選取形狀
         public int SelectShape(Point point)
         {
-            _selectedShape = -1;
+            SelectedIndex = -1;
+            IsSelected = false;
             for (int i = 0; i < _shapes.Count; i++)
             {
                 if (_shapes[i].SelectShape(point))
                 {
-                    _selectedShape = i ;
-                    _isSelected = true;
-                    return _selectedShape;
+                    SelectedIndex = i ;
+                    IsSelected = true;
+                    break;
                 }
             }
-            _isSelected = false;
-            return _selectedShape;
+            return SelectedIndex;
         }
 
         // 將 shapes 中所有 shape 存進 shapedata 中
@@ -81,20 +97,21 @@ namespace Power_Point
         // 設定 hint 的座標
         public void SetHint(double pointX, double pointY, string pointType)
         {
-
-            if (pointType == FIRST)
+            switch (pointType)
             {
-                _hint.FirstPoint = new Point(pointX, pointY);
-            } else if (pointType == END)
-            {
-                _hint.EndPoint = new Point(pointX, pointY);
+                case FIRST:
+                    _hint.FirstPoint = new Point(pointX, pointY);
+                    break;
+                case END:
+                    _hint.EndPoint = new Point(pointX, pointY);
+                    break;
             }
         }
 
         // 初始化 hint
         public void InitializeHint()
         {
-            _hint = null;
+            _hint = new Shape();
         }
 
         // 將所有 shapes 中的 shape 都畫在畫布上
@@ -102,18 +119,24 @@ namespace Power_Point
         {
             foreach (Shape aShape in _shapes)
                 aShape.Draw(graphics);
-            if (_hint != null)
+            if (_hint.Name != SHAPE)
             {
-                _hint.Draw(graphics);
+                DrawHint(graphics);
             }
+        }
+
+        // Draw hint
+        private void DrawHint(IGraphics graphics)
+        {
+            _hint.Draw(graphics);
         }
 
         // 繪製選取
         public void DrawSelect(IGraphics graphics)
         {
-            if (_isSelected && _selectedShape >= 0)
+            if (IsSelected && SelectedIndex >= ZERO)
             {
-                _shapes[_selectedShape].DrawSelect(graphics);
+                _shapes[SelectedIndex].DrawSelect(graphics);
             }
         }
 
@@ -125,12 +148,12 @@ namespace Power_Point
         }
 
         // 新增繪製形狀
-        public void SetGraph(string shapeType) 
+        public void SetGraph() 
         {
-            Shape temp = _shapeFactory.CreateShape(shapeType);
-            temp.FirstPoint = _hint.FirstPoint;
-            temp.EndPoint = _hint.EndPoint;
-            _shapes.Add(temp);
+            _temp = _shapeFactory.CreateShape(_hint.Name);
+            _temp.FirstPoint = _hint.FirstPoint;
+            _temp.EndPoint = _hint.EndPoint;
+            _shapes.Add(_temp);
         }
 
         // 清除畫面
@@ -140,15 +163,72 @@ namespace Power_Point
         }
 
         // 更新形狀位置
-        public void SetShape(double width, double height)
+        public void SetSelectedShapePosition(double width, double height)
         {
-            if (_isSelected)
+            if (IsSelected)
             {
-                Point _newFirstPoint = new Point(_shapes[_selectedShape].FirstPoint.X + width, _shapes[_selectedShape].FirstPoint.Y + height);
-                Point _newEndPoint = new Point(_shapes[_selectedShape].EndPoint.X + width, _shapes[_selectedShape].EndPoint.Y + height);
-                _shapes[_selectedShape].FirstPoint = _newFirstPoint;
-                _shapes[_selectedShape].EndPoint = _newEndPoint;
+                Point _newFirstPoint = new Point(_shapes[SelectedIndex].FirstPoint.X + width, _shapes[SelectedIndex].FirstPoint.Y + height);
+                Point _newEndPoint = new Point(_shapes[SelectedIndex].EndPoint.X + width, _shapes[SelectedIndex].EndPoint.Y + height);
+                _shapes[SelectedIndex].FirstPoint = _newFirstPoint;
+                _shapes[SelectedIndex].EndPoint = _newEndPoint;
             }
+        }
+
+        // 更新形狀大小
+        public void SetSelectedShapeSize(double pointX, double pointY)
+        {
+            if (_shapes[SelectedIndex].FirstPoint.X > _shapes[SelectedIndex].EndPoint.X)
+            {
+                _shapes[SelectedIndex].FirstPoint.X = pointX;
+            }
+            else
+            {
+                _shapes[SelectedIndex].EndPoint.X = pointX;
+            }
+
+            if (_shapes[SelectedIndex].FirstPoint.Y > _shapes[SelectedIndex].EndPoint.Y)
+            {
+                _shapes[SelectedIndex].FirstPoint.Y = pointY;
+            }
+            else
+            {
+                _shapes[SelectedIndex].EndPoint.Y = pointY;
+            }
+        }
+
+        // 回傳是否在調整形狀大小的形狀範圍位置上
+        public bool IsInRightFloorPoint(double pointX, double pointY)
+        {
+            if (IsSelected)
+            {
+                return (pointX >= GetRightFloorPoint().X - FIVE &&
+                        pointX <= GetRightFloorPoint().X + FIVE &&
+                        pointY >= GetRightFloorPoint().Y - FIVE &&
+                        pointY <= GetRightFloorPoint().Y + FIVE);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // GetRightFloorPoint
+        public Point GetRightFloorPoint()
+        {
+            Point point = new Point(GetMaxPointX(), GetMaxPointY());
+            return point;
+        }
+
+        // 獲得終點 X 座標
+        private float GetMaxPointX()
+        {
+            return Math.Max((float)_shapes[SelectedIndex].FirstPoint.X, (float)_shapes[SelectedIndex].EndPoint.X);
+        }
+
+        // 獲得終點 Y 座標
+        private float GetMaxPointY()
+        {
+            return Math.Max((float)_shapes[SelectedIndex].FirstPoint.Y, (float)_shapes[SelectedIndex].EndPoint.Y);
         }
     }
 }

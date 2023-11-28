@@ -1,7 +1,7 @@
 ﻿using System;
 using Power_Point;
 
-namespace Power_point
+namespace Power_Point
 {
     public class Rectangle : Shape
     {

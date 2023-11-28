@@ -1,5 +1,4 @@
-﻿using Power_point;
-using System;
+﻿using System;
 
 namespace Power_Point
 {
@@ -22,29 +21,28 @@ namespace Power_Point
             {
                 case LINE:
                     GenerateShape(shapeType);
-                    return _shape;
-
+                    break;
                 case RECTANGLE:
                     GenerateShape(shapeType);
-                    return _shape;
-
+                    break;
                 case CIRCLE:
                     GenerateShape(shapeType);
-                    return _shape;
-
+                    break;
                 default:
-                    return _shape;
+                    GenerateShape(shapeType);
+                    break;
             }
+            return _shape;
         }
 
         // 生成隨機座標
-        public void GenerateRandomInfo(Shape shapeType)
+        public void GenerateRandomInfo(Shape shape)
         {
             Random random = new Random();
             Point firstPoint = new Point(random.Next(0, MAX_X), random.Next(0, MAX_Y));
             Point endPoint = new Point(random.Next(0, MAX_X), random.Next(0, MAX_Y));
-            shapeType.FirstPoint = firstPoint;
-            shapeType.EndPoint = endPoint;
+            shape.FirstPoint = firstPoint;
+            shape.EndPoint = endPoint;
         }
 
         // 生成形狀
@@ -54,17 +52,18 @@ namespace Power_Point
             {
                 case LINE:
                     _shape = new Line();
-                    GenerateRandomInfo(_shape);
                     break;
                 case CIRCLE:
                     _shape = new Circle();
-                    GenerateRandomInfo(_shape);
                     break;
                 case RECTANGLE:
                     _shape = new Rectangle();
-                    GenerateRandomInfo(_shape);
+                    break;
+                default:
+                    _shape = new Shape();
                     break;
             }
+            GenerateRandomInfo(_shape);
         } 
     }
 }

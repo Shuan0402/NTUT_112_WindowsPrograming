@@ -7,13 +7,16 @@ namespace Power_Point
 {
     public class PresentationModel: INotifyPropertyChanged
     {
-        public bool _isLineChecked = false;
-        public bool _isCircleChecked = false;
-        public bool _isRectangleChecked = false;
-        public bool _isArrowChecked = false;
-        public bool _isShapeSelected = false;
-        string _selectShapeType = null;
+        private string _selectButtonType = null;
         public readonly PowerPointModel _model;
+
+        const string DRAW = "draw";
+        const string POINT = "point";
+        const string LINE = "線";
+        const string RECTANGLE = "矩形";
+        const string CIRCLE = "圓形";
+
+
         public PresentationModel(PowerPointModel model)
         {
             this._model = model;
@@ -35,56 +38,48 @@ namespace Power_Point
         public event PropertyChangedEventHandler PropertyChanged;
 
         // 通知 Property 改變
-        private void Notify(string propertyName)
+        public void Notify(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
-        // 線按鈕是否被選取
         public bool IsLineChecked
         {
-            get
-            {
-                return _isLineChecked;
-            }
+            get;
+            set;
         }
 
         // 圓按鈕是否被選取
         public bool IsCircleChecked
         {
-            get
-            {
-                return _isCircleChecked;
-            }
+            get;
+            set;
         }
 
         // 矩形按鈕是否被選取
         public bool IsRectangleChecked
         {
-            get
-            {
-                return _isRectangleChecked;
-            }
+            get;
+            set;
         }
 
         public bool IsArrowChecked
         {
-            get
-            {
-                return _isArrowChecked;
-            }
+            get;
+            set;
         }
+
+        
 
         // 取消選取圖形按鈕
         public void CheckArrow()
         {
-            _selectShapeType = null;
-            _isLineChecked = false;
-            _isCircleChecked = false;
-            _isRectangleChecked = false;
-            _isArrowChecked = true;
-            _model.ChangeState("point");
+            _selectButtonType = null;
+            IsLineChecked = false;
+            IsCircleChecked = false;
+            IsRectangleChecked = false;
+            IsArrowChecked = true;
+            _model.ChangeState(POINT);
             Notify("IsArrowChecked");
             Notify("IsLineChecked");
             Notify("IsCircleChecked");
@@ -95,13 +90,11 @@ namespace Power_Point
         public void CheckLine()
         {
             CheckArrow();
-            if (!_isLineChecked)
-            {
-                _model.ChangeState("draw");
-                _selectShapeType = "線";
-                _isLineChecked = true;
-                _isArrowChecked = false;
-            }
+            _model.ChangeState(DRAW);
+            _selectButtonType = LINE;
+            IsLineChecked = true;
+            IsArrowChecked = false;
+            
             Notify("IsLineChecked");
             Notify("IsArrowChecked");
         }
@@ -110,13 +103,11 @@ namespace Power_Point
         public void CheckCircle()
         {
             CheckArrow();
-            if (!_isCircleChecked)
-            {
-                _model.ChangeState("draw");
-                _selectShapeType = "圓形";
-                _isCircleChecked = true;
-                _isArrowChecked = false;
-            }
+            _model.ChangeState(DRAW);
+            _selectButtonType = CIRCLE;
+            IsCircleChecked = true;
+            IsArrowChecked = false;
+            
             Notify("IsCircleChecked");
             Notify("IsArrowChecked");
         }
@@ -125,13 +116,11 @@ namespace Power_Point
         public void CheckRectangle()
         {
             CheckArrow();
-            if (!_isRectangleChecked)
-            {
-                _model.ChangeState("draw");
-                _selectShapeType = "矩形";
-                _isRectangleChecked = true;
-                _isArrowChecked = false;
-            }
+            _model.ChangeState(DRAW);
+            _selectButtonType = RECTANGLE;
+            IsRectangleChecked = true;
+            IsArrowChecked = false;
+            
             Notify("IsRectangleChecked");
             Notify("IsArrowChecked");
         }
@@ -158,14 +147,14 @@ namespace Power_Point
         // 壓下滑鼠
         public void PointerPressed(double x, double y)
         {
-            _model.PressPointer(x, y, _selectShapeType);
+            _model.PressPointer(x, y, _selectButtonType);
         }
 
         // 放開滑鼠
-        public void PointerReleased(double x, double y)
+        public void PointerReleased()
         {
-            _model.ChangeState("point");
-            _model.ReleasePointer(x, y, _selectShapeType);
+            _model.ReleasePointer();
+            _model.ChangeState(POINT);
             CheckArrow();
         }
 
@@ -182,24 +171,29 @@ namespace Power_Point
         }
 
         // 新增繪圖
-        public void DrawPannel(System.Drawing.Graphics graphics)
+        public void DrawPannel(FormsGraphicsAdaptor graphics)
         {
-            _model.DrawPannel(new FormsGraphicsAdaptor(graphics));
+            _model.DrawPannel(graphics);
         }
 
         // 新增繪圖
-        public void DrawButton(System.Drawing.Graphics graphics)
+        public void DrawButton(FormsGraphicsAdaptor graphics)
         {
-            _model.DrawButton(new FormsGraphicsAdaptor(graphics));
+            _model.DrawButton(graphics);
         }
 
         // 控制滑鼠型態
         public Cursor GetCursors()
         {
-            if (_selectShapeType == null)
+            if (_selectButtonType == null)
             {
+                if (_model.IsShapeSizable)
+                {
+                    return Cursors.SizeNWSE;
+                }
                 return Cursors.Arrow;
-            } else
+            }
+            else
             {
                 return Cursors.Cross;
             }

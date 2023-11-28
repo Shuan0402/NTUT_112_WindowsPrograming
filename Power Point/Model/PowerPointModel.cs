@@ -6,18 +6,39 @@ namespace Power_Point
 {
     public class PowerPointModel
     {
-        private IMouseState _mouse;
+        public IMouseState _mouse;
         // 事件宣告
         // Pannel change
-        public event PannelChangedEventHandler ChangePannelEvent;
+        public virtual event PannelChangedEventHandler ChangePannelEvent;
         public delegate void PannelChangedEventHandler();
         // Button change
-        public event ButtonChangedEventHandler ChangeButtonEvent;
+        public virtual event ButtonChangedEventHandler ChangeButtonEvent;
         public delegate void ButtonChangedEventHandler();
 
         // 變數
-        readonly Shapes _shapes = new Shapes();
-        bool _isPressed = false;
+        public Shapes _shapes = new Shapes();
+
+        public bool IsPressed
+        {
+            get;
+            set;
+        }
+
+        public bool IsShapeSizable
+        {
+            get;
+            set;
+        }
+
+        const string DRAW = "draw";
+        const string POINT = "point";
+        const string MODIFY = "modify";
+
+        public PowerPointModel()
+        {
+            IsPressed = false;
+            //IsShapeSizable = false;
+        } 
 
         // List<Shape> 管理
         // 將 shape 加入 shapes 中
@@ -50,7 +71,7 @@ namespace Power_Point
         // 清空 shapes
         public void ClearShapes()
         {
-            _isPressed = false;
+            IsPressed = false;
             _shapes.Clear();
             NotifyModelChanged();
         }
@@ -61,8 +82,12 @@ namespace Power_Point
         {
             if (pointX > 0 && pointY > 0 && _mouse != null)
             {
-                _isPressed = true;
-                _mouse.MousePress(pointX, pointY, shapeType);
+                IsPressed = true;
+                if (IsShapeSizable)
+                {
+                    ChangeState(MODIFY);
+                }
+                _mouse.MouseDown(pointX, pointY, shapeType);
             }
             NotifyModelChanged();
         }
@@ -70,36 +95,32 @@ namespace Power_Point
         // 滑鼠移動
         public void MovePointer(double pointX, double pointY)
         {
-            if (_isPressed)
+            if (IsPressed)
             {
                 _mouse.MouseMove(pointX, pointY);
-                NotifyModelChanged();
             }
+            else
+            {
+                IsShapeSizable = _shapes.IsInRightFloorPoint(pointX, pointY);
+            }
+
+            NotifyModelChanged();
         }
 
         // 放開滑鼠
-        public void ReleasePointer(double pointX, double pointY, string shapeType)
+        public void ReleasePointer()
         {
-            if (_isPressed)
+            if (IsPressed)
             {
-                if (shapeType == null)
-                {
-                    _mouse.MouseUp(pointX, pointY, shapeType);
-                }
-                else
-                {
-                    _shapes.SetGraph(shapeType);
-                    _mouse.MouseUp(pointX, pointY, shapeType);
-                    _shapes.InitializeHint();
-                }
-                _isPressed = false;
+                _mouse.MouseUp();
+                IsPressed = false;
                 NotifyModelChanged();
             }
         }
     
         // 畫布事件觸發
         // 通知 Handler，畫布狀態改變
-        void NotifyModelChanged()
+        public void NotifyModelChanged()
         {
             ChangePannelEvent?.Invoke();
             ChangeButtonEvent?.Invoke();
@@ -126,13 +147,17 @@ namespace Power_Point
         // 更改狀態
         public void ChangeState(string state)
         {
-            if (state == "draw")
+            switch (state)
             {
-                _mouse = new DrawState(_shapes);
-            }
-            else if (state == "point")
-            {
-                _mouse = new PointState(_shapes);
+                case DRAW:
+                    _mouse = new DrawState(_shapes);
+                    break;
+                case POINT:
+                    _mouse = new PointState(_shapes);
+                    break;
+                case MODIFY:
+                    _mouse = new ModifyState(_shapes);
+                    break;
             }
         }
     }

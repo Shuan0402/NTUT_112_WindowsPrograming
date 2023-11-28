@@ -45,8 +45,8 @@ namespace Power_Point
             this._rectangleStripButton = new BindableToolStripButton();
             this._circleStripButton = new BindableToolStripButton();
             this._arrowStripButton = new BindableToolStripButton();
-            this._canvas = new Power_Point.DoubleBufferedPanel();
             this._slideButton = new System.Windows.Forms.Button();
+            this._canvas = new Power_Point.DoubleBufferedPanel();
             ((System.ComponentModel.ISupportInitialize)(this._dataGridShapeData)).BeginInit();
             this._groupBoxDataShow.SuspendLayout();
             this._menuStrip.SuspendLayout();
@@ -66,14 +66,15 @@ namespace Power_Point
             this._deleteDataGrid,
             this._shapeDataGrid,
             this._dataDataGrid});
-            this._dataGridShapeData.Location = new System.Drawing.Point(0, 94);
+            this._dataGridShapeData.Location = new System.Drawing.Point(0, 110);
+            this._dataGridShapeData.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._dataGridShapeData.Name = "_dataGridShapeData";
             this._dataGridShapeData.ReadOnly = true;
             this._dataGridShapeData.RowHeadersVisible = false;
             this._dataGridShapeData.RowHeadersWidth = 62;
             this._dataGridShapeData.RowTemplate.Height = 31;
             this._dataGridShapeData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this._dataGridShapeData.Size = new System.Drawing.Size(411, 436);
+            this._dataGridShapeData.Size = new System.Drawing.Size(502, 509);
             this._dataGridShapeData.TabIndex = 0;
             this._dataGridShapeData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClickDataGridShapeDataCellContent);
             // 
@@ -112,9 +113,11 @@ namespace Power_Point
             this._groupBoxDataShow.Controls.Add(this._dataGridShapeData);
             this._groupBoxDataShow.Controls.Add(this._comboBoxShape);
             this._groupBoxDataShow.Controls.Add(this._buttonCreate);
-            this._groupBoxDataShow.Location = new System.Drawing.Point(873, 92);
+            this._groupBoxDataShow.Location = new System.Drawing.Point(1067, 107);
+            this._groupBoxDataShow.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._groupBoxDataShow.Name = "_groupBoxDataShow";
-            this._groupBoxDataShow.Size = new System.Drawing.Size(411, 531);
+            this._groupBoxDataShow.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._groupBoxDataShow.Size = new System.Drawing.Size(502, 619);
             this._groupBoxDataShow.TabIndex = 1;
             this._groupBoxDataShow.TabStop = false;
             this._groupBoxDataShow.Text = "資料顯示";
@@ -127,19 +130,19 @@ namespace Power_Point
             "線",
             "矩形",
             "圓形"});
-            this._comboBoxShape.Location = new System.Drawing.Point(122, 45);
-            this._comboBoxShape.Margin = new System.Windows.Forms.Padding(4);
+            this._comboBoxShape.Location = new System.Drawing.Point(149, 52);
+            this._comboBoxShape.Margin = new System.Windows.Forms.Padding(5);
             this._comboBoxShape.Name = "_comboBoxShape";
-            this._comboBoxShape.Size = new System.Drawing.Size(180, 26);
+            this._comboBoxShape.Size = new System.Drawing.Size(219, 29);
             this._comboBoxShape.TabIndex = 2;
             this._comboBoxShape.SelectedIndexChanged += new System.EventHandler(this.SelectComboBoxShape);
             // 
             // _buttonCreate
             // 
-            this._buttonCreate.Location = new System.Drawing.Point(8, 30);
-            this._buttonCreate.Margin = new System.Windows.Forms.Padding(4);
+            this._buttonCreate.Location = new System.Drawing.Point(10, 35);
+            this._buttonCreate.Margin = new System.Windows.Forms.Padding(5);
             this._buttonCreate.Name = "_buttonCreate";
-            this._buttonCreate.Size = new System.Drawing.Size(84, 57);
+            this._buttonCreate.Size = new System.Drawing.Size(103, 66);
             this._buttonCreate.TabIndex = 2;
             this._buttonCreate.Text = "新增";
             this._buttonCreate.UseVisualStyleBackColor = true;
@@ -153,7 +156,8 @@ namespace Power_Point
             this._introductionToolStripMenuItem});
             this._menuStrip.Location = new System.Drawing.Point(0, 0);
             this._menuStrip.Name = "_menuStrip";
-            this._menuStrip.Size = new System.Drawing.Size(1284, 31);
+            this._menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this._menuStrip.Size = new System.Drawing.Size(1569, 34);
             this._menuStrip.TabIndex = 4;
             this._menuStrip.Text = "menuStrip1";
             this._menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ClickMenuStrip);
@@ -163,13 +167,13 @@ namespace Power_Point
             this._introductionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._aboutToolStripMenuItem});
             this._introductionToolStripMenuItem.Name = "_introductionToolStripMenuItem";
-            this._introductionToolStripMenuItem.Size = new System.Drawing.Size(62, 27);
+            this._introductionToolStripMenuItem.Size = new System.Drawing.Size(72, 30);
             this._introductionToolStripMenuItem.Text = "說明";
             // 
             // _aboutToolStripMenuItem
             // 
             this._aboutToolStripMenuItem.Name = "_aboutToolStripMenuItem";
-            this._aboutToolStripMenuItem.Size = new System.Drawing.Size(146, 34);
+            this._aboutToolStripMenuItem.Size = new System.Drawing.Size(171, 40);
             this._aboutToolStripMenuItem.Text = "關於";
             // 
             // _shapeStrip
@@ -180,10 +184,10 @@ namespace Power_Point
             this._rectangleStripButton,
             this._circleStripButton,
             this._arrowStripButton});
-            this._shapeStrip.Location = new System.Drawing.Point(0, 31);
+            this._shapeStrip.Location = new System.Drawing.Point(0, 34);
             this._shapeStrip.Name = "_shapeStrip";
-            this._shapeStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this._shapeStrip.Size = new System.Drawing.Size(1284, 33);
+            this._shapeStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this._shapeStrip.Size = new System.Drawing.Size(1569, 34);
             this._shapeStrip.TabIndex = 5;
             this._shapeStrip.Text = "toolStrip1";
             this._shapeStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ClickArrowStripItem);
@@ -194,7 +198,7 @@ namespace Power_Point
             this._lineStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_lineStripButton.Image")));
             this._lineStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._lineStripButton.Name = "_lineStripButton";
-            this._lineStripButton.Size = new System.Drawing.Size(34, 28);
+            this._lineStripButton.Size = new System.Drawing.Size(40, 28);
             this._lineStripButton.Text = "toolStripButton1";
             this._lineStripButton.Click += new System.EventHandler(this.ClickLineStripButton);
             // 
@@ -204,7 +208,7 @@ namespace Power_Point
             this._rectangleStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_rectangleStripButton.Image")));
             this._rectangleStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._rectangleStripButton.Name = "_rectangleStripButton";
-            this._rectangleStripButton.Size = new System.Drawing.Size(34, 28);
+            this._rectangleStripButton.Size = new System.Drawing.Size(40, 28);
             this._rectangleStripButton.Text = "toolStripButton2";
             this._rectangleStripButton.Click += new System.EventHandler(this.ClickRectangleStripButton);
             // 
@@ -215,7 +219,7 @@ namespace Power_Point
             this._circleStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_circleStripButton.Image")));
             this._circleStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._circleStripButton.Name = "_circleStripButton";
-            this._circleStripButton.Size = new System.Drawing.Size(34, 28);
+            this._circleStripButton.Size = new System.Drawing.Size(40, 28);
             this._circleStripButton.Text = "toolStripButton3";
             this._circleStripButton.Click += new System.EventHandler(this.ClickCircleStripButton);
             // 
@@ -225,34 +229,36 @@ namespace Power_Point
             this._arrowStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_arrowStripButton.Image")));
             this._arrowStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._arrowStripButton.Name = "_arrowStripButton";
-            this._arrowStripButton.Size = new System.Drawing.Size(34, 28);
+            this._arrowStripButton.Size = new System.Drawing.Size(40, 28);
             this._arrowStripButton.Text = "toolStripButton1";
             this._arrowStripButton.Click += new System.EventHandler(this.ClickArrowStripButton);
+            // 
+            // _slideButton
+            // 
+            this._slideButton.Location = new System.Drawing.Point(0, 107);
+            this._slideButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._slideButton.Name = "_slideButton";
+            this._slideButton.Size = new System.Drawing.Size(220, 163);
+            this._slideButton.TabIndex = 0;
+            this._slideButton.UseVisualStyleBackColor = true;
             // 
             // _canvas
             // 
             this._canvas.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this._canvas.Cursor = System.Windows.Forms.Cursors.Default;
-            this._canvas.Location = new System.Drawing.Point(188, 92);
+            this._canvas.Location = new System.Drawing.Point(230, 107);
+            this._canvas.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._canvas.Name = "_canvas";
-            this._canvas.Size = new System.Drawing.Size(680, 530);
+            this._canvas.Size = new System.Drawing.Size(831, 618);
             this._canvas.TabIndex = 6;
             this._canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintPanel);
             // 
-            // _slideButton
-            // 
-            this._slideButton.Location = new System.Drawing.Point(0, 92);
-            this._slideButton.Name = "_slideButton";
-            this._slideButton.Size = new System.Drawing.Size(180, 140);
-            this._slideButton.TabIndex = 0;
-            this._slideButton.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1284, 639);
+            this.ClientSize = new System.Drawing.Size(1569, 745);
             this.Controls.Add(this._slideButton);
             this.Controls.Add(this._canvas);
             this.Controls.Add(this._shapeStrip);
@@ -261,6 +267,7 @@ namespace Power_Point
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.ForeColor = System.Drawing.SystemColors.Desktop;
             this.MainMenuStrip = this._menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.LoadForm);

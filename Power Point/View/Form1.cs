@@ -181,7 +181,7 @@ namespace Power_Point
         // 放開滑鼠
         public void HandleCanvasReleased(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.PointerReleased(e.X, e.Y);
+            _presentationModel.PointerReleased();
             _canvas.Cursor = _presentationModel.GetCursors();
             _presentationModel.CheckArrow();
             ShowShapeList();
@@ -191,18 +191,19 @@ namespace Power_Point
         public void HandleCanvasMoved(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             _presentationModel.PointerMoved(e.X, e.Y);
+            _canvas.Cursor = _presentationModel.GetCursors();
         }
 
         // 繪製畫圖
         public void HandleCanvasPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            _presentationModel.DrawPannel(e.Graphics);
+            _presentationModel.DrawPannel(new FormsGraphicsAdaptor(e.Graphics));
         }
 
         // 繪製縮圖
         public void HandleButtonPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            _presentationModel.DrawButton(e.Graphics);
+            _presentationModel.DrawButton(new FormsGraphicsAdaptor(e.Graphics));
         }
 
         // 更新畫布

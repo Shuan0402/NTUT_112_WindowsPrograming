@@ -1,12 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Power_Point
 {
     public class DrawState : IMouseState
     {
         private readonly Shapes _shapes;
-        private double _firstPointX;
-        private double _firstPointY;
+        public double FirstPointX
+        {
+            get;
+            set;
+        }
+        public double FirstPointY
+        {
+            get;
+            set;
+        }
 
         // 常數
         const string FIRST = "first";
@@ -18,16 +27,13 @@ namespace Power_Point
         }
 
         // 壓下滑鼠-繪畫
-        public void MousePress(double pointX, double pointY, string shapeType)
+        public void MouseDown(double pointX, double pointY, string shapeType)
         {
-            if (pointX > 0 && pointY > 0)
-            {
-                _firstPointX = pointX;
-                _firstPointY = pointY;
-                _shapes.SetHintType(shapeType);
-                _shapes.SetHint(_firstPointX, _firstPointY, FIRST);
-                _shapes.SetHint(_firstPointX, _firstPointY, END);
-            }
+            FirstPointX = pointX;
+            FirstPointY = pointY;
+            _shapes.SetHintType(shapeType);
+            _shapes.SetHint(FirstPointX, FirstPointY, FIRST);
+            _shapes.SetHint(FirstPointX, FirstPointY, END);
         }
 
         // 滑鼠移動-繪畫
@@ -37,19 +43,10 @@ namespace Power_Point
         }
 
         // 放開滑鼠-繪畫
-        public void MouseUp(double pointX, double pointY, string shapeType)
+        public void MouseUp()
         {
-            _shapes.SetHint(_firstPointX, _firstPointY, FIRST);
-            _shapes.SetHint(pointX, pointY, END);
-
-            _shapes.SetGraph(shapeType);
+            _shapes.SetGraph();
             _shapes.InitializeHint();
-        }
-
-        // 回傳起點
-        public Point GetFirstPoint()
-        {
-            return new Point(_firstPointX, _firstPointY);
         }
     }
 
