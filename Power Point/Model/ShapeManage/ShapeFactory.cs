@@ -8,8 +8,8 @@ namespace Power_Point
         const string LINE = "線";
         const string RECTANGLE = "矩形";
         const string CIRCLE = "圓形";
-        const int MAX_X = 453;
-        const int MAX_Y = 354;
+        const int MAX_X = 444;
+        const int MAX_Y = 250;
 
         // 變數
         Shape _shape = new Shape();

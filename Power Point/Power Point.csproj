@@ -61,6 +61,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Command\AddCommand.cs" />
+    <Compile Include="Model\Command\ModifyCommand.cs" />
+    <Compile Include="Model\Command\MoveCommand.cs" />
+    <Compile Include="Model\Command\DeleteCommand.cs" />
+    <Compile Include="Model\Command\CommandManager.cs" />
+    <Compile Include="Model\Command\DrawCommand.cs" />
+    <Compile Include="Model\Command\ICommand.cs" />
     <Compile Include="Model\Shape\Circle.cs" />
     <Compile Include="Model\State\ModifyState.cs" />
     <Compile Include="Model\State\DrawState.cs" />
@@ -117,8 +124,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Power_Point\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

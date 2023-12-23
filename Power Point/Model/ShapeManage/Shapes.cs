@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Power_Point
 {
@@ -18,7 +19,10 @@ namespace Power_Point
         const string SHAPE = "Shape";
         const int FIVE = 5;
         const int ZERO = 0;
-        //const int MINUS_ONE = -1;
+        const int ONE = 1;
+        const int TWO = 2;
+        const int THREE = 3;
+        const int FOUR = 4;
 
         public Shapes()
         {
@@ -36,11 +40,47 @@ namespace Power_Point
             set;
         }
 
+        public int GetShapesSize
+        {
+            get
+            {
+                return _shapes.Count;
+            }
+        }
+
+        // GetReccentShapeInfo
+        public string GetTopShapeInfo()
+        {
+            return _temp.Info;
+        }
+
+        // SetReccentShapeInfo
+        public void SetTopShapeInfo(string info)
+        {
+            if (info == null)
+            {
+                return;
+            }
+            string pattern = @"\((\w+), (\w+)\), \((\w+), (\w+)\)";
+            Match match = Regex.Match(info, pattern);
+            int pointOne = int.Parse(match.Groups[ONE].Value);
+            int pointTwo = int.Parse(match.Groups[TWO].Value);
+            int pointThree = int.Parse(match.Groups[THREE].Value);
+            int pointFour = int.Parse(match.Groups[FOUR].Value);
+
+            Point firstPoint = new Point(pointOne, pointTwo);
+            Point endPoint = new Point(pointThree, pointFour);
+
+            _shapes[_shapes.Count - 1].FirstPoint = firstPoint;
+            _shapes[_shapes.Count - 1].EndPoint = endPoint;
+        }
+
         // 新增形狀
-        public void CreateShape(string shape) 
+        public string CreateShape(string shape) 
         {
             _temp = _shapeFactory.CreateShape(shape);
             _shapes.Add(_temp);
+            return _temp.Info;
         }
 
         // 刪除形狀
@@ -115,36 +155,36 @@ namespace Power_Point
         }
 
         // 將所有 shapes 中的 shape 都畫在畫布上
-        public void DrawShape(IGraphics graphics)
+        public void DrawShape(IGraphics graphics, double rate)
         {
             foreach (Shape aShape in _shapes)
-                aShape.Draw(graphics);
+                aShape.Draw(graphics, rate);
             if (_hint.Name != SHAPE)
             {
-                DrawHint(graphics);
+                DrawHint(graphics, rate);
             }
         }
 
         // Draw hint
-        private void DrawHint(IGraphics graphics)
+        private void DrawHint(IGraphics graphics, double rate)
         {
-            _hint.Draw(graphics);
+            _hint.Draw(graphics, rate);
         }
 
         // 繪製選取
-        public void DrawSelect(IGraphics graphics)
+        public void DrawSelect(IGraphics graphics, double rate)
         {
             if (IsSelected && SelectedIndex >= ZERO)
             {
-                _shapes[SelectedIndex].DrawSelect(graphics);
+                _shapes[SelectedIndex].DrawSelect(graphics, rate);
             }
         }
 
         // 將所有 shapes 中的 shape 都畫在縮圖上
-        public void DrawButtonShape(IGraphics graphics)
+        public void DrawButtonShape(IGraphics graphics, double rate)
         {
             foreach (Shape aShape in _shapes)
-                aShape.DrawButton(graphics);
+                aShape.DrawButton(graphics, rate);
         }
 
         // 新增繪製形狀
@@ -153,7 +193,37 @@ namespace Power_Point
             _temp = _shapeFactory.CreateShape(_hint.Name);
             _temp.FirstPoint = _hint.FirstPoint;
             _temp.EndPoint = _hint.EndPoint;
-            _shapes.Add(_temp);
+            if (_temp.Name != SHAPE)
+            {
+                if (IsTempPointEqualX() || IsTempPointEqualY())
+                {
+                    _shapes.Add(_temp);
+                }
+            }
+        }
+
+        // IsTempPointXEqual
+        private bool IsTempPointEqualX()
+        {
+            return GetPointX(_temp.FirstPoint) != GetPointX(_temp.EndPoint);
+        }
+
+        // IsTempPointXEqual
+        private bool IsTempPointEqualY()
+        {
+            return GetPointY(_temp.FirstPoint) != GetPointY(_temp.EndPoint);
+        }
+
+        // GetPointX
+        private double GetPointX(Point point)
+        {
+            return point.X;
+        }
+
+        // GetPointY
+        private double GetPointY(Point point)
+        {
+            return point.Y;
         }
 
         // 清除畫面
@@ -229,6 +299,31 @@ namespace Power_Point
         private float GetMaxPointY()
         {
             return Math.Max((float)_shapes[SelectedIndex].FirstPoint.Y, (float)_shapes[SelectedIndex].EndPoint.Y);
+        }
+
+        // SetShape
+        public void SetShape(int index, double pointX, double pointY)
+        {
+            if (index >= 0)
+            {
+                Point firstPoint = _shapes[index].FirstPoint;
+                Point endPoint = _shapes[index].EndPoint;
+
+                _shapes[index].FirstPoint = new Point(GetPointX(firstPoint, pointX), GetPointY(firstPoint, pointY));
+                _shapes[index].EndPoint = new Point(GetPointX(endPoint, pointX), GetPointY(endPoint, pointY));
+            }
+        }
+
+        // GetPoint
+        private double GetPointX(Point point, double width)
+        {
+            return point.X + width;
+        }
+
+        // GetPoint
+        private double GetPointY(Point point, double height)
+        {
+            return point.Y + height;
         }
     }
 }

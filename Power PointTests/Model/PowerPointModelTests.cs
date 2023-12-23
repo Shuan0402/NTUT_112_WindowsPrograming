@@ -139,6 +139,18 @@ namespace Power_Point.Tests
 
         // Test 註解
         [TestMethod()]
+        public void PressPointerWithModifyStateTest()
+        {
+            PowerPointModel model = new PowerPointModel();
+            model._mouse = new ModifyState(model._shapes);
+
+            Assert.IsFalse(model.IsPressed);
+            model.PressPointer(10, 10, LINE);
+            Assert.IsTrue(model.IsPressed);
+        }
+
+        // Test 註解
+        [TestMethod()]
         public void PressPointerWithNoStateTest()
         {
             PowerPointModel model = new PowerPointModel();
@@ -172,6 +184,34 @@ namespace Power_Point.Tests
 
             model.PressPointer(10, 10, LINE);
             Assert.IsFalse(model._mouse is ModifyState);
+        }
+
+        // Test 註解
+        [TestMethod()]
+        public void PressPointerWithShape()
+        {
+            PowerPointModel model = new PowerPointModel
+            {
+                IsShapeSizable = true
+            };
+            model._mouse = new PointState(model._shapes);
+
+            model.PressPointer(10, 10, "Shape");
+            Assert.IsFalse(model.IsPressed);
+        }
+
+        // Test 註解
+        [TestMethod()]
+        public void PressPointerWithNotShape()
+        {
+            PowerPointModel model = new PowerPointModel
+            {
+                IsShapeSizable = true
+            };
+            model._mouse = new PointState(model._shapes);
+
+            model.PressPointer(10, 10, LINE);
+            Assert.IsTrue(model.IsPressed);
         }
 
         // Test 註解
@@ -257,6 +297,33 @@ namespace Power_Point.Tests
 
         // Test 註解
         [TestMethod()]
+        public void ReleasePointerWithPointStateTestNoMove()
+        {
+            PowerPointModel model = new PowerPointModel();
+            model._mouse = new PointState(model._shapes);
+            model.PressPointer(1, 1, LINE);
+            model.MovePointer(1, 1);
+            model.ReleasePointer();
+
+            Assert.IsFalse(model.IsPressed);
+        }
+
+        // Test 註解
+        [TestMethod()]
+        public void ReleasePointerWithModifyStateTest()
+        {
+            PowerPointModel model = new PowerPointModel();
+            model.CreateShape(LINE);
+            model._mouse = new ModifyState(model._shapes);
+            model.PressPointer(1, 1, LINE);
+            model.MovePointer(10, 10);
+            model.ReleasePointer();
+
+            Assert.IsFalse(model.IsPressed);
+        }
+
+        // Test 註解
+        [TestMethod()]
         public void DrawPannelWithDrawStateTest()
         {
             PowerPointModel model = new PowerPointModel();
@@ -267,12 +334,12 @@ namespace Power_Point.Tests
             model.CreateShape(CIRCLE);
             model.CreateShape(RECTANGLE);
 
-            model.DrawPannel(mockGraphics.Object);
+            model.DrawPannel(mockGraphics.Object, 1);
 
-            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>()), Times.Never);
+            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Never);
         }
 
         // Test 註解
@@ -287,12 +354,12 @@ namespace Power_Point.Tests
             model.CreateShape(CIRCLE);
             model.CreateShape(RECTANGLE);
 
-            model.DrawPannel(mockGraphics.Object);
+            model.DrawPannel(mockGraphics.Object, 1);
 
-            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>()), Times.Never);
+            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Never);
         }
 
         // Test 註解
@@ -309,12 +376,12 @@ namespace Power_Point.Tests
 
             model._shapes.SelectedIndex = 1;
             model._shapes.IsSelected = true;
-            model.DrawPannel(mockGraphics.Object);
+            model.DrawPannel(mockGraphics.Object, 1);
 
-            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解
@@ -329,11 +396,11 @@ namespace Power_Point.Tests
             model.CreateShape(CIRCLE);
             model.CreateShape(RECTANGLE);
 
-            model.DrawButton(mockGraphics.Object);
+            model.DrawButton(mockGraphics.Object, 1);
 
-            mockGraphics.Verify(g => g.DrawButtonLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawButtonCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawButtonRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解

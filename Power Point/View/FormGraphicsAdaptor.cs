@@ -44,76 +44,87 @@ namespace Power_Point
         }
         
         // 畫線
-        public virtual void DrawLine(Point firstPoint, Point endPoint)
+        public virtual void DrawLine(Point firstPoint, Point endPoint, double rate)
         {
-            _graphics.DrawLine(Pens.Black, (float)firstPoint.X, (float)firstPoint.Y, (float)endPoint.X, (float)endPoint.Y);
+            _graphics.DrawLine(Pens.Black, GetPointX(firstPoint) * (float)rate, GetPointY(firstPoint) * (float)rate, GetPointX(endPoint) * (float)rate, GetPointY(endPoint) * (float)rate);
+        }
+
+        // GetPointX
+        private float GetPointX(Point point)
+        {
+            return (float)point.X;
+        }
+
+        // GetPointY
+        private float GetPointY(Point point)
+        {
+            return (float)point.Y;
         }
 
         // 繪製線縮圖
-        public virtual void DrawButtonLine(Point firstPoint, Point endPoint)
+        public virtual void DrawButtonLine(Point firstPoint, Point endPoint, double rate)
         {
-            _graphics.DrawLine(Pens.Black, (float)(firstPoint.X / THREE_POINT_EIGHT), (float)(firstPoint.Y / THREE_POINT_EIGHT), (float)(endPoint.X / THREE_POINT_EIGHT), (float)(endPoint.Y / THREE_POINT_EIGHT));
+            _graphics.DrawLine(Pens.Black, (float)(firstPoint.X / THREE_POINT_EIGHT) * (float)rate, (float)(firstPoint.Y / THREE_POINT_EIGHT) * (float)rate, (float)(endPoint.X / THREE_POINT_EIGHT) * (float)rate, (float)(endPoint.Y / THREE_POINT_EIGHT) * (float)rate);
         }
 
         // 畫圓
-        public virtual void DrawCircle(Point firstPoint, Point endPoint)
+        public virtual void DrawCircle(Point firstPoint, Point endPoint, double rate)
         {
             float pointX = GetMinPointX(firstPoint, endPoint);
             float pointY = GetMinPointY(firstPoint, endPoint);
             float width = GetWidth(firstPoint, endPoint);
             float height = GetHeight(firstPoint, endPoint);
 
-            _graphics.DrawEllipse(Pens.Black, pointX, pointY, width, height);
+            _graphics.DrawEllipse(Pens.Black, pointX * (float)rate, pointY * (float)rate, width * (float)rate, height * (float)rate);
         }
 
         // 繪製圓縮圖
-        public virtual void DrawButtonCircle(Point firstPoint, Point endPoint)
+        public virtual void DrawButtonCircle(Point firstPoint, Point endPoint, double rate)
         {
-            float pointX = (float)(GetMinPointX(firstPoint, endPoint) / THREE_POINT_EIGHT);
-            float pointY = (float)(GetMinPointY(firstPoint, endPoint) / THREE_POINT_EIGHT);
-            float width = (float)(GetWidth(firstPoint, endPoint) / THREE_POINT_EIGHT);
-            float height = (float)(GetHeight(firstPoint, endPoint) / THREE_POINT_EIGHT);
+            float pointX = (float)(GetMinPointX(firstPoint, endPoint) / THREE_POINT_EIGHT) * (float)rate;
+            float pointY = (float)(GetMinPointY(firstPoint, endPoint) / THREE_POINT_EIGHT) * (float)rate;
+            float width = (float)(GetWidth(firstPoint, endPoint) / THREE_POINT_EIGHT) * (float)rate;
+            float height = (float)(GetHeight(firstPoint, endPoint) / THREE_POINT_EIGHT) * (float)rate;
 
             _graphics.DrawEllipse(Pens.Black, pointX, pointY, width, height);
         }
 
         // 畫矩形
-        public virtual void DrawRectangle(Point firstPoint, Point endPoint)
+        public virtual void DrawRectangle(Point firstPoint, Point endPoint, double rate)
         {
             float pointX = GetMinPointX(firstPoint, endPoint);
             float pointY = GetMinPointY(firstPoint, endPoint);
             float width = GetWidth(firstPoint, endPoint);
             float height = GetHeight(firstPoint, endPoint);
 
-            _graphics.DrawRectangle(Pens.Black, pointX, pointY, width, height);
+            _graphics.DrawRectangle(Pens.Black, pointX * (float)rate, pointY * (float)rate, width * (float)rate, height * (float)rate);
         }
 
         // 繪製矩形縮圖
-        public virtual void DrawButtonRectangle(Point firstPoint, Point endPoint)
+        public virtual void DrawButtonRectangle(Point firstPoint, Point endPoint, double rate)
         {
-            float pointX = (float)(GetMinPointX(firstPoint, endPoint) / THREE_POINT_EIGHT);
-            float pointY = (float)(GetMinPointY(firstPoint, endPoint) / THREE_POINT_EIGHT);
-            float width = (float)(GetWidth(firstPoint, endPoint) / THREE_POINT_EIGHT);
-            float height = (float)(GetHeight(firstPoint, endPoint) / THREE_POINT_EIGHT);
+            float pointX = (float)(GetMinPointX(firstPoint, endPoint) / THREE_POINT_EIGHT) * (float)rate;
+            float pointY = (float)(GetMinPointY(firstPoint, endPoint) / THREE_POINT_EIGHT) * (float)rate;
+            float width = (float)(GetWidth(firstPoint, endPoint) / THREE_POINT_EIGHT) * (float)rate;
+            float height = (float)(GetHeight(firstPoint, endPoint) / THREE_POINT_EIGHT) * (float)rate;
 
             _graphics.DrawRectangle(Pens.Black, pointX, pointY, width, height);
         }
 
         // 畫選取框
-        public virtual void DrawSelect(Point firstPoint, Point endPoint)
+        public virtual void DrawSelect(Point firstPoint, Point endPoint, double rate)
         {
             SetSelect(firstPoint, endPoint);
 
-            _graphics.DrawRectangle(Pens.Gray, _startPointX, _startPointY, _width, _height);
-            _graphics.DrawEllipse(Pens.Black, _startPointX - (float)FIVE, _startPointY - (float)FIVE, TEN, TEN);
-            _graphics.DrawEllipse(Pens.Black, _startPointX - (float)FIVE, _endPointY - (float)FIVE, TEN, TEN);
-            _graphics.DrawEllipse(Pens.Black, _endPointX - (float)FIVE, _endPointY - (float)FIVE, TEN, TEN);
-            _graphics.DrawEllipse(Pens.Black, _endPointX - (float)FIVE, _startPointY - (float)FIVE, TEN, TEN);
-            _graphics.DrawEllipse(Pens.Black, _startPointX - (float)FIVE, _middlePointY - (float)FIVE, TEN, TEN);
-            _graphics.DrawEllipse(Pens.Black, _middlePointX - (float)FIVE, _endPointY - (float)FIVE, TEN, TEN);
-            _graphics.DrawEllipse(Pens.Black, _middlePointX - (float)FIVE, _startPointY - (float)FIVE, TEN, TEN);
-            _graphics.DrawEllipse(Pens.Black, _endPointX - (float)FIVE, _middlePointY - (float)FIVE, TEN, TEN);
-
+            _graphics.DrawRectangle(Pens.Gray, _startPointX * (float)rate, _startPointY * (float)rate, _width * (float)rate, _height * (float)rate);
+            _graphics.DrawEllipse(Pens.Black, (_startPointX - (float)FIVE) * (float)rate, (_startPointY - (float)FIVE) * (float)rate, TEN, TEN);
+            _graphics.DrawEllipse(Pens.Black, (_startPointX - (float)FIVE) * (float)rate, (_endPointY - (float)FIVE) * (float)rate, TEN, TEN);
+            _graphics.DrawEllipse(Pens.Black, (_endPointX - (float)FIVE) * (float)rate, (_endPointY - (float)FIVE) * (float)rate, TEN, TEN);
+            _graphics.DrawEllipse(Pens.Black, (_endPointX - (float)FIVE) * (float)rate, (_startPointY - (float)FIVE) * (float)rate, TEN, TEN);
+            _graphics.DrawEllipse(Pens.Black, (_startPointX - (float)FIVE) * (float)rate, (_middlePointY - (float)FIVE) * (float)rate, TEN, TEN);
+            _graphics.DrawEllipse(Pens.Black, (_middlePointX - (float)FIVE) * (float)rate, (_endPointY - (float)FIVE) * (float)rate, TEN, TEN);
+            _graphics.DrawEllipse(Pens.Black, (_middlePointX - (float)FIVE) * (float)rate, (_startPointY - (float)FIVE) * (float)rate, TEN, TEN);
+            _graphics.DrawEllipse(Pens.Black, (_endPointX - (float)FIVE) * (float)rate, (_middlePointY - (float)FIVE) * (float)rate, TEN, TEN);
         }
 
         // 設置選取形狀的所有資訊

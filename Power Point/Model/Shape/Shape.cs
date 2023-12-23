@@ -49,19 +49,19 @@ namespace Power_Point
         }
 
         // DrawPannel 的框架
-        public virtual void Draw(IGraphics graphics)
+        public virtual void Draw(IGraphics graphics, double rate)
         {
             IsCalled = true;
         }
 
         // DrawButton 的框架
-        public virtual void DrawButton(IGraphics graphics)
+        public virtual void DrawButton(IGraphics graphics, double rate)
         {
             IsCalled = true;
         }
 
         // 是否在選取範圍內
-        public virtual void DrawSelect(IGraphics graphics)
+        public virtual void DrawSelect(IGraphics graphics, double rate)
         {
             IsCalled = true;
         }

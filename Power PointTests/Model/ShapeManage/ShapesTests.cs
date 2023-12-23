@@ -389,11 +389,11 @@ namespace Power_Point.Tests
             shapes.CreateShape(RECTANGLE);
             shapes.CreateShape(CIRCLE);
 
-            shapes.DrawShape(mockGraphics.Object);
+            shapes.DrawShape(mockGraphics.Object, 1);
 
-            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解
@@ -411,11 +411,11 @@ namespace Power_Point.Tests
 
             shapes.SetHintType(LINE);
 
-            shapes.DrawShape(mockGraphics.Object);
+            shapes.DrawShape(mockGraphics.Object, 1);
 
-            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解
@@ -432,9 +432,9 @@ namespace Power_Point.Tests
             shapes.IsSelected = true;
             shapes.SelectedIndex = 1;
 
-            shapes.DrawSelect(mockGraphics.Object);
+            shapes.DrawSelect(mockGraphics.Object, 1);
 
-            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解
@@ -451,9 +451,9 @@ namespace Power_Point.Tests
             shapes.IsSelected = false;
             shapes.SelectedIndex = -1;
 
-            shapes.DrawSelect(mockGraphics.Object);
+            shapes.DrawSelect(mockGraphics.Object, 1);
 
-            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>()), Times.Never);
+            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Never);
         }
 
         // Test 註解
@@ -467,16 +467,16 @@ namespace Power_Point.Tests
             shapes.CreateShape(RECTANGLE);
             shapes.CreateShape(CIRCLE);
 
-            shapes.DrawButtonShape(mockGraphics.Object);
+            shapes.DrawButtonShape(mockGraphics.Object, 1);
 
-            mockGraphics.Verify(g => g.DrawButtonLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawButtonRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawButtonCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解
         [TestMethod()]
-        public void SetGraphTest()
+        public void SetGraphTestOne()
         {
             Shapes shapes = new Shapes();
             PrivateObject privateObject = new PrivateObject(shapes);
@@ -503,6 +503,25 @@ namespace Power_Point.Tests
                 Assert.AreEqual(hint.EndPoint, shapeList[i].EndPoint);
             }
         }
+
+        // Test 註解
+        [TestMethod()]
+        public void SetGraphTestTwo()
+        {
+            Shapes shapes = new Shapes();
+            PrivateObject privateObject = new PrivateObject(shapes);
+            Shape hint = privateObject.GetField("_hint") as Shape;
+
+            hint.FirstPoint = new Point(0, 0);
+            hint.EndPoint = new Point(0, 0);
+            hint.Name = LINE;
+            shapes.SetGraph();
+
+            List<Shape> shapeList = privateObject.GetField("_shapes") as List<Shape>;
+
+            Assert.AreEqual(0, shapeList.Count);
+        }
+
 
         // Test 註解
         [TestMethod()]
@@ -782,6 +801,26 @@ namespace Power_Point.Tests
             shapeList[0].EndPoint.Y = 0;
 
             Assert.IsFalse(shapes.IsInRightFloorPoint(2, 2));
+
+
         }
+
+        // Test 註解
+        [TestMethod()]
+        public void SetShapeTest()
+        {
+            Shapes shapes = new Shapes();
+            shapes.CreateShape("線");
+            string oriInfo = shapes.GetShapeData()[0].Info;
+            double x = 10;
+            double y = 20;
+
+            shapes.SetShape(-1, x, y);
+
+            string curInfo = shapes.GetShapeData()[0].Info;
+
+            Assert.AreEqual(oriInfo, curInfo);
+        }
+
     }
 }

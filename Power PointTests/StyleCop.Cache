@@ -3,11 +3,77 @@
   <project key="457690036">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <sourcecode name="AddCommandTests.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2023/11/14 13:12:52.243</styleCop>
+      <settingsFile>0001/01/01 00:00:00.000</settingsFile>
+      <sourceFile>2023/12/13 21:52:58.497</sourceFile>
+      <parser>2023/11/14 13:12:52.243</parser>
+      <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
+      <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CommandManagerTests.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2023/11/14 13:12:52.243</styleCop>
+      <settingsFile>0001/01/01 00:00:00.000</settingsFile>
+      <sourceFile>2023/12/13 21:52:58.482</sourceFile>
+      <parser>2023/11/14 13:12:52.243</parser>
+      <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
+      <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="DeleteCommandTests.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2023/11/14 13:12:52.243</styleCop>
+      <settingsFile>0001/01/01 00:00:00.000</settingsFile>
+      <sourceFile>2023/12/13 21:49:16.928</sourceFile>
+      <parser>2023/11/14 13:12:52.243</parser>
+      <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
+      <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="DrawCommandTests.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2023/11/14 13:12:52.243</styleCop>
+      <settingsFile>0001/01/01 00:00:00.000</settingsFile>
+      <sourceFile>2023/12/13 21:52:58.490</sourceFile>
+      <parser>2023/11/14 13:12:52.243</parser>
+      <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
+      <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ModifyCommandTests.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2023/11/14 13:12:52.243</styleCop>
+      <settingsFile>0001/01/01 00:00:00.000</settingsFile>
+      <sourceFile>2023/12/13 21:52:58.473</sourceFile>
+      <parser>2023/11/14 13:12:52.243</parser>
+      <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
+      <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MoveCommandTests.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2023/11/14 13:12:52.243</styleCop>
+      <settingsFile>0001/01/01 00:00:00.000</settingsFile>
+      <sourceFile>2023/12/13 21:52:58.464</sourceFile>
+      <parser>2023/11/14 13:12:52.243</parser>
+      <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
+      <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
   <sourcecode name="PowerPointModelTests.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2023/11/14 13:12:52.243</styleCop>
       <settingsFile>0001/01/01 00:00:00.000</settingsFile>
-      <sourceFile>2023/11/28 16:45:38.705</sourceFile>
+      <sourceFile>2023/12/13 20:47:39.321</sourceFile>
       <parser>2023/11/14 13:12:52.243</parser>
       <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
       <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
@@ -18,7 +84,7 @@
     <timestamps>
       <styleCop>2023/11/14 13:12:52.243</styleCop>
       <settingsFile>0001/01/01 00:00:00.000</settingsFile>
-      <sourceFile>2023/11/28 16:42:13.594</sourceFile>
+      <sourceFile>2023/12/13 21:52:58.503</sourceFile>
       <parser>2023/11/14 13:12:52.243</parser>
       <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
       <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
@@ -29,7 +95,7 @@
     <timestamps>
       <styleCop>2023/11/14 13:12:52.243</styleCop>
       <settingsFile>0001/01/01 00:00:00.000</settingsFile>
-      <sourceFile>2023/11/24 22:49:05.266</sourceFile>
+      <sourceFile>2023/12/13 10:03:33.032</sourceFile>
       <parser>2023/11/14 13:12:52.243</parser>
       <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
       <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
@@ -40,7 +106,7 @@
     <timestamps>
       <styleCop>2023/11/14 13:12:52.243</styleCop>
       <settingsFile>0001/01/01 00:00:00.000</settingsFile>
-      <sourceFile>2023/11/28 16:45:48.023</sourceFile>
+      <sourceFile>2023/12/13 10:03:33.062</sourceFile>
       <parser>2023/11/14 13:12:52.243</parser>
       <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
       <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
@@ -51,7 +117,7 @@
     <timestamps>
       <styleCop>2023/11/14 13:12:52.243</styleCop>
       <settingsFile>0001/01/01 00:00:00.000</settingsFile>
-      <sourceFile>2023/11/28 16:45:48.054</sourceFile>
+      <sourceFile>2023/12/13 10:03:33.042</sourceFile>
       <parser>2023/11/14 13:12:52.243</parser>
       <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
       <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
@@ -62,7 +128,7 @@
     <timestamps>
       <styleCop>2023/11/14 13:12:52.243</styleCop>
       <settingsFile>0001/01/01 00:00:00.000</settingsFile>
-      <sourceFile>2023/11/28 16:45:48.060</sourceFile>
+      <sourceFile>2023/12/13 10:03:33.053</sourceFile>
       <parser>2023/11/14 13:12:52.243</parser>
       <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
       <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
@@ -73,7 +139,7 @@
     <timestamps>
       <styleCop>2023/11/14 13:12:52.243</styleCop>
       <settingsFile>0001/01/01 00:00:00.000</settingsFile>
-      <sourceFile>2023/11/24 22:18:15.901</sourceFile>
+      <sourceFile>2023/12/13 21:52:58.453</sourceFile>
       <parser>2023/11/14 13:12:52.243</parser>
       <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
       <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
@@ -95,7 +161,7 @@
     <timestamps>
       <styleCop>2023/11/14 13:12:52.243</styleCop>
       <settingsFile>0001/01/01 00:00:00.000</settingsFile>
-      <sourceFile>2023/11/28 16:45:48.013</sourceFile>
+      <sourceFile>2023/12/13 21:52:58.510</sourceFile>
       <parser>2023/11/14 13:12:52.243</parser>
       <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
       <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
@@ -107,6 +173,17 @@
       <styleCop>2023/11/14 13:12:52.243</styleCop>
       <settingsFile>0001/01/01 00:00:00.000</settingsFile>
       <sourceFile>2023/11/25 02:45:25.104</sourceFile>
+      <parser>2023/11/14 13:12:52.243</parser>
+      <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
+      <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ModifyStateTests.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2023/11/14 13:12:52.243</styleCop>
+      <settingsFile>0001/01/01 00:00:00.000</settingsFile>
+      <sourceFile>2023/12/13 21:52:58.427</sourceFile>
       <parser>2023/11/14 13:12:52.243</parser>
       <KellyPalRules.KellyPalAnalyzer>2023/11/14 13:12:52.243</KellyPalRules.KellyPalAnalyzer>
       <KellyPalRules.KellyPalAnalyzer.FilesHashCode>0</KellyPalRules.KellyPalAnalyzer.FilesHashCode>

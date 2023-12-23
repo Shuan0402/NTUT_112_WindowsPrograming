@@ -188,12 +188,12 @@
           <Reviews>
             <Smell>
               <Id>1</Id>
-              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PowerPointModel.cs on line 125.</SmellType>
+              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PowerPointModel.cs on line 193.</SmellType>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>Power Point</Project>
               <File>PowerPointModel.cs</File>
-              <Line>125</Line>
+              <Line>193</Line>
               <StartLine>0</StartLine>
               <StartCol>0</StartCol>
               <EndLine>0</EndLine>
@@ -234,6 +234,21 @@
             </Smell>
             <Smell>
               <Id>4</Id>
+              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\Form1.cs on line 108.</SmellType>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>Form1.cs</File>
+              <Line>108</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment />
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>5</Id>
               <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\FormGraphicsAdaptor.cs on line 23.</SmellType>
               <Severity>Red</Severity>
               <Weight>1</Weight>
@@ -247,6 +262,38 @@
               <Comment />
               <Auto>false</Auto>
             </Smell>
+            <Smell>
+              <Id>6</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>177 目前物件 Power_Point.PowerPointModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Point，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.Point.X 以及 Power_Point.Point.X 以及 Power_Point.Point.Y 以及 Power_Point.Point.Y</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PowerPointModel.cs</File>
+              <Line>177</Line>
+              <StartLine>177</StartLine>
+              <StartCol>25</StartCol>
+              <EndLine>177</EndLine>
+              <EndCol>81</EndCol>
+              <Comment>目前物件 Power_Point.PowerPointModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Point，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.Point.X 以及 Power_Point.Point.X 以及 Power_Point.Point.Y 以及 Power_Point.Point.Y</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>7</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>91 目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.GetShapeData() 以及 Power_Point.PresentationModel.GetShapeData()</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\Form1.cs</File>
+              <Line>91</Line>
+              <StartLine>91</StartLine>
+              <StartCol>23</StartCol>
+              <EndLine>91</EndLine>
+              <EndCol>54</EndCol>
+              <Comment>目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.GetShapeData() 以及 Power_Point.PresentationModel.GetShapeData()</Comment>
+              <Auto>false</Auto>
+            </Smell>
           </Reviews>
           <HashCodeIgnoreList />
           <HashCodeRequestIgnoreList>
@@ -255,6 +302,41 @@
           </HashCodeRequestIgnoreList>
           <AnalysisFileManager>
             <AnalysisFiles>
+              <AnalysisFile>
+                <RelativePath>Model\Command\AddCommand.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\CommandManager.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\DeleteCommand.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\DrawCommand.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\ICommand.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\ModifyCommand.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\MoveCommand.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Model\PowerPointModel.cs</RelativePath>
                 <ProjectName>Power Point</ProjectName>
@@ -376,6 +458,36 @@
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
+                <RelativePath>Model\Command\AddCommandTests.cs</RelativePath>
+                <ProjectName>Power PointTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\CommandManagerTests.cs</RelativePath>
+                <ProjectName>Power PointTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\DeleteCommandTests.cs</RelativePath>
+                <ProjectName>Power PointTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\DrawCommandTests.cs</RelativePath>
+                <ProjectName>Power PointTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\ModifyCommandTests.cs</RelativePath>
+                <ProjectName>Power PointTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\MoveCommandTests.cs</RelativePath>
+                <ProjectName>Power PointTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>Model\PowerPointModelTests.cs</RelativePath>
                 <ProjectName>Power PointTests</ProjectName>
                 <AnalysisFileType>Test</AnalysisFileType>
@@ -426,6 +538,11 @@
                 <AnalysisFileType>Test</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
+                <RelativePath>Model\State\ModifyStateTests.cs</RelativePath>
+                <ProjectName>Power PointTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>Model\State\PointStateTests.cs</RelativePath>
                 <ProjectName>Power PointTests</ProjectName>
                 <AnalysisFileType>Test</AnalysisFileType>
@@ -437,8 +554,8 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>1577</ProductionLoc>
-          <TestLoc>2227</TestLoc>
+          <ProductionLoc>1932</ProductionLoc>
+          <TestLoc>3139</TestLoc>
         </CodeReview>
       </Data>
     </div>

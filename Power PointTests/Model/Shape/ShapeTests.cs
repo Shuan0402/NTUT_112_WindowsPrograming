@@ -40,7 +40,7 @@ namespace Power_Point.Tests
             Shape shape = new Shape();
             var mockGraphics = new Mock<IGraphics>();
 
-            shape.DrawButton(mockGraphics.Object);
+            shape.DrawButton(mockGraphics.Object, 1);
 
             Assert.IsTrue(shape.IsCalled);
         }
@@ -52,7 +52,7 @@ namespace Power_Point.Tests
             Shape shape = new Shape();
             var mockGraphics = new Mock<IGraphics>();
 
-            shape.DrawSelect(mockGraphics.Object);
+            shape.DrawSelect(mockGraphics.Object, 1);
 
             Assert.IsTrue(shape.IsCalled);
         }
@@ -64,7 +64,7 @@ namespace Power_Point.Tests
             Shape shape = new Shape();
             var mockGraphics = new Mock<IGraphics>();
 
-            shape.Draw(mockGraphics.Object);
+            shape.Draw(mockGraphics.Object, 1);
 
             Assert.IsTrue(shape.IsCalled);
         }

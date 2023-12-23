@@ -17858,3 +17858,21 @@ TableControl: About to update entries 2023/11/28 下午 09:47:34:823
 TableControl: Updating entries 2023/11/28 下午 09:47:34:823
 TableControl: Updating entries (UI thread) 2023/11/28 下午 09:47:34:824
 TableControl: Refreshing UI 2023/11/28 下午 09:47:34:832
+TableControl: QueueUpdate 2023/11/28 下午 10:17:47:60
+TableControl: About to update entries 2023/11/28 下午 10:17:47:61
+TableControl: Updating entries 2023/11/28 下午 10:17:47:62
+TableControl: Updating entries (UI thread) 2023/11/28 下午 10:17:47:74
+TableControl: Refreshing UI 2023/11/28 下午 10:17:47:83
+2023-11-28-13.36.09.361-devenv-45248.tsv -> 2023-11-29-00.20.22.208-devenv-45248.tsv
+Entering constructor for: ReviewPal.ReviewPal2013.DrSmellPackage
+Entering Initialize() of: ReviewPal.ReviewPal2013.DrSmellPackage
+2023-12-09 13:52:37Z : PB = 445239296 : In   : ------------------------------------------------------------ StyleCop.StyleCopCore..ctor(environment=<null>, hostTag=<null>)
+2023-12-09 13:52:37Z : PB = 445276160 : Out  : ------------------------------------------------------------ StyleCop.StyleCopCore..ctor()
+2023-12-09 13:52:37Z : PB = 445714432 : Out  : --------------------------------------------------------- StyleCop.StyleCopCore.Initialize()
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\debug.log
+Entering constructor for: ReviewPal.ReviewPal2013.DrSmellPackage
+Entering Initialize() of: ReviewPal.ReviewPal2013.DrSmellPackage
+2023-12-14 06:41:30Z : PB = 269131776 : In   : ------------------------------------------------------------ StyleCop.StyleCopCore..ctor(environment=<null>, hostTag=<null>)
+2023-12-14 06:41:30Z : PB = 269168640 : Out  : ------------------------------------------------------------ StyleCop.StyleCopCore..ctor()
+2023-12-14 06:41:30Z : PB = 269754368 : Out  : --------------------------------------------------------- StyleCop.StyleCopCore.Initialize()
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\debug.log

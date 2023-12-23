@@ -16,6 +16,7 @@ namespace Power_Point.Tests
         const string RECTANGLE = "矩形";
         const string CIRCLE = "圓形";
 
+        // Test 註解
         [TestMethod()]
         public void ModifyStateTest()
         {
@@ -29,6 +30,7 @@ namespace Power_Point.Tests
             Assert.AreEqual(shapes, stateShapes);
         }
 
+        // Test 註解
         [TestMethod()]
         public void MouseDownTest()
         {
@@ -40,6 +42,7 @@ namespace Power_Point.Tests
             Assert.IsTrue(model._mouse is ModifyState);
         }
 
+        // Test 註解
         [TestMethod()]
         public void MouseMoveTest()
         {
@@ -68,8 +71,8 @@ namespace Power_Point.Tests
             Assert.AreEqual(10, shapes[1].FirstPoint.X);
             Assert.AreEqual(10, shapes[1].FirstPoint.Y);
         }
-        
 
+        // Test 註解
         [TestMethod()]
         public void MouseUpTest()
         {

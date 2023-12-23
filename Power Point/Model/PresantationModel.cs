@@ -69,7 +69,21 @@ namespace Power_Point
             set;
         }
 
-        
+        public bool IsRedoEnabled
+        {
+            get
+            {
+                return _model.IsRedoEnabled;
+            }
+        }
+
+        public bool IsUndoEnabled
+        {
+            get
+            {
+                return _model.IsUndoEnabled;
+            }
+        }
 
         // 取消選取圖形按鈕
         public void CheckArrow()
@@ -136,6 +150,7 @@ namespace Power_Point
         public void CreateShape(string selectedShape)
         {
             _model.CreateShape(selectedShape);
+            _model.IsFirstCreate = true;
         }
 
         // 刪除 shape
@@ -171,15 +186,15 @@ namespace Power_Point
         }
 
         // 新增繪圖
-        public void DrawPannel(FormsGraphicsAdaptor graphics)
+        public void DrawPannel(FormsGraphicsAdaptor graphics, double rate)
         {
-            _model.DrawPannel(graphics);
+            _model.DrawPannel(graphics, rate);
         }
 
         // 新增繪圖
-        public void DrawButton(FormsGraphicsAdaptor graphics)
+        public void DrawButton(FormsGraphicsAdaptor graphics, double rate)
         {
-            _model.DrawButton(graphics);
+            _model.DrawButton(graphics, rate);
         }
 
         // 控制滑鼠型態
@@ -203,6 +218,18 @@ namespace Power_Point
         public void DeleteSelectedShape()
         {
             _model.DeleteSelecetedShape();
+        }
+
+        // undo
+        public void Undo()
+        {
+            _model.Undo();
+        }
+
+        // redo
+        public void Redo()
+        {
+            _model.Redo();
         }
     }
 }

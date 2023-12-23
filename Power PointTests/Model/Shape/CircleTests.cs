@@ -21,10 +21,10 @@ namespace Power_Point.Tests
             var mockGraphics = new Mock<IGraphics>();
             var circle = new Circle();
 
-            circle.Draw(mockGraphics.Object);
+            circle.Draw(mockGraphics.Object, 1);
 
             // Assert
-            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // DrawButtonTest
@@ -34,10 +34,10 @@ namespace Power_Point.Tests
             var mockGraphics = new Mock<IGraphics>();
             var circle = new Circle();
 
-            circle.DrawButton(mockGraphics.Object);
+            circle.DrawButton(mockGraphics.Object, 1);
 
             // Assert
-            mockGraphics.Verify(g => g.DrawButtonCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // DrawSelectTest
@@ -47,10 +47,10 @@ namespace Power_Point.Tests
             var mockGraphics = new Mock<IGraphics>();
             var circle = new Circle();
 
-            circle.DrawSelect(mockGraphics.Object);
+            circle.DrawSelect(mockGraphics.Object, 1);
 
             // Assert
-            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // 點在圓內

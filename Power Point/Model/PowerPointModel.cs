@@ -7,6 +7,7 @@ namespace Power_Point
     public class PowerPointModel
     {
         public IMouseState _mouse;
+        readonly CommandManager _commandManager = new CommandManager();
         // 事件宣告
         // Pannel change
         public virtual event PannelChangedEventHandler ChangePannelEvent;
@@ -17,6 +18,11 @@ namespace Power_Point
 
         // 變數
         public Shapes _shapes = new Shapes();
+        private double FirstPointX;
+        private double FirstPointY;
+        private double EndPointX;
+        private double EndPointY;
+        private string ShapeType;
 
         public bool IsPressed
         {
@@ -33,32 +39,65 @@ namespace Power_Point
         const string DRAW = "draw";
         const string POINT = "point";
         const string MODIFY = "modify";
+        const int MINUS_ONE = -1;
 
         public PowerPointModel()
         {
             IsPressed = false;
-            //IsShapeSizable = false;
-        } 
+            IsFirstCreate = true;
+        }
+
+        public bool IsRedoEnabled
+        {
+            get
+            {
+                return _commandManager.IsRedoEnabled;
+            }
+        }
+
+        public bool IsUndoEnabled
+        {
+            get
+            {
+                return _commandManager.IsUndoEnabled;
+            }
+        }
+
+        public bool IsMoved
+        {
+            get;
+            set;
+        }
+
+        public bool IsFirstCreate
+        {
+            get;
+            set;
+        }
 
         // List<Shape> 管理
         // 將 shape 加入 shapes 中
         public void CreateShape(string shapeType)
         {
-            _shapes.CreateShape(shapeType);
-            NotifyModelChanged();
+            _commandManager.Execute(
+                new AddCommand(this, shapeType)
+            );
         }
 
         // 將 shape 從 shapes 中刪除
         public void DeleteShape(int index)
         {
-            _shapes.DeleteShape(index);
-            NotifyModelChanged();
+            _commandManager.Execute(
+                new DeleteCommand(this, index)
+            );
         }
 
         // 刪除所選形狀
         public void DeleteSelecetedShape()
         {
-            _shapes.DeleteSelectedShape();
+            _commandManager.Execute(
+                new DeleteCommand(this, MINUS_ONE)
+            );
             NotifyModelChanged();
         }
 
@@ -80,7 +119,7 @@ namespace Power_Point
         // 壓下滑鼠
         public void PressPointer(double pointX, double pointY, string shapeType)
         {
-            if (pointX > 0 && pointY > 0 && _mouse != null)
+            if (pointX > 0 && pointY > 0 && _mouse != null && shapeType != "Shape")
             {
                 IsPressed = true;
                 if (IsShapeSizable)
@@ -88,6 +127,11 @@ namespace Power_Point
                     ChangeState(MODIFY);
                 }
                 _mouse.MouseDown(pointX, pointY, shapeType);
+                FirstPointX = pointX;
+                FirstPointY = pointY;
+                EndPointX = FirstPointX;
+                EndPointY = FirstPointY;
+                ShapeType = shapeType;
             }
             NotifyModelChanged();
         }
@@ -98,6 +142,9 @@ namespace Power_Point
             if (IsPressed)
             {
                 _mouse.MouseMove(pointX, pointY);
+                IsMoved = false;
+                EndPointX = pointX;
+                EndPointY = pointY;
             }
             else
             {
@@ -112,12 +159,33 @@ namespace Power_Point
         {
             if (IsPressed)
             {
-                _mouse.MouseUp();
+                Point firstPoint = new Point(FirstPointX, FirstPointY);
+                Point endPoint = new Point(EndPointX, EndPointY);
+                _shapes.SelectedIndex = _shapes.SelectShape(endPoint);
+                if (_mouse is DrawState)
+                {
+                    _commandManager.Execute(
+                        new DrawCommand(this, firstPoint, endPoint, ShapeType)
+                    );
+                }
+                else if (_mouse is ModifyState)
+                {
+                    _commandManager.Execute(
+                        new ModifyCommand(this, firstPoint, endPoint, ShapeType)
+                    );
+                    ChangeState("point");
+                }
+                else if (firstPoint.X != endPoint.X && firstPoint.Y != endPoint.Y)
+                {
+                    _commandManager.Execute(
+                        new MoveCommand(this, firstPoint, endPoint, _shapes.SelectedIndex)
+                    );
+                }
                 IsPressed = false;
                 NotifyModelChanged();
             }
         }
-    
+
         // 畫布事件觸發
         // 通知 Handler，畫布狀態改變
         public void NotifyModelChanged()
@@ -127,21 +195,21 @@ namespace Power_Point
         }
 
         // 更新畫面
-        public void DrawPannel(IGraphics graphics)
+        public void DrawPannel(IGraphics graphics, double rate)
         {
             graphics.ClearAll();
-            _shapes.DrawShape(graphics);
+            _shapes.DrawShape(graphics, rate);
             if (_mouse is PointState)
             {
-                _shapes.DrawSelect(graphics);
+                _shapes.DrawSelect(graphics, rate);
             }
         }
 
         // 繪畫縮圖
-        public void DrawButton(IGraphics graphics)
+        public void DrawButton(IGraphics graphics, double rate)
         {
             graphics.ClearAll();
-            _shapes.DrawButtonShape(graphics);
+            _shapes.DrawButtonShape(graphics, rate);
         }
 
         // 更改狀態
@@ -159,6 +227,18 @@ namespace Power_Point
                     _mouse = new ModifyState(_shapes);
                     break;
             }
+        }
+
+        // Undo
+        public void Undo()
+        {
+            _commandManager.Undo();
+        }
+
+        // Redo
+        public void Redo()
+        {
+            _commandManager.Redo();
         }
     }
 }

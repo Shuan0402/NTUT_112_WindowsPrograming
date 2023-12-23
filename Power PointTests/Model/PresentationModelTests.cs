@@ -288,18 +288,18 @@ namespace Power_Point.Tests
             presentationModel._model._shapes.IsSelected = false;
 
             // 模擬 FormsGraphicsAdaptor 的行為
-            mockGraphics.Setup(x => x.DrawLine(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
+            mockGraphics.Setup(x => x.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
 
-            presentationModel.DrawPannel(mockGraphics.Object);
+            presentationModel.DrawPannel(mockGraphics.Object, 1);
 
             // 驗證繪圖方法是否被呼叫
-            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>()), Times.Never);
+            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Never);
         }
 
         // Test 註解
@@ -318,18 +318,18 @@ namespace Power_Point.Tests
             presentationModel._model._shapes.IsSelected = true;
 
             // 模擬 FormsGraphicsAdaptor 的行為
-            mockGraphics.Setup(x => x.DrawLine(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
+            mockGraphics.Setup(x => x.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
 
-            presentationModel.DrawPannel(mockGraphics.Object);
+            presentationModel.DrawPannel(mockGraphics.Object, 1);
 
             // 驗證繪圖方法是否被呼叫
-            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解
@@ -346,17 +346,17 @@ namespace Power_Point.Tests
             presentationModel._model._mouse = new DrawState(presentationModel._model._shapes);
 
             // 模擬 FormsGraphicsAdaptor 的行為
-            mockGraphics.Setup(x => x.DrawLine(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
+            mockGraphics.Setup(x => x.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
 
-            presentationModel.DrawPannel(mockGraphics.Object);
+            presentationModel.DrawPannel(mockGraphics.Object, 1);
 
             // 驗證繪圖方法是否被呼叫
-            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解
@@ -372,16 +372,16 @@ namespace Power_Point.Tests
             presentationModel.CreateShape(CIRCLE);
 
             // 模擬 FormsGraphicsAdaptor 的行為
-            mockGraphics.Setup(x => x.DrawButtonLine(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawButtonRectangle(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
-            mockGraphics.Setup(x => x.DrawButtonCircle(It.IsAny<Point>(), It.IsAny<Point>())).Verifiable();
+            mockGraphics.Setup(x => x.DrawButtonLine(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawButtonRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
+            mockGraphics.Setup(x => x.DrawButtonCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1)).Verifiable();
 
-            presentationModel.DrawButton(mockGraphics.Object);
+            presentationModel.DrawButton(mockGraphics.Object, 1);
 
             // 驗證繪圖方法是否被呼叫
-            mockGraphics.Verify(g => g.DrawButtonLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawButtonRectangle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
-            mockGraphics.Verify(g => g.DrawButtonCircle(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonRectangle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonCircle(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解
@@ -487,7 +487,6 @@ namespace Power_Point.Tests
             presentationModel.PresentationPannelChanged += mockEventHandler.Object;
             presentationModel.PresentationPannelChanged -= mockEventHandler.Object;
 
-            // Assert
             var eventInfo = presentationModel.GetType().GetEvent("PresentationPannelChanged");
             Assert.IsNotNull(eventInfo, "Event not found");
         }
@@ -504,7 +503,6 @@ namespace Power_Point.Tests
             presentationModel.PresentationButtonChanged += mockEventHandler.Object;
             presentationModel.PresentationButtonChanged -= mockEventHandler.Object;
 
-            // Assert
             var eventInfo = presentationModel.GetType().GetEvent("PresentationButtonChanged");
             Assert.IsNotNull(eventInfo, "Event not found");
         }
@@ -513,16 +511,13 @@ namespace Power_Point.Tests
         [TestMethod()]
         public void NotifyIsNullTest()
         {
-            // Arrange
             PowerPointModel model = new PowerPointModel();
             PresentationModel obj = new PresentationModel(model);
 
             bool eventRaised = false;
 
-            // Act
             obj.Notify("SomeProperty");
 
-            // Assert
             Assert.IsFalse(eventRaised, "PropertyChanged event should have been raised");
         }
 
@@ -530,18 +525,76 @@ namespace Power_Point.Tests
         [TestMethod()]
         public void NotifyNotNullTest()
         {
-            // Arrange
             PowerPointModel model = new PowerPointModel();
             PresentationModel obj = new PresentationModel(model);
 
             bool eventRaised = false;
             obj.PropertyChanged += (sender, args) => eventRaised = true;
 
-            // Act
             obj.Notify("SomeProperty");
 
-            // Assert
             Assert.IsTrue(eventRaised, "PropertyChanged event should have been raised");
+        }
+
+        // Test 註解
+        [TestMethod()]
+        public void IsRedoEnabledTest()
+        {
+            PowerPointModel model = new PowerPointModel();
+            PresentationModel presentationModel = new PresentationModel(model);
+            CommandManager commandManager = new CommandManager();
+
+            commandManager.Execute(
+                new AddCommand(model, "線")
+            );
+
+            Assert.IsFalse(presentationModel.IsRedoEnabled);
+        }
+
+        // Test 註解
+        [TestMethod()]
+        public void IsUndoEnabledTest()
+        {
+            PowerPointModel model = new PowerPointModel();
+            PresentationModel presentationModel = new PresentationModel(model);
+            CommandManager commandManager = new CommandManager();
+
+            commandManager.Execute(
+                new AddCommand(model, "線")
+            );
+
+            Assert.IsFalse(presentationModel.IsUndoEnabled);
+        }
+
+        // Test 註解
+        [TestMethod()]
+        public void UndoTest()
+        {
+            PowerPointModel model = new PowerPointModel();
+            PresentationModel presentationModel = new PresentationModel(model);
+            presentationModel.CreateShape("線");
+            presentationModel.Undo();
+
+            PrivateObject privateObject = new PrivateObject(model._shapes);
+            List<Shape> shapeList = privateObject.GetField("_shapes") as List<Shape>;
+
+            Assert.AreEqual(0, shapeList.Count);
+        }
+
+        // Test 註解
+        [TestMethod()]
+        public void RedoTest()
+        {
+            PowerPointModel model = new PowerPointModel();
+            PresentationModel presentationModel = new PresentationModel(model);
+            presentationModel.CreateShape("線");
+            presentationModel.Undo();
+            presentationModel.Redo();
+
+            PrivateObject privateObject = new PrivateObject(model._shapes);
+            List<Shape> shapeList = privateObject.GetField("_shapes") as List<Shape>;
+
+            Assert.AreEqual(1, shapeList.Count);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Power_Point
+﻿using System;
+
+namespace Power_Point
 {
     public class Point
     {
@@ -30,5 +32,6 @@
         {
             return LEFT + X.ToString() + COMMA + Y.ToString() + RIGHT;
         }
+
     }
 }

@@ -34,21 +34,21 @@ namespace Power_Point
         }
 
         // 覆蓋 Shape Draw 的 Draw Line
-        public override void Draw(IGraphics graphics)
+        public override void Draw(IGraphics graphics, double rate)
         {
-            graphics.DrawLine(FirstPoint, EndPoint);
+            graphics.DrawLine(FirstPoint, EndPoint, rate);
         }
 
         // 標示被選取的形狀
-        public override void DrawSelect(IGraphics graphics)
+        public override void DrawSelect(IGraphics graphics, double rate)
         {
-            graphics.DrawSelect(FirstPoint, EndPoint);
+            graphics.DrawSelect(FirstPoint, EndPoint, rate);
         }
 
         // 繪畫縮圖
-        public override void DrawButton(IGraphics graphics)
+        public override void DrawButton(IGraphics graphics, double rate)
         {
-            graphics.DrawButtonLine(FirstPoint, EndPoint);
+            graphics.DrawButtonLine(FirstPoint, EndPoint, rate);
         }
 
         // 是否在選取範圍內

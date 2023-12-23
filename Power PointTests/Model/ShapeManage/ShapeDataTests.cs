@@ -11,6 +11,7 @@ namespace Power_Point.Tests
     [TestClass()]
     public class ShapeDataTests
     {
+        // Test 註解
         [TestMethod()]
         public void ShapeDataTest()
         {

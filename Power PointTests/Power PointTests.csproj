@@ -74,6 +74,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Model\Command\AddCommandTests.cs" />
+    <Compile Include="Model\Command\CommandManagerTests.cs" />
+    <Compile Include="Model\Command\DeleteCommandTests.cs" />
+    <Compile Include="Model\Command\DrawCommandTests.cs" />
+    <Compile Include="Model\Command\ModifyCommandTests.cs" />
+    <Compile Include="Model\Command\MoveCommandTests.cs" />
     <Compile Include="Model\PowerPointModelTests.cs" />
     <Compile Include="Model\PresentationModelTests.cs" />
     <Compile Include="Model\ShapeManage\ShapeDataTests.cs" />

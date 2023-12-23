@@ -21,10 +21,10 @@ namespace Power_Point.Tests
             var mockGraphics = new Mock<IGraphics>();
             var line = new Line();
 
-            line.Draw(mockGraphics.Object);
+            line.Draw(mockGraphics.Object, 1);
 
             // Assert
-            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解
@@ -34,10 +34,10 @@ namespace Power_Point.Tests
             var mockGraphics = new Mock<IGraphics>();
             var line = new Line();
 
-            line.DrawSelect(mockGraphics.Object);
+            line.DrawSelect(mockGraphics.Object, 1);
 
             // Assert
-            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawSelect(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // Test 註解
@@ -47,10 +47,10 @@ namespace Power_Point.Tests
             var mockGraphics = new Mock<IGraphics>();
             var line = new Line();
 
-            line.DrawButton(mockGraphics.Object);
+            line.DrawButton(mockGraphics.Object, 1);
 
             // Assert
-            mockGraphics.Verify(g => g.DrawButtonLine(It.IsAny<Point>(), It.IsAny<Point>()), Times.Once);
+            mockGraphics.Verify(g => g.DrawButtonLine(It.IsAny<Point>(), It.IsAny<Point>(), 1), Times.Once);
         }
 
         // 點在範圍內

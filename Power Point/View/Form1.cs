@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -23,6 +24,10 @@ namespace Power_Point
         const string IS_CIRCLE_CHECKED = "IsCircleChecked";
         const string IS_RECTANGLE_CHECKED = "IsRectangleChecked";
         const string IS_ARROW_CHECKED = "IsArrowChecked";
+        private Size canvasSize;
+        private Size slideButtonSize;
+        private double rate;
+        private double slideButtonRate;
 
         public Form1(PresentationModel model)
         {
@@ -34,6 +39,8 @@ namespace Power_Point
             _canvas.MouseUp += HandleCanvasReleased;
             _canvas.MouseMove += HandleCanvasMoved;
             _canvas.Paint += HandleCanvasPaint;
+            canvasSize = _canvas.Size;
+            slideButtonSize = _slideButton.Size;
             //Controls.Add(_canvas);
 
             // Pannel 狀態改變
@@ -50,6 +57,18 @@ namespace Power_Point
             _circleStripButton.DataBindings.Add(CHECKED, _presentationModel, IS_CIRCLE_CHECKED);
             _rectangleStripButton.DataBindings.Add(CHECKED, _presentationModel, IS_RECTANGLE_CHECKED);
             _arrowStripButton.DataBindings.Add(CHECKED, _presentationModel, IS_ARROW_CHECKED);
+
+            // 設定 undo、redo 狀態
+            _redoStripButton.Enabled = false;
+            _undoStripButton.Enabled = false;
+
+            SetSplitContainerSize();
+            RepositionPanel(); 
+
+            this.Resize += ResizeMainForm;
+
+            rate = 1;
+            slideButtonRate = 1;
         }
 
         // 設定 DataGridColumn
@@ -70,8 +89,25 @@ namespace Power_Point
             List<ShapeData> dataList = _presentationModel.GetShapeData();
             for (int i = 0; i < dataList.Count; i++)
             {
-                _dataGridShapeData.Rows.Add(DELETE, dataList[i].Name, dataList[i].Info);
+                string originalInfo = dataList[i].Info;
+                string modifiedInfo = MultiplyValuesInInfo(originalInfo);
+                _dataGridShapeData.Rows.Add(DELETE, dataList[i].Name, modifiedInfo);
             }
+        }
+
+        // MultiplyValuesInInfo
+        private string MultiplyValuesInInfo(string info)
+        {
+            string pattern = @"\((\w+), (\w+)\)";
+            string modifiedInfo = Regex.Replace(info, pattern, m =>
+            {
+                int value1 = int.Parse(m.Groups[1].Value);
+                int value2 = int.Parse(m.Groups[2].Value);
+                int newValue1 = (int)(value1 * (double)((double)_canvas.Width / (double)canvasSize.Width));
+                int newValue2 = (int)(value2 * (double)((double)_canvas.Height / (double)canvasSize.Height));
+                return $"({newValue1}, {newValue2})";
+            });
+            return modifiedInfo;
         }
 
         // 更新 datagridcolumn 資訊 
@@ -115,6 +151,8 @@ namespace Power_Point
                 string selectedShape = _comboBoxShape.SelectedItem.ToString();
                 _presentationModel.CreateShape(selectedShape);
                 ShowShapeList();
+
+                RefreshUI();
             }
         }
         
@@ -175,7 +213,15 @@ namespace Power_Point
         // 壓下滑鼠
         public void HandleCanvasPressed(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            _presentationModel.PointerPressed(e.X, e.Y);
+            _presentationModel.PointerPressed(e.X / rate, e.Y / rate);
+            RefreshUI();
+        }
+
+        // 滑鼠移動
+        public void HandleCanvasMoved(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            _presentationModel.PointerMoved(e.X / rate, e.Y / rate);
+            _canvas.Cursor = _presentationModel.GetCursors();
         }
 
         // 放開滑鼠
@@ -185,25 +231,19 @@ namespace Power_Point
             _canvas.Cursor = _presentationModel.GetCursors();
             _presentationModel.CheckArrow();
             ShowShapeList();
-        }
-
-        // 滑鼠移動
-        public void HandleCanvasMoved(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            _presentationModel.PointerMoved(e.X, e.Y);
-            _canvas.Cursor = _presentationModel.GetCursors();
+            RefreshUI();
         }
 
         // 繪製畫圖
         public void HandleCanvasPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            _presentationModel.DrawPannel(new FormsGraphicsAdaptor(e.Graphics));
+            _presentationModel.DrawPannel(new FormsGraphicsAdaptor(e.Graphics), rate);
         }
 
         // 繪製縮圖
         public void HandleButtonPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            _presentationModel.DrawButton(new FormsGraphicsAdaptor(e.Graphics));
+            _presentationModel.DrawButton(new FormsGraphicsAdaptor(e.Graphics), slideButtonRate);
         }
 
         // 更新畫布
@@ -212,7 +252,7 @@ namespace Power_Point
             _canvas.Invalidate(true);
         }
 
-        // 更新畫布
+        // 更新按鍵
         public void HandleButtonChanged()
         {
             _slideButton.Invalidate(true);
@@ -226,6 +266,103 @@ namespace Power_Point
                 _presentationModel.DeleteSelectedShape();
                 ShowShapeList();
             }
+        }
+
+        // splitContainer1_Panel2_Paint
+        private void PaintSplitContainer1Panel2(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        // _undoStripButton_Click
+        private void ClickUndoStripButton(object sender, EventArgs e)
+        {
+            _presentationModel.Undo();
+            RefreshUI();
+        }
+
+        // _redoStripButton_Click
+        private void ClickRedoStripButton(object sender, EventArgs e)
+        {
+            _presentationModel.Redo();
+            RefreshUI();
+        }
+
+        // RefreshUI
+        void RefreshUI()
+        {
+            _redoStripButton.Enabled = _presentationModel.IsRedoEnabled;
+            _undoStripButton.Enabled = _presentationModel.IsUndoEnabled;
+            Invalidate();
+            ShowShapeList();
+        }
+
+        // splitContainer1_SplitterMoved
+        private void MoveSplitContainer1Splitter(object sender, SplitterEventArgs e)
+        {
+            SetSplitContainerSize();
+            rate = (double)((double)_canvas.Width / (double)canvasSize.Width);
+            HandleCanvasChanged();
+        }
+
+        // splitContainer2_SplitterMoved
+        private void MoveSplitContainer2Splitter(object sender, SplitterEventArgs e)
+        {
+            SetSplitContainerSize();
+            rate = (double)((double)_canvas.Width / (double)canvasSize.Width);
+            slideButtonRate = (double)((double)_slideButton.Width / (double)slideButtonSize.Width);
+
+            HandleCanvasChanged();
+        }
+
+        // SetSplitContainerSize
+        private void SetSplitContainerSize()
+        {
+            int slideButtonWidth = _splitContainer2.SplitterDistance;
+            _slideButton.Size = new Size(slideButtonWidth, (int)(slideButtonWidth * 9.0 / 16.0));
+
+            int canvasWidth = _splitContainer1.SplitterDistance - _splitContainer2.SplitterDistance - _splitContainer2.SplitterWidth;
+            _canvas.Size = new Size(canvasWidth, (int)(canvasWidth * 9.0 / 16.0));
+
+            int panel2Width = _splitContainer1.Width - _splitContainer1.SplitterDistance - _splitContainer1.SplitterWidth;
+
+            _groupBoxDataShow.Width = panel2Width;
+            _dataGridShapeData.Width = panel2Width;
+
+            RepositionPanel();
+            ShowShapeList();
+        }
+
+        // _slideButton_Click
+        private void ClickSlideButton(object sender, EventArgs e)
+        {
+
+        }
+
+        // MainForm_Resize
+        private void ResizeMainForm(object sender, EventArgs e)
+        {
+            // 重新定位 Panel
+            RepositionPanel();
+            rate = (double)((double)_canvas.Width / (double)canvasSize.Width);
+            slideButtonRate = (double)((double)_slideButton.Width / (double)slideButtonSize.Width);
+        }
+
+        // RepositionPanel
+        private void RepositionPanel()
+        {
+            int splitContainerPannel2Width = _splitContainer2.Width - _splitContainer2.SplitterDistance - _splitContainer2.SplitterWidth;
+
+            int newPanelX = (splitContainerPannel2Width - _canvas.Width) / 2;
+            int newPanelY = (_splitContainer2.Height - _canvas.Height) / 2;
+
+            _canvas.Location = new System.Drawing.Point(newPanelX, newPanelY);
+        }
+
+        // _canvas_MouseDown
+        private void PressCanvasMouse(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+
         }
     }
 }
