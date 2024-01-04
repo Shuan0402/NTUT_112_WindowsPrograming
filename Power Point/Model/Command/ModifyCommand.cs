@@ -6,67 +6,36 @@ namespace Power_Point
 {
     public class ModifyCommand : ICommand
     {
-        private readonly string _shapeType;
-        public double FirstPointX
-        {
-            get;
-            set;
-        }
-        public double FirstPointY
-        {
-            get;
-            set;
-        }
-        public double EndPointX
-        {
-            get;
-            set;
-        }
-        public double EndPointY
-        {
-            get;
-            set;
-        }
+        Point _originPoint = new Point(0, 0);
+        Point _currentPoint = new Point(0, 0);
+        Shapes _shapes;
+        int _selectedIndex;
         private readonly PowerPointModel _model;
-        public int Index
-        {
-            get;
-            set;
-        }
 
         const string MODIFY = "modify";
 
-        public ModifyCommand(PowerPointModel model, Point firstPoint, Point endPoint, string shapeType)
+        public ModifyCommand(PowerPointModel model, Point originPoint, Point currentPoint, int index)
         {
             _model = model;
-            FirstPointX = firstPoint.X;
-            FirstPointY = firstPoint.Y;
-            EndPointX = endPoint.X;
-            EndPointY = endPoint.Y;
-            _shapeType = shapeType;
-            Index = _model._shapes.SelectedIndex;
+            _shapes = model._shapes;
+            _selectedIndex = index;
+            _originPoint = originPoint.DeepCopy();
+            _currentPoint = currentPoint.DeepCopy();
         }
 
         // Execute
         public void Execute()
         {
-            _model.ChangeState(MODIFY);
-            _model._shapes.SelectedIndex = Index;
-            _model._mouse.MouseDown(FirstPointX, FirstPointY, _shapeType);
-            _model._mouse.MouseMove(EndPointX, EndPointY);
-            _model._mouse.MouseUp();
-
+            _model.SetSelectedIndex(_selectedIndex);
+            _model.SetSelectedShapeSize(_currentPoint);
             _model.NotifyModelChanged();
         }
 
         // Revoke
         public void Revoke()
         {
-            _model.ChangeState(MODIFY);
-            _model._shapes.SelectedIndex = Index;
-            _model._mouse.MouseDown(EndPointX, EndPointY, _shapeType);
-            _model._mouse.MouseMove(FirstPointX, FirstPointY);
-            _model._mouse.MouseUp();
+            _model.SetSelectedIndex(_selectedIndex);
+            _model.SetSelectedShapeSize(_originPoint);
             _model.NotifyModelChanged();
         }
     }

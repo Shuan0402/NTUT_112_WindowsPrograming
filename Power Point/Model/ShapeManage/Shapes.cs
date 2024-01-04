@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 
 namespace Power_Point
@@ -8,10 +10,10 @@ namespace Power_Point
     public class Shapes
     {
         // 變數
-        private readonly List<Shape> _shapes = new List<Shape>();
+        public List<Shape> _shapes = new List<Shape>();
         private readonly ShapeFactory _shapeFactory = new ShapeFactory();
-        private Shape _temp;
-        private Shape _hint = new Shape();
+        public Shape _temp = new Shape();
+        public Shape _hint = new Shape();
 
         // 常數
         const string FIRST = "first";
@@ -26,6 +28,7 @@ namespace Power_Point
 
         public Shapes()
         {
+            InitializeHint();
         }
 
         public int SelectedIndex
@@ -86,12 +89,13 @@ namespace Power_Point
         // 刪除形狀
         public void DeleteShape(int index)
         {
+            
+            _shapes.RemoveAt(index);
             if (IsSelected)
             {
                 IsSelected = false;
                 SelectedIndex = -1;
             }
-            _shapes.RemoveAt(index);
         }
 
         // 刪除選取形狀
@@ -190,15 +194,42 @@ namespace Power_Point
         // 新增繪製形狀
         public void SetGraph() 
         {
+            _temp = new Shape();
             _temp = _shapeFactory.CreateShape(_hint.Name);
             _temp.FirstPoint = _hint.FirstPoint;
             _temp.EndPoint = _hint.EndPoint;
+            SetShapePoint();
             if (_temp.Name != SHAPE)
             {
                 if (IsTempPointEqualX() || IsTempPointEqualY())
                 {
                     _shapes.Add(_temp);
                 }
+            }
+        }
+
+        private void SetShapePoint()
+        {
+            if (_hint.FirstPoint.X > _hint.EndPoint.X)
+            {
+                _temp.LeftTopPoint.X = _hint.EndPoint.X;
+                _temp.RightBottomPoint.X = _hint.FirstPoint.X;
+            }
+            else
+            {
+                _temp.LeftTopPoint.X = _hint.FirstPoint.X;
+                _temp.RightBottomPoint.X = _hint.EndPoint.X;
+            }
+
+            if (_hint.FirstPoint.Y > _hint.EndPoint.Y)
+            {
+                _temp.LeftTopPoint.Y = _hint.EndPoint.Y;
+                _temp.RightBottomPoint.Y = _hint.FirstPoint.Y;
+            }
+            else
+            {
+                _temp.LeftTopPoint.Y = _hint.FirstPoint.Y;
+                _temp.RightBottomPoint.Y = _hint.EndPoint.Y;
             }
         }
 
@@ -264,6 +295,13 @@ namespace Power_Point
             {
                 _shapes[SelectedIndex].EndPoint.Y = pointY;
             }
+
+            SetShapePoint();
+        }
+
+        public Point GetSelectedShapePoint()
+        {
+            return _shapes[SelectedIndex].RightBottomPoint;
         }
 
         // 回傳是否在調整形狀大小的形狀範圍位置上
@@ -325,6 +363,31 @@ namespace Power_Point
         {
             return point.Y + height;
         }
+
+        public Shapes DeepCopy()
+        {
+            Shapes newShapes = (Shapes)this.MemberwiseClone();
+            newShapes._shapes = new List<Shape>();
+
+            foreach (Shape originalShape in this._shapes)
+            {
+                Shape clonedShape = originalShape.Clone();
+                newShapes._shapes.Add(clonedShape);
+            }
+
+            // 其他欄位的複製
+            newShapes._temp = this._temp;
+            newShapes._hint = new Shape
+            {
+                FirstPoint = new Point(0, 0),
+                EndPoint = new Point(0, 0)
+            };
+            newShapes.SelectedIndex = this.SelectedIndex;
+            newShapes.IsSelected = this.IsSelected;
+
+            return newShapes;
+        }
+
     }
 }
 

@@ -217,7 +217,7 @@ namespace Power_Point
         // 刪除選取形狀
         public void DeleteSelectedShape()
         {
-            _model.DeleteSelecetedShape();
+            //_model.DeleteSelecetedShape();
         }
 
         // undo

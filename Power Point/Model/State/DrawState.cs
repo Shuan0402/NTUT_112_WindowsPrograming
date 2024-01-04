@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Power_Point
 {
     public class DrawState : IMouseState
     {
+        private readonly PowerPointModel _model;
         private readonly Shapes _shapes;
+        Shapes originShapes;
         public double FirstPointX
         {
             get;
@@ -21,14 +25,16 @@ namespace Power_Point
         const string FIRST = "first";
         const string END = "end";
 
-        public DrawState(Shapes shapes)
+        public DrawState(PowerPointModel model)
         {
-            this._shapes = shapes;
+            this._model = model;
+            this._shapes = model._shapes;
         }
 
         // 壓下滑鼠-繪畫
         public void MouseDown(double pointX, double pointY, string shapeType)
         {
+            originShapes = _shapes.DeepCopy();
             FirstPointX = pointX;
             FirstPointY = pointY;
             _shapes.SetHintType(shapeType);
@@ -46,8 +52,14 @@ namespace Power_Point
         public void MouseUp()
         {
             _shapes.SetGraph();
+            Shapes currentShapes = _shapes.DeepCopy();
             _shapes.InitializeHint();
+            
+            _model._commandManager.Execute(
+                new DrawCommand(_model, originShapes, currentShapes)
+            );
+
+            _model.NotifyModelChanged();
         }
     }
-
 }

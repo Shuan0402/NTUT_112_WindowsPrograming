@@ -5,33 +5,28 @@ namespace Power_Point
 {
     public class DeleteCommand : ICommand
     {
-        public int Index
-        {
-            get;
-            set;
-        }
-
         private readonly PowerPointModel _model;
-        ShapeData _shape;
-        public DeleteCommand(PowerPointModel model, int index)
+        Shapes _originShapes;
+        Shapes _currentShapes;
+
+        public DeleteCommand(PowerPointModel model, Shapes originShapes, Shapes currentShapes)
         {
-            Index = index;
             _model = model;
+            _originShapes = originShapes.DeepCopy();
+            _currentShapes = currentShapes.DeepCopy();
         }
 
         // Execute
         public void Execute()
         {
-            _shape = _model._shapes.GetShapeData()[Index];
-            _model._shapes.DeleteShape(Index);
+            _model.SetShapes(_currentShapes);
             _model.NotifyModelChanged();
         }
 
         // Revoke
         public void Revoke()
         {
-            _model._shapes.CreateShape(_shape.Name);
-            _model._shapes.SetTopShapeInfo(_shape.Info);
+            _model.SetShapes(_originShapes);
             _model.NotifyModelChanged();
         }
     }

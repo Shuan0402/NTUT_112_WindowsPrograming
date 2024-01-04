@@ -15,6 +15,8 @@ namespace Power_Point
             Name = SHAPE;
             Info = POINT_ZERO;
             IsCalled = false;
+            LeftTopPoint = new Point(0, 0);
+            RightBottomPoint = new Point(0, 0);
         }
 
         // 使用的變數
@@ -37,6 +39,18 @@ namespace Power_Point
         }
 
         public virtual Point EndPoint
+        {
+            get;
+            set;
+        }
+
+        public virtual Point LeftTopPoint
+        {
+            get;
+            set;
+        }
+
+        public virtual Point RightBottomPoint
         {
             get;
             set;
@@ -70,6 +84,11 @@ namespace Power_Point
         public virtual bool SelectShape(Point point)
         {
             return false;
+        }
+
+        public virtual Shape Clone()
+        {
+            return (Shape)MemberwiseClone(); // 基本的 MemberwiseClone() 複製
         }
     }
 }

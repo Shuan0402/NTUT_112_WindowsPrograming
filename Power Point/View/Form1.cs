@@ -17,7 +17,7 @@ namespace Power_Point
 {
     public partial class Form1 : Form
     {
-        readonly PresentationModel _presentationModel;
+        private readonly PresentationModel _presentationModel;
 
         const string CHECKED = "Checked";
         const string IS_LINE_CHECKED = "IsLineChecked";
@@ -31,8 +31,8 @@ namespace Power_Point
 
         public Form1(PresentationModel model)
         {
-            InitializeComponent();
             _presentationModel = model;
+            InitializeComponent();
 
             // 畫布建置
             _canvas.MouseDown += HandleCanvasPressed;
@@ -263,7 +263,8 @@ namespace Power_Point
         {
             if (e.KeyCode == Keys.Delete)
             {
-                _presentationModel.DeleteSelectedShape();
+                //_presentationModel.DeleteSelectedShape();
+                _presentationModel.DeleteShape(-1);
                 ShowShapeList();
             }
         }

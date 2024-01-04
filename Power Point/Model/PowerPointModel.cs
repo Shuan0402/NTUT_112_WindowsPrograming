@@ -7,7 +7,7 @@ namespace Power_Point
     public class PowerPointModel
     {
         public IMouseState _mouse;
-        readonly CommandManager _commandManager = new CommandManager();
+        public CommandManager _commandManager = new CommandManager();
         // 事件宣告
         // Pannel change
         public virtual event PannelChangedEventHandler ChangePannelEvent;
@@ -35,6 +35,7 @@ namespace Power_Point
             get;
             set;
         }
+
 
         const string DRAW = "draw";
         const string POINT = "point";
@@ -79,26 +80,38 @@ namespace Power_Point
         // 將 shape 加入 shapes 中
         public void CreateShape(string shapeType)
         {
+            Shapes _originShapes = _shapes.DeepCopy();
+            _shapes.CreateShape(shapeType);
+            Shapes _currentShapes = _shapes.DeepCopy();
             _commandManager.Execute(
-                new AddCommand(this, shapeType)
+              new AddCommand(this, _originShapes, _currentShapes)
             );
         }
 
         // 將 shape 從 shapes 中刪除
         public void DeleteShape(int index)
         {
+            if (index == -1)
+            {
+                index = _shapes.SelectedIndex;
+            }
+            Shapes _originShapes = _shapes.DeepCopy();
+            _shapes.DeleteShape(index);
+            Shapes _currentShapes = _shapes.DeepCopy();
             _commandManager.Execute(
-                new DeleteCommand(this, index)
+              new DeleteCommand(this, _originShapes, _currentShapes)
             );
         }
 
         // 刪除所選形狀
         public void DeleteSelecetedShape()
         {
+            Shapes _originShapes = _shapes.DeepCopy();
+            _shapes.DeleteSelectedShape();
+            Shapes _currentShapes = _shapes.DeepCopy();
             _commandManager.Execute(
-                new DeleteCommand(this, MINUS_ONE)
+              new DeleteCommand(this, _originShapes, _currentShapes)
             );
-            NotifyModelChanged();
         }
 
         // 獲得 shapedata
@@ -162,25 +175,7 @@ namespace Power_Point
                 Point firstPoint = new Point(FirstPointX, FirstPointY);
                 Point endPoint = new Point(EndPointX, EndPointY);
                 _shapes.SelectedIndex = _shapes.SelectShape(endPoint);
-                if (_mouse is DrawState)
-                {
-                    _commandManager.Execute(
-                        new DrawCommand(this, firstPoint, endPoint, ShapeType)
-                    );
-                }
-                else if (_mouse is ModifyState)
-                {
-                    _commandManager.Execute(
-                        new ModifyCommand(this, firstPoint, endPoint, ShapeType)
-                    );
-                    ChangeState("point");
-                }
-                else if (firstPoint.X != endPoint.X && firstPoint.Y != endPoint.Y)
-                {
-                    _commandManager.Execute(
-                        new MoveCommand(this, firstPoint, endPoint, _shapes.SelectedIndex)
-                    );
-                }
+                _mouse.MouseUp();
                 IsPressed = false;
                 NotifyModelChanged();
             }
@@ -218,15 +213,35 @@ namespace Power_Point
             switch (state)
             {
                 case DRAW:
-                    _mouse = new DrawState(_shapes);
+                    _mouse = new DrawState(this);
                     break;
                 case POINT:
-                    _mouse = new PointState(_shapes);
+                    _mouse = new PointState(this);
                     break;
                 case MODIFY:
-                    _mouse = new ModifyState(_shapes);
+                    _mouse = new ModifyState(this);
                     break;
             }
+        }
+
+        public void SetSelectedIndex(int index)
+        {
+            _shapes.SelectedIndex = index;
+        }
+
+        public void SetSelectedShapeSize(Point point)
+        {
+            _shapes.SetSelectedShapeSize(point.X, point.Y);
+        }
+
+        public void SetShapes(Shapes shapes)
+        {
+            _shapes = shapes.DeepCopy();
+        }
+
+        public void SetSelectedShapePosition(double width, double height)
+        {
+            _shapes.SetSelectedShapePosition(width, height);
         }
 
         // Undo
@@ -240,6 +255,7 @@ namespace Power_Point
         {
             _commandManager.Redo();
         }
+
     }
 }
 

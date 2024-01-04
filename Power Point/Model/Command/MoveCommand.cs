@@ -6,91 +6,27 @@ namespace Power_Point
 {
     public class MoveCommand : ICommand
     {
-        private readonly Point _originPoint;
-        private readonly Point _currentPoint;
-        private readonly PowerPointModel _model;
-        double _width;
-        double _height;
-        const string POINT = "point";
-        private readonly Shapes _shapes;
-        public int Index
-        {
-            get;
-            set;
-        }
-
-        public MoveCommand(PowerPointModel model, Point originPoint, Point currentPoint, int index)
+        PowerPointModel _model;
+        Shapes _originShapes;
+        Shapes _currentShapes;
+        public MoveCommand(PowerPointModel model, Shapes originShapes, Shapes currentShapes)
         {
             _model = model;
-            _shapes = model._shapes;
-            _originPoint = originPoint;
-            _currentPoint = currentPoint;
-            Index = index;
+            _originShapes = originShapes.DeepCopy();
+            _currentShapes = currentShapes.DeepCopy();
         }
 
         // Execute
         public void Execute()
         {
-            _model.ChangeState(POINT);
-            SetWidth();
-            SetHeight();
-            if (_model.IsMoved)
-            {
-                _shapes.SetShape(Index, _width, _height);
-            }
-            else
-            {
-                _model.IsMoved = true;
-            }
-
+            _model._shapes = _currentShapes.DeepCopy();
             _model.NotifyModelChanged();
-        }
-
-        // SetWidth
-        private void SetWidth()
-        {
-            _width = GetCurrentPointX() - GetOriginPointX();
-        }
-
-        // SetHeight
-        private void SetHeight()
-        {
-            _height = GetCurrentPointY() - GetOriginPointY();
-        }
-
-        // GetCurrentPoint
-        private double GetCurrentPointX()
-        {
-            return _currentPoint.X;
-        }
-
-        // GetCurrentPoint
-        private double GetCurrentPointY()
-        {
-            return _currentPoint.Y;
-        }
-
-        // GetCurrentPoint
-        private double GetOriginPointX()
-        {
-            return _originPoint.X;
-        }
-
-        // GetCurrentPoint
-        private double GetOriginPointY()
-        {
-            return _originPoint.Y;
         }
 
         // Revoke
         public void Revoke()
         {
-            _model.ChangeState(POINT);
-            _model._shapes.SetShape(Index, -_width, -_height);
-            if (!_model.IsMoved)
-            {
-                _model.IsMoved = true;
-            }
+            _model._shapes = _originShapes.DeepCopy();
             _model.NotifyModelChanged();
         }
     }
