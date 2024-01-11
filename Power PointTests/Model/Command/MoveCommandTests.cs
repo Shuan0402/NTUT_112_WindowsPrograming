@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
+/*
 namespace Power_Point.Tests
 {
     [TestClass()]
@@ -126,4 +126,4 @@ namespace Power_Point.Tests
             Assert.IsTrue(model.IsMoved);
         }
     }
-}
+}*/

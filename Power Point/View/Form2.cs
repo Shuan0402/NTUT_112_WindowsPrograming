@@ -37,6 +37,7 @@ namespace Power_Point
         {
             InitializeComponent();
 
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             _okButton.Enabled = false;
 
             _leftTopTextBoxX.TextChanged += TextBox_TextChanged;

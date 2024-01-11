@@ -57,11 +57,12 @@ namespace Power_Point
             get;
             set;
         }
-       
-        // 新增形狀
-        public string CreateShape(string shape) 
+
+        public string AddDataGridViewShape(string shapeType, Point LeftTopPoint, Point RightBottomPoint)
         {
-            Temp = _shapeFactory.CreateShape(shape);
+            Temp = _shapeFactory.CreateShape(shapeType);
+            Temp.SetLeftTopPoint(LeftTopPoint);
+            Temp.SetRightBottomPoint(RightBottomPoint);
             _shapes.Add(Temp);
             return Temp.Info;
         }

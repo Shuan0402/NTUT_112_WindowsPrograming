@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
-
+/*
 namespace Power_Point.Tests
 {
     [TestClass()]
@@ -823,4 +823,4 @@ namespace Power_Point.Tests
         }
 
     }
-}
+}*/

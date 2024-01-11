@@ -63,9 +63,9 @@ namespace Power_Point
             return _pages[index].CopyDeep();
         }
 
-        public void CreateShape(int index, string shapeType)
+        public void AddDataGridViewShape(string shapeType, Point LeftTopPoint, Point RightBottomPoint, int index)
         {
-            _pages[index].CreateShape(shapeType);
+            _pages[index].AddDataGridViewShape(shapeType, LeftTopPoint, RightBottomPoint);
         }
 
         public void DeleteShape(int index, int slideIndex)
@@ -111,6 +111,11 @@ namespace Power_Point
         public bool IsInRightFloorPoint(int index, double pointX, double pointY)
         {
             return _pages[index].IsInRightFloorPoint(pointX, pointY);
+        }
+
+        public void UnSelected(int index)
+        {
+            _pages[index].IsSelected = false;
         }
     }
 }

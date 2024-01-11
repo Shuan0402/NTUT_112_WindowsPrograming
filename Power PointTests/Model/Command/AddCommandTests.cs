@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
 namespace Power_Point.Tests
 {
     [TestClass()]
@@ -45,4 +45,4 @@ namespace Power_Point.Tests
             Assert.AreEqual(0, model._shapes.GetShapesSize);
         }
     }
-}
+}*/

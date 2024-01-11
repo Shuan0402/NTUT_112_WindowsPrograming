@@ -31,7 +31,9 @@ namespace Power_Point
         private double slideButtonRate;
         List<Button> _slideList;
         double slideButtonWidth;
-        Form modalDialog;
+
+        Point LeftTopPoint;
+        Point RightBottomPoint;
 
         // 輸入框
 
@@ -91,8 +93,6 @@ namespace Power_Point
             _slideList[0].BackColor = Color.White;
 
             // 輸入框
-            modalDialog = new Form2();
-            modalDialog.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         // 設定 DataGridColumn
@@ -164,6 +164,21 @@ namespace Power_Point
 
         }
 
+        private void OpenForm2()
+        {
+            using (Form2 modalDialog = new Form2())
+            {
+                if (modalDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // 存取 modalDialog 中的 TextBox 的值
+                    LeftTopPoint = modalDialog.LeftTopPoint;
+                    RightBottomPoint = modalDialog.RightBottomPoint;
+
+                    // 使用這些值進行其他處理
+                }
+            }
+        }
+
         // 新增按鈕
         private void ClickButtonCreate(object sender, EventArgs e)
         {
@@ -171,15 +186,10 @@ namespace Power_Point
             {
                 string selectedShape = _comboBoxShape.SelectedItem.ToString();
 
-                modalDialog.ShowDialog();
-                // here
+                OpenForm2();
 
-                //Point leftTopPoint = new Point(modalDialog.
-
-                _presentationModel.CreateShape(selectedShape);
-                //_presentationModel.AddDataGridViewShape(selectedShape);
+                _presentationModel.AddDataGridViewShape(selectedShape, LeftTopPoint, RightBottomPoint);
                 
-
                 ShowShapeList();
 
                 RefreshUI();
@@ -275,7 +285,6 @@ namespace Power_Point
         public void HandleButtonPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             Button slide = sender as Button;
-            Console.WriteLine(_slideList.IndexOf(slide));
             _presentationModel.DrawButton(new FormsGraphicsAdaptor(e.Graphics), slideButtonRate, _slideList.IndexOf(slide));
         }
 
@@ -288,7 +297,11 @@ namespace Power_Point
         // 更新按鍵
         public void HandleButtonChanged()
         {
-            _slideList[_presentationModel._currentSlideIndex].Invalidate(true);
+            foreach(Button slide in _slideList)
+            {
+                slide.Invalidate(true);
+            }
+            
         }
 
         // 按下鍵盤 Delete 鍵
@@ -310,6 +323,7 @@ namespace Power_Point
         {
             _presentationModel.Undo();
             RefreshUI();
+            HandleCanvasChanged();
             HandleButtonChanged();
             _presentationModel.UnCheckSlide();
         }
@@ -319,6 +333,7 @@ namespace Power_Point
         {
             _presentationModel.Redo();
             RefreshUI();
+            HandleCanvasChanged();
             HandleButtonChanged();
             _presentationModel.UnCheckSlide();
         }

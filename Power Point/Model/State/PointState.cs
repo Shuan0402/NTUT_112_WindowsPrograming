@@ -27,6 +27,7 @@ namespace Power_Point
         public void MouseDown(double pointX, double pointY, string shapeType, int index)
         {
             _originShapes = _shapes.CopyDeep();
+            _currentShapes = _shapes.CopyDeep();
             _point = new Point(pointX, pointY);
             _shapes.SelectShape(_point);
             _firstPointX = pointX;

@@ -28,3 +28,14 @@ C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsProgramin
 C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\nunit.framework.dll
 C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\nunit.framework.xml
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\Power PointTests.dll.config
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\Appium.Net.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\SeleniumExtras.PageObjects.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\System.Drawing.Common.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\WebDriver.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\WebDriver.Support.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\Appium.Net.xml
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\Newtonsoft.Json.xml
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\WebDriver.xml
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\WebDriver.Support.xml

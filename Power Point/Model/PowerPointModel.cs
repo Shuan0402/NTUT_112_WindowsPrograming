@@ -92,17 +92,18 @@ namespace Power_Point
             set;
         }
 
-        // List<Shape> 管理
-        // 將 shape 加入 shapes 中
-        public void CreateShape(string shapeType, int index)
+        // AddDataGridViewShape
+        public void AddDataGridViewShape(string shapeType, Point LeftTopPoint, Point RightBottomPoint, int index)
         {
             Shapes _originShapes = _pages.CopyDeep(index);
-            _pages.CreateShape(index, shapeType);
+            _pages.AddDataGridViewShape(shapeType, LeftTopPoint, RightBottomPoint, index);
             Shapes _currentShapes = _pages.CopyDeep(index);
             _commandManager.Execute(
-              new AddCommand(this, _originShapes, _currentShapes, index)
+                new AddCommand(this, _originShapes, _currentShapes, index)
             );
         }
+
+
 
         // 將 shape 從 shapes 中刪除
         public void DeleteShape(int index, int slideIndex)
@@ -306,6 +307,11 @@ namespace Power_Point
         public void NotifySlideDelete()
         {
             DeletePageEvent?.Invoke();
+        }
+
+        public void UnSelected(int index)
+        {
+            _pages.UnSelected(index);
         }
     }
 }

@@ -189,10 +189,9 @@ namespace Power_Point
             return dataList;
         }
 
-        // 新增 shape
-        public void CreateShape(string selectedShape)
+        public void AddDataGridViewShape(string selectedShape, Point LeftTopPoint, Point RightBottomPoint)
         {
-            _model.CreateShape(selectedShape, _currentSlideIndex);
+            _model.AddDataGridViewShape(selectedShape, LeftTopPoint, RightBottomPoint, _currentSlideIndex);
             _model.IsFirstCreate = true;
         }
 
@@ -304,6 +303,7 @@ namespace Power_Point
         public void CheckSlide()
         {
             IsSlideChecked = true;
+            _model.UnSelected(_currentSlideIndex);
         }
 
         public void UnCheckSlide()

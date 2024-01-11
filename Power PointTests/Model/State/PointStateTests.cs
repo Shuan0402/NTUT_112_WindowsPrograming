@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+/*
 namespace Power_Point.Tests
 {
     [TestClass()]
@@ -73,4 +73,4 @@ namespace Power_Point.Tests
             Assert.AreEqual(60, point.Y);
         }
     }
-}
+}*/

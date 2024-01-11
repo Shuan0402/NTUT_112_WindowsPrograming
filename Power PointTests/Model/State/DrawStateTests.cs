@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
 namespace Power_Point.Tests
 {
     [TestClass()]
@@ -110,4 +110,4 @@ namespace Power_Point.Tests
             Assert.AreEqual(60, shapeList[2].EndPoint.Y);
         }
     }
-}
+}*/

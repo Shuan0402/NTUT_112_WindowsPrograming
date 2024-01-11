@@ -91,5 +91,15 @@ namespace Power_Point
         {
             return (Shape)MemberwiseClone(); // 基本的 MemberwiseClone() 複製
         }
+
+        public void SetLeftTopPoint(Point point)
+        {
+            this.FirstPoint = point.CopyDeep();
+        }
+
+        public void SetRightBottomPoint(Point point)
+        {
+            this.EndPoint = point.CopyDeep();
+        }
     }
 }
