@@ -1,5 +1,4 @@
-﻿
-namespace Power_Point
+﻿namespace Power_Point
 {
     partial class Form1
     {
@@ -48,7 +47,7 @@ namespace Power_Point
             this._arrowStripButton = new BindableToolStripButton();
             this._undoStripButton = new System.Windows.Forms.ToolStripButton();
             this._redoStripButton = new System.Windows.Forms.ToolStripButton();
-            this._slideButton = new System.Windows.Forms.Button();
+            this._addPageStripButton = new System.Windows.Forms.ToolStripButton();
             this._splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._splitContainer2 = new System.Windows.Forms.SplitContainer();
             this._canvas = new Power_Point.DoubleBufferedPanel();
@@ -62,7 +61,6 @@ namespace Power_Point
             this._splitContainer1.Panel2.SuspendLayout();
             this._splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._splitContainer2)).BeginInit();
-            this._splitContainer2.Panel1.SuspendLayout();
             this._splitContainer2.Panel2.SuspendLayout();
             this._splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._bindingSource1)).BeginInit();
@@ -143,7 +141,7 @@ namespace Power_Point
             "矩形",
             "圓形"});
             this._comboBoxShape.Location = new System.Drawing.Point(122, 45);
-            this._comboBoxShape.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._comboBoxShape.Margin = new System.Windows.Forms.Padding(4);
             this._comboBoxShape.Name = "_comboBoxShape";
             this._comboBoxShape.Size = new System.Drawing.Size(180, 26);
             this._comboBoxShape.TabIndex = 2;
@@ -152,7 +150,7 @@ namespace Power_Point
             // _buttonCreate
             // 
             this._buttonCreate.Location = new System.Drawing.Point(8, 30);
-            this._buttonCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._buttonCreate.Margin = new System.Windows.Forms.Padding(4);
             this._buttonCreate.Name = "_buttonCreate";
             this._buttonCreate.Size = new System.Drawing.Size(84, 57);
             this._buttonCreate.TabIndex = 2;
@@ -168,8 +166,7 @@ namespace Power_Point
             this._introductionToolStripMenuItem});
             this._menuStrip.Location = new System.Drawing.Point(0, 0);
             this._menuStrip.Name = "_menuStrip";
-            this._menuStrip.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this._menuStrip.Size = new System.Drawing.Size(1284, 36);
+            this._menuStrip.Size = new System.Drawing.Size(1284, 31);
             this._menuStrip.TabIndex = 4;
             this._menuStrip.Text = "menuStrip1";
             this._menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ClickMenuStrip);
@@ -179,7 +176,7 @@ namespace Power_Point
             this._introductionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._aboutToolStripMenuItem});
             this._introductionToolStripMenuItem.Name = "_introductionToolStripMenuItem";
-            this._introductionToolStripMenuItem.Size = new System.Drawing.Size(62, 32);
+            this._introductionToolStripMenuItem.Size = new System.Drawing.Size(62, 27);
             this._introductionToolStripMenuItem.Text = "說明";
             // 
             // _aboutToolStripMenuItem
@@ -197,11 +194,12 @@ namespace Power_Point
             this._circleStripButton,
             this._arrowStripButton,
             this._undoStripButton,
-            this._redoStripButton});
-            this._shapeStrip.Location = new System.Drawing.Point(0, 36);
+            this._redoStripButton,
+            this._addPageStripButton});
+            this._shapeStrip.Location = new System.Drawing.Point(0, 31);
             this._shapeStrip.Name = "_shapeStrip";
             this._shapeStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this._shapeStrip.Size = new System.Drawing.Size(1284, 38);
+            this._shapeStrip.Size = new System.Drawing.Size(1284, 33);
             this._shapeStrip.TabIndex = 5;
             this._shapeStrip.Text = "toolStrip1";
             this._shapeStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ClickArrowStripItem);
@@ -212,7 +210,7 @@ namespace Power_Point
             this._lineStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_lineStripButton.Image")));
             this._lineStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._lineStripButton.Name = "_lineStripButton";
-            this._lineStripButton.Size = new System.Drawing.Size(34, 33);
+            this._lineStripButton.Size = new System.Drawing.Size(34, 28);
             this._lineStripButton.Text = "toolStripButton1";
             this._lineStripButton.Click += new System.EventHandler(this.ClickLineStripButton);
             // 
@@ -222,7 +220,7 @@ namespace Power_Point
             this._rectangleStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_rectangleStripButton.Image")));
             this._rectangleStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._rectangleStripButton.Name = "_rectangleStripButton";
-            this._rectangleStripButton.Size = new System.Drawing.Size(34, 33);
+            this._rectangleStripButton.Size = new System.Drawing.Size(34, 28);
             this._rectangleStripButton.Text = "toolStripButton2";
             this._rectangleStripButton.Click += new System.EventHandler(this.ClickRectangleStripButton);
             // 
@@ -233,7 +231,7 @@ namespace Power_Point
             this._circleStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_circleStripButton.Image")));
             this._circleStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._circleStripButton.Name = "_circleStripButton";
-            this._circleStripButton.Size = new System.Drawing.Size(34, 33);
+            this._circleStripButton.Size = new System.Drawing.Size(34, 28);
             this._circleStripButton.Text = "toolStripButton3";
             this._circleStripButton.Click += new System.EventHandler(this.ClickCircleStripButton);
             // 
@@ -243,7 +241,7 @@ namespace Power_Point
             this._arrowStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_arrowStripButton.Image")));
             this._arrowStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._arrowStripButton.Name = "_arrowStripButton";
-            this._arrowStripButton.Size = new System.Drawing.Size(34, 33);
+            this._arrowStripButton.Size = new System.Drawing.Size(34, 28);
             this._arrowStripButton.Text = "toolStripButton1";
             this._arrowStripButton.Click += new System.EventHandler(this.ClickArrowStripButton);
             // 
@@ -253,7 +251,7 @@ namespace Power_Point
             this._undoStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_undoStripButton.Image")));
             this._undoStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._undoStripButton.Name = "_undoStripButton";
-            this._undoStripButton.Size = new System.Drawing.Size(34, 33);
+            this._undoStripButton.Size = new System.Drawing.Size(34, 28);
             this._undoStripButton.Text = "redoStripButton";
             this._undoStripButton.Click += new System.EventHandler(this.ClickUndoStripButton);
             // 
@@ -263,24 +261,25 @@ namespace Power_Point
             this._redoStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_redoStripButton.Image")));
             this._redoStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._redoStripButton.Name = "_redoStripButton";
-            this._redoStripButton.Size = new System.Drawing.Size(34, 33);
+            this._redoStripButton.Size = new System.Drawing.Size(34, 28);
             this._redoStripButton.Text = "toolStripButton1";
             this._redoStripButton.Click += new System.EventHandler(this.ClickRedoStripButton);
             // 
-            // _slideButton
+            // _addPageStripButton
             // 
-            this._slideButton.Location = new System.Drawing.Point(-2, -3);
-            this._slideButton.Name = "_slideButton";
-            this._slideButton.Size = new System.Drawing.Size(186, 108);
-            this._slideButton.TabIndex = 0;
-            this._slideButton.UseVisualStyleBackColor = true;
-            this._slideButton.Click += new System.EventHandler(this.ClickSlideButton);
+            this._addPageStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._addPageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_addPageStripButton.Image")));
+            this._addPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._addPageStripButton.Name = "_addPageStripButton";
+            this._addPageStripButton.Size = new System.Drawing.Size(34, 28);
+            this._addPageStripButton.Text = "toolStripButton1";
+            this._addPageStripButton.Click += new System.EventHandler(this.AddPageStripButton);
             // 
             // _splitContainer1
             // 
             this._splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._splitContainer1.Location = new System.Drawing.Point(0, 74);
+            this._splitContainer1.Location = new System.Drawing.Point(0, 64);
             this._splitContainer1.Name = "_splitContainer1";
             // 
             // _splitContainer1.Panel1
@@ -291,7 +290,7 @@ namespace Power_Point
             // 
             this._splitContainer1.Panel2.Controls.Add(this._groupBoxDataShow);
             this._splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintSplitContainer1Panel2);
-            this._splitContainer1.Size = new System.Drawing.Size(1284, 565);
+            this._splitContainer1.Size = new System.Drawing.Size(1284, 575);
             this._splitContainer1.SplitterDistance = 856;
             this._splitContainer1.TabIndex = 7;
             this._splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.MoveSplitContainer1Splitter);
@@ -304,14 +303,10 @@ namespace Power_Point
             this._splitContainer2.Location = new System.Drawing.Point(0, 0);
             this._splitContainer2.Name = "_splitContainer2";
             // 
-            // _splitContainer2.Panel1
-            // 
-            this._splitContainer2.Panel1.Controls.Add(this._slideButton);
-            // 
             // _splitContainer2.Panel2
             // 
             this._splitContainer2.Panel2.Controls.Add(this._canvas);
-            this._splitContainer2.Size = new System.Drawing.Size(856, 565);
+            this._splitContainer2.Size = new System.Drawing.Size(856, 575);
             this._splitContainer2.SplitterDistance = 122;
             this._splitContainer2.TabIndex = 7;
             this._splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.MoveSplitContainer2Splitter);
@@ -343,7 +338,6 @@ namespace Power_Point
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.LoadForm);
-            //this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DeleteKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this._dataGridShapeData)).EndInit();
             this._groupBoxDataShow.ResumeLayout(false);
             this._menuStrip.ResumeLayout(false);
@@ -354,7 +348,6 @@ namespace Power_Point
             this._splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._splitContainer1)).EndInit();
             this._splitContainer1.ResumeLayout(false);
-            this._splitContainer2.Panel1.ResumeLayout(false);
             this._splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._splitContainer2)).EndInit();
             this._splitContainer2.ResumeLayout(false);
@@ -385,12 +378,12 @@ namespace Power_Point
         private BindableToolStripButton _circleStripButton;
         private BindableToolStripButton _arrowStripButton;
         private DoubleBufferedPanel _canvas;
-        private System.Windows.Forms.Button _slideButton;
         private System.Windows.Forms.SplitContainer _splitContainer1;
         private System.Windows.Forms.BindingSource _bindingSource1;
         private System.Windows.Forms.ToolStripButton _undoStripButton;
         private System.Windows.Forms.ToolStripButton _redoStripButton;
         private System.Windows.Forms.SplitContainer _splitContainer2;
+        private System.Windows.Forms.ToolStripButton _addPageStripButton;
     }
 }
 

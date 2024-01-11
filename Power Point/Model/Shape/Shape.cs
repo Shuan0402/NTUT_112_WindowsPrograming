@@ -86,7 +86,8 @@ namespace Power_Point
             return false;
         }
 
-        public virtual Shape Clone()
+        // 獲得複製的形狀
+        public virtual Shape GetShapeClone()
         {
             return (Shape)MemberwiseClone(); // 基本的 MemberwiseClone() 複製
         }

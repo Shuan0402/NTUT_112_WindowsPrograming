@@ -15,14 +15,20 @@ namespace Power_Point
         // Button change
         public virtual event ButtonChangedEventHandler ChangeButtonEvent;
         public delegate void ButtonChangedEventHandler();
+        // Add page
+        public virtual event PageAddEventHandler AddPageEvent;
+        public delegate void PageAddEventHandler();
+        // Delete page
+        public virtual event PageDeleteEventHandler DeletePageEvent;
+        public delegate void PageDeleteEventHandler();
 
         // 變數
         public Shapes _shapes = new Shapes();
+        public Pages _pages = new Pages();
         private double FirstPointX;
         private double FirstPointY;
         private double EndPointX;
         private double EndPointY;
-        private string ShapeType;
 
         public bool IsPressed
         {
@@ -36,11 +42,21 @@ namespace Power_Point
             set;
         }
 
+        public int _originSlideIndex
+        {
+            get;
+            set;
+        }
+
+        public int _currentSlideIndex
+        {
+            get;
+            set;
+        }
 
         const string DRAW = "draw";
         const string POINT = "point";
         const string MODIFY = "modify";
-        const int MINUS_ONE = -1;
 
         public PowerPointModel()
         {
@@ -78,59 +94,58 @@ namespace Power_Point
 
         // List<Shape> 管理
         // 將 shape 加入 shapes 中
-        public void CreateShape(string shapeType)
+        public void CreateShape(string shapeType, int index)
         {
-            Shapes _originShapes = _shapes.DeepCopy();
-            _shapes.CreateShape(shapeType);
-            Shapes _currentShapes = _shapes.DeepCopy();
+            Shapes _originShapes = _pages.CopyDeep(index);
+            _pages.CreateShape(index, shapeType);
+            Shapes _currentShapes = _pages.CopyDeep(index);
             _commandManager.Execute(
-              new AddCommand(this, _originShapes, _currentShapes)
+              new AddCommand(this, _originShapes, _currentShapes, index)
             );
         }
 
         // 將 shape 從 shapes 中刪除
-        public void DeleteShape(int index)
+        public void DeleteShape(int index, int slideIndex)
         {
             if (index == -1)
             {
-                index = _shapes.SelectedIndex;
+                return;
             }
-            Shapes _originShapes = _shapes.DeepCopy();
-            _shapes.DeleteShape(index);
-            Shapes _currentShapes = _shapes.DeepCopy();
+            SetIndex(index, slideIndex);
+            Shapes _originShapes = _pages.CopyDeep(slideIndex);
+            _pages.DeleteShape(index, slideIndex);
+            Shapes _currentShapes = _pages.CopyDeep(slideIndex);
             _commandManager.Execute(
-              new DeleteCommand(this, _originShapes, _currentShapes)
+                new DeleteCommand(this, _originShapes, _currentShapes, slideIndex)
             );
         }
 
-        // 刪除所選形狀
-        public void DeleteSelecetedShape()
+        // Set Index
+        private void SetIndex(int index, int slideIndex)
         {
-            Shapes _originShapes = _shapes.DeepCopy();
-            _shapes.DeleteSelectedShape();
-            Shapes _currentShapes = _shapes.DeepCopy();
-            _commandManager.Execute(
-              new DeleteCommand(this, _originShapes, _currentShapes)
-            );
+            if (index == -1)
+            {
+                _ = _pages.GetSelectedIndex(slideIndex);
+            }
         }
 
         // 獲得 shapedata
-        public List<ShapeData> GetShapeData()
+        public List<ShapeData> GetShapeData(int index)
         {
-            return _shapes.GetShapeData();
+            return _pages.GetShapeData(index);
         }
 
         // 清空 shapes
-        public void ClearShapes()
+        public void ClearShapes(int index)
         {
             IsPressed = false;
-            _shapes.Clear();
+            _pages.Clear(index);
             NotifyModelChanged();
         }
 
         // 滑鼠
         // 壓下滑鼠
-        public void PressPointer(double pointX, double pointY, string shapeType)
+        public void PressPointer(double pointX, double pointY, string shapeType, int index)
         {
             if (pointX > 0 && pointY > 0 && _mouse != null && shapeType != "Shape")
             {
@@ -139,18 +154,17 @@ namespace Power_Point
                 {
                     ChangeState(MODIFY);
                 }
-                _mouse.MouseDown(pointX, pointY, shapeType);
+                _mouse.MouseDown(pointX, pointY, shapeType, index);
                 FirstPointX = pointX;
                 FirstPointY = pointY;
                 EndPointX = FirstPointX;
                 EndPointY = FirstPointY;
-                ShapeType = shapeType;
             }
             NotifyModelChanged();
         }
 
         // 滑鼠移動
-        public void MovePointer(double pointX, double pointY)
+        public void MovePointer(int index, double pointX, double pointY)
         {
             if (IsPressed)
             {
@@ -161,20 +175,24 @@ namespace Power_Point
             }
             else
             {
-                IsShapeSizable = _shapes.IsInRightFloorPoint(pointX, pointY);
+                //IsShapeSizable = _shapes.IsInRightFloorPoint(pointX, pointY);
+                IsShapeSizable = _pages.IsInRightFloorPoint(index, pointX, pointY);
             }
 
             NotifyModelChanged();
         }
 
         // 放開滑鼠
-        public void ReleasePointer()
+        public void ReleasePointer(int slideIndex)
         {
             if (IsPressed)
             {
-                Point firstPoint = new Point(FirstPointX, FirstPointY);
+                _ = new Point(FirstPointX, FirstPointY);
                 Point endPoint = new Point(EndPointX, EndPointY);
                 _shapes.SelectedIndex = _shapes.SelectShape(endPoint);
+                //_pages.SetSelectedIndex(index)
+                int index = _pages.SelectShape(slideIndex, endPoint);
+                _pages.SetSelectedIndex(index, slideIndex);
                 _mouse.MouseUp();
                 IsPressed = false;
                 NotifyModelChanged();
@@ -190,21 +208,21 @@ namespace Power_Point
         }
 
         // 更新畫面
-        public void DrawPannel(IGraphics graphics, double rate)
+        public void DrawPannel(IGraphics graphics, double rate, int index)
         {
             graphics.ClearAll();
-            _shapes.DrawShape(graphics, rate);
+            _pages.DrawShape(graphics, rate, index);
             if (_mouse is PointState)
             {
-                _shapes.DrawSelect(graphics, rate);
+                _pages.DrawSelect(graphics, rate, index);
             }
         }
 
         // 繪畫縮圖
-        public void DrawButton(IGraphics graphics, double rate)
+        public void DrawButton(IGraphics graphics, double rate, int index)
         {
             graphics.ClearAll();
-            _shapes.DrawButtonShape(graphics, rate);
+            _pages.DrawButton(graphics, rate, index);
         }
 
         // 更改狀態
@@ -213,35 +231,41 @@ namespace Power_Point
             switch (state)
             {
                 case DRAW:
-                    _mouse = new DrawState(this);
+                    _mouse = new DrawState(this, _pages._pages[_currentSlideIndex]);
                     break;
                 case POINT:
-                    _mouse = new PointState(this);
+                    _mouse = new PointState(this, _pages._pages[_currentSlideIndex]);
                     break;
                 case MODIFY:
-                    _mouse = new ModifyState(this);
+                    _mouse = new ModifyState(this, _pages._pages[_currentSlideIndex]);
                     break;
             }
         }
-
-        public void SetSelectedIndex(int index)
+        
+        // 設置被選取的形狀索引
+        public void SetSelectedIndex(int index, int slideIndex)
         {
-            _shapes.SelectedIndex = index;
+            //_shapes.SelectedIndex = index;
+            _pages.SetSelectedIndex(index, slideIndex);
         }
 
-        public void SetSelectedShapeSize(Point point)
+        // 設置被選取的形狀大小
+        public void SetSelectedShapeSize(Point point, int slideIndex)
         {
-            _shapes.SetSelectedShapeSize(point.X, point.Y);
+            //_shapes.SetSelectedShapeSize(point.X, point.Y);
+            _pages.SetSelectedShapeSize(slideIndex, point.X, point.Y);
         }
 
-        public void SetShapes(Shapes shapes)
+        // 設置形狀
+        public void SetShapes(int index, Shapes shapes)
         {
-            _shapes = shapes.DeepCopy();
+            _pages.SetShapes(index, shapes);
         }
 
-        public void SetSelectedShapePosition(double width, double height)
+        // 設置被選取的形狀位置
+        public void SetSelectedShapePosition(double width, double height, int index)
         {
-            _shapes.SetSelectedShapePosition(width, height);
+            _pages.SetSelectedShapePosition(width, height, index);
         }
 
         // Undo
@@ -256,6 +280,33 @@ namespace Power_Point
             _commandManager.Redo();
         }
 
+        // IsSelected
+        public bool IsSelected()
+        {
+            return _shapes.IsSelected;
+        }
+
+        public void AddPage(int index)
+        {
+            _pages.AddPage(index);
+            NotifySlideAdd();
+        }
+
+        public void DeletePage(int index)
+        {
+            _pages.DeletePage(index);
+            NotifySlideDelete();
+        }
+
+        public void NotifySlideAdd()
+        {
+            AddPageEvent?.Invoke();
+        }
+
+        public void NotifySlideDelete()
+        {
+            DeletePageEvent?.Invoke();
+        }
     }
 }
 

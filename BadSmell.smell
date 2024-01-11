@@ -188,12 +188,12 @@
           <Reviews>
             <Smell>
               <Id>1</Id>
-              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PowerPointModel.cs on line 193.</SmellType>
+              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PowerPointModel.cs on line 179.</SmellType>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>Power Point</Project>
               <File>PowerPointModel.cs</File>
-              <Line>193</Line>
+              <Line>179</Line>
               <StartLine>0</StartLine>
               <StartCol>0</StartCol>
               <EndLine>0</EndLine>
@@ -265,17 +265,17 @@
             <Smell>
               <Id>6</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>177 目前物件 Power_Point.PowerPointModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Point，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.Point.X 以及 Power_Point.Point.X 以及 Power_Point.Point.Y 以及 Power_Point.Point.Y</HashCode>
+              <HashCode>52 目前物件 Power_Point.PointState，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Point，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.Point.X 以及 Power_Point.Point.X 以及 Power_Point.Point.Y 以及 Power_Point.Point.Y</HashCode>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>Power Point</Project>
-              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PowerPointModel.cs</File>
-              <Line>177</Line>
-              <StartLine>177</StartLine>
-              <StartCol>25</StartCol>
-              <EndLine>177</EndLine>
-              <EndCol>81</EndCol>
-              <Comment>目前物件 Power_Point.PowerPointModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Point，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.Point.X 以及 Power_Point.Point.X 以及 Power_Point.Point.Y 以及 Power_Point.Point.Y</Comment>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\State\PointState.cs</File>
+              <Line>52</Line>
+              <StartLine>52</StartLine>
+              <StartCol>16</StartCol>
+              <EndLine>52</EndLine>
+              <EndCol>86</EndCol>
+              <Comment>目前物件 Power_Point.PointState，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Point，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.Point.X 以及 Power_Point.Point.X 以及 Power_Point.Point.Y 以及 Power_Point.Point.Y</Comment>
               <Auto>false</Auto>
             </Smell>
             <Smell>
@@ -368,6 +368,11 @@
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
+                <RelativePath>Model\ShapeManage\Pages.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Unknown</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>Model\ShapeManage\ShapeData.cs</RelativePath>
                 <ProjectName>Power Point</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
@@ -379,6 +384,11 @@
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Model\ShapeManage\Shapes.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\ShapesTool.cs</RelativePath>
                 <ProjectName>Power Point</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
@@ -554,7 +564,7 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>1932</ProductionLoc>
+          <ProductionLoc>1945</ProductionLoc>
           <TestLoc>3139</TestLoc>
         </CodeReview>
       </Data>

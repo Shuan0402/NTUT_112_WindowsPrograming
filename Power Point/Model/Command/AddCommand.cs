@@ -6,27 +6,29 @@ namespace Power_Point
     public class AddCommand : ICommand
     {
         private readonly PowerPointModel _model;
-        Shapes _originShapes;
-        Shapes _currentShapes;
+        readonly Shapes _originShapes;
+        readonly Shapes _currentShapes;
+        int _index;
 
-        public AddCommand(PowerPointModel model, Shapes originShapes, Shapes currentShapes)
+        public AddCommand(PowerPointModel model, Shapes originShapes, Shapes currentShapes, int index)
         {
             _model = model;
-            _originShapes = originShapes.DeepCopy();
-            _currentShapes = currentShapes.DeepCopy();
+            _originShapes = originShapes.CopyDeep();
+            _currentShapes = currentShapes.CopyDeep();
+            _index = index;
         }
 
         // Execute
         public void Execute()
         {
-            _model.SetShapes(_currentShapes);
+            _model.SetShapes(_index, _currentShapes);
             _model.NotifyModelChanged();
         }
 
         // Revoke
         public void Revoke()
         {
-            _model.SetShapes(_originShapes);
+            _model.SetShapes(_index, _originShapes);
             _model.NotifyModelChanged();
         }
     }

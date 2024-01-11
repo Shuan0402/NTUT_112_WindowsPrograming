@@ -9,7 +9,8 @@ namespace Power_Point
     {
         private readonly PowerPointModel _model;
         private readonly Shapes _shapes;
-        Shapes originShapes;
+        Shapes _originShapes;
+        int _index;
         public double FirstPointX
         {
             get;
@@ -25,21 +26,22 @@ namespace Power_Point
         const string FIRST = "first";
         const string END = "end";
 
-        public DrawState(PowerPointModel model)
+        public DrawState(PowerPointModel model, Shapes shapes)
         {
-            this._model = model;
-            this._shapes = model._shapes;
+            _model = model;
+            _shapes = shapes;
         }
 
         // 壓下滑鼠-繪畫
-        public void MouseDown(double pointX, double pointY, string shapeType)
+        public void MouseDown(double pointX, double pointY, string shapeType, int index)
         {
-            originShapes = _shapes.DeepCopy();
+            _originShapes = _shapes.CopyDeep();
             FirstPointX = pointX;
             FirstPointY = pointY;
             _shapes.SetHintType(shapeType);
             _shapes.SetHint(FirstPointX, FirstPointY, FIRST);
             _shapes.SetHint(FirstPointX, FirstPointY, END);
+            _index = index;
         }
 
         // 滑鼠移動-繪畫
@@ -52,11 +54,11 @@ namespace Power_Point
         public void MouseUp()
         {
             _shapes.SetGraph();
-            Shapes currentShapes = _shapes.DeepCopy();
+            Shapes currentShapes = _shapes.CopyDeep();
             _shapes.InitializeHint();
             
             _model._commandManager.Execute(
-                new DrawCommand(_model, originShapes, currentShapes)
+                new DrawCommand(_model, _originShapes, currentShapes, _index)
             );
 
             _model.NotifyModelChanged();

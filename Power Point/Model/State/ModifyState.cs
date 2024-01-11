@@ -4,25 +4,26 @@ namespace Power_Point
 {
     public class ModifyState : IMouseState
     {
-        PowerPointModel _model;
+        readonly PowerPointModel _model;
         private readonly Shapes _shapes;
-        Point _originPoint = new Point(0, 0);
-        Point _currentPoint = new Point(0, 0);
+        Point _originPoint;// = new Point(0, 0);
+        Point _currentPoint;// = new Point(0, 0);
         int _selectedIndex;
+        int _index;
 
-        Shapes originShapes;
-
-        public ModifyState(PowerPointModel model)
+        public ModifyState(PowerPointModel model, Shapes shapes)
         {
-            this._model = model;
-            this._shapes = model._shapes;
+            _model = model;
+            _shapes = shapes;
         }
 
         // 壓下滑鼠-選取
-        public void MouseDown(double pointX, double pointY, string shapeType)
+        public void MouseDown(double pointX, double pointY, string shapeType, int index)
         {
-            _originPoint = _shapes.GetSelectedShapePoint().DeepCopy();
+            _originPoint = _shapes.GetSelectedShapePoint().CopyDeep();
+            _currentPoint = _originPoint.CopyDeep();
             _selectedIndex = _shapes.SelectedIndex;
+            _index = index;
         }
 
         // 移動滑鼠-選取
@@ -37,9 +38,9 @@ namespace Power_Point
         // 放開滑鼠-選取
         public void MouseUp()
         {
-            Shapes currentShapes = _shapes.DeepCopy();
+            _ = _shapes.CopyDeep();
             _model._commandManager.Execute(
-                new ModifyCommand(_model, _originPoint, _currentPoint, _selectedIndex)
+                new ModifyCommand(_model, _originPoint, _currentPoint, _selectedIndex, _index)
             );
 
             _model.NotifyModelChanged();

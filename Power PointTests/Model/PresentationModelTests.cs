@@ -516,7 +516,7 @@ namespace Power_Point.Tests
 
             bool eventRaised = false;
 
-            obj.Notify("SomeProperty");
+            obj.NotifyProperty("SomeProperty");
 
             Assert.IsFalse(eventRaised, "PropertyChanged event should have been raised");
         }
@@ -531,7 +531,7 @@ namespace Power_Point.Tests
             bool eventRaised = false;
             obj.PropertyChanged += (sender, args) => eventRaised = true;
 
-            obj.Notify("SomeProperty");
+            obj.NotifyProperty("SomeProperty");
 
             Assert.IsTrue(eventRaised, "PropertyChanged event should have been raised");
         }

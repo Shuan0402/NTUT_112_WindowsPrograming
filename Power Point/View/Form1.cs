@@ -26,8 +26,14 @@ namespace Power_Point
         const string IS_ARROW_CHECKED = "IsArrowChecked";
         private Size canvasSize;
         private Size slideButtonSize;
+        private System.Drawing.Point slideLocation;
         private double rate;
         private double slideButtonRate;
+        List<Button> _slideList;
+        double slideButtonWidth;
+        Form modalDialog;
+
+        // 輸入框
 
         public Form1(PresentationModel model)
         {
@@ -40,14 +46,15 @@ namespace Power_Point
             _canvas.MouseMove += HandleCanvasMoved;
             _canvas.Paint += HandleCanvasPaint;
             canvasSize = _canvas.Size;
-            slideButtonSize = _slideButton.Size;
-            //Controls.Add(_canvas);
 
             // Pannel 狀態改變
             _presentationModel.PresentationPannelChanged += HandleCanvasChanged;
             // Slide Button 狀態改變
             _presentationModel.PresentationButtonChanged += HandleButtonChanged;
-            _slideButton.Paint += HandleButtonPaint;
+            // 新增 Slide
+            _presentationModel.PresentationPageAdded += HandlePageAdded;
+            // 刪除 Slide
+            _presentationModel.PresentationPageDeleted += HandlePageDeleted;
 
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(DeleteKeyDown);
@@ -69,6 +76,23 @@ namespace Power_Point
 
             rate = 1;
             slideButtonRate = 1;
+
+            // slidebutton
+            slideButtonWidth = _splitContainer2.SplitterDistance - 2;
+            slideButtonSize = new Size((int)slideButtonWidth, (int)(slideButtonWidth * 9.0 / 16.0));
+            slideLocation = new System.Drawing.Point(0, 0);
+            _slideList = new List<Button>();
+            _presentationModel.OriginSlideIndex = -1;
+            _presentationModel._currentSlideIndex = -1;
+            AddNewSlide();
+            _slideList[0].FlatStyle = FlatStyle.Flat;
+            _slideList[0].FlatAppearance.BorderColor = Color.Blue;
+            _slideList[0].FlatAppearance.BorderSize = 2;
+            _slideList[0].BackColor = Color.White;
+
+            // 輸入框
+            modalDialog = new Form2();
+            modalDialog.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         // 設定 DataGridColumn
@@ -123,18 +147,15 @@ namespace Power_Point
         // 圖形資料表格
         private void ClickDataGridShapeDataCellContent(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex != -1 && e.ColumnIndex == 0)
-            {
-                DataGridViewRow rowToRemove = _dataGridShapeData.Rows[e.RowIndex];
-                _dataGridShapeData.Rows.Remove(rowToRemove);
-                _presentationModel.DeleteShape(e.RowIndex);
-            }
+            DataGridViewRow rowToRemove = _dataGridShapeData.Rows[e.RowIndex];
+            _dataGridShapeData.Rows.Remove(rowToRemove);
+            _presentationModel.DeleteShape(e.RowIndex, e.ColumnIndex, Keys.None);
         }
 
         // 圖形選取下拉式清單
         private void SelectComboBoxShape(object sender, EventArgs e)
         {
-
+            _presentationModel.UnCheckSlide();
         }
 
         // 說明關於欄位
@@ -149,10 +170,20 @@ namespace Power_Point
             if (_comboBoxShape.SelectedIndex != -1)
             {
                 string selectedShape = _comboBoxShape.SelectedItem.ToString();
+
+                modalDialog.ShowDialog();
+                // here
+
+                //Point leftTopPoint = new Point(modalDialog.
+
                 _presentationModel.CreateShape(selectedShape);
+                //_presentationModel.AddDataGridViewShape(selectedShape);
+                
+
                 ShowShapeList();
 
                 RefreshUI();
+                _presentationModel.UnCheckSlide();
             }
         }
         
@@ -243,7 +274,9 @@ namespace Power_Point
         // 繪製縮圖
         public void HandleButtonPaint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            _presentationModel.DrawButton(new FormsGraphicsAdaptor(e.Graphics), slideButtonRate);
+            Button slide = sender as Button;
+            Console.WriteLine(_slideList.IndexOf(slide));
+            _presentationModel.DrawButton(new FormsGraphicsAdaptor(e.Graphics), slideButtonRate, _slideList.IndexOf(slide));
         }
 
         // 更新畫布
@@ -255,18 +288,15 @@ namespace Power_Point
         // 更新按鍵
         public void HandleButtonChanged()
         {
-            _slideButton.Invalidate(true);
+            _slideList[_presentationModel._currentSlideIndex].Invalidate(true);
         }
 
         // 按下鍵盤 Delete 鍵
         private void DeleteKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
-            {
-                //_presentationModel.DeleteSelectedShape();
-                _presentationModel.DeleteShape(-1);
-                ShowShapeList();
-            }
+            _presentationModel.DeleteShape(-1, 0, e.KeyCode);
+            _presentationModel.DeletePage(_presentationModel._currentSlideIndex);
+            ShowShapeList();
         }
 
         // splitContainer1_Panel2_Paint
@@ -280,6 +310,8 @@ namespace Power_Point
         {
             _presentationModel.Undo();
             RefreshUI();
+            HandleButtonChanged();
+            _presentationModel.UnCheckSlide();
         }
 
         // _redoStripButton_Click
@@ -287,6 +319,8 @@ namespace Power_Point
         {
             _presentationModel.Redo();
             RefreshUI();
+            HandleButtonChanged();
+            _presentationModel.UnCheckSlide();
         }
 
         // RefreshUI
@@ -311,7 +345,7 @@ namespace Power_Point
         {
             SetSplitContainerSize();
             rate = (double)((double)_canvas.Width / (double)canvasSize.Width);
-            slideButtonRate = (double)((double)_slideButton.Width / (double)slideButtonSize.Width);
+            slideButtonRate = (double)((double)slideButtonWidth / (double)slideButtonSize.Width);
 
             HandleCanvasChanged();
         }
@@ -319,8 +353,16 @@ namespace Power_Point
         // SetSplitContainerSize
         private void SetSplitContainerSize()
         {
-            int slideButtonWidth = _splitContainer2.SplitterDistance;
-            _slideButton.Size = new Size(slideButtonWidth, (int)(slideButtonWidth * 9.0 / 16.0));
+            slideButtonWidth = _splitContainer2.SplitterDistance - 2;
+            slideButtonSize = new Size((int)slideButtonWidth, (int)(slideButtonWidth * 9.0 / 16.0));
+
+            if (_slideList != null)
+            {
+                foreach (Button slide in _slideList)
+                {
+                    slide.Size = slideButtonSize;
+                }
+            }
 
             int canvasWidth = _splitContainer1.SplitterDistance - _splitContainer2.SplitterDistance - _splitContainer2.SplitterWidth;
             _canvas.Size = new Size(canvasWidth, (int)(canvasWidth * 9.0 / 16.0));
@@ -331,14 +373,9 @@ namespace Power_Point
             _dataGridShapeData.Width = panel2Width;
 
             RepositionPanel();
-            ShowShapeList();
         }
 
-        // _slideButton_Click
-        private void ClickSlideButton(object sender, EventArgs e)
-        {
-
-        }
+        
 
         // MainForm_Resize
         private void ResizeMainForm(object sender, EventArgs e)
@@ -346,9 +383,8 @@ namespace Power_Point
             // 重新定位 Panel
             RepositionPanel();
             rate = (double)((double)_canvas.Width / (double)canvasSize.Width);
-            slideButtonRate = (double)((double)_slideButton.Width / (double)slideButtonSize.Width);
+            slideButtonRate = (double)((double)slideButtonWidth / (double)slideButtonSize.Width);
         }
-
         // RepositionPanel
         private void RepositionPanel()
         {
@@ -364,6 +400,96 @@ namespace Power_Point
         private void PressCanvasMouse(object sender, System.Windows.Forms.MouseEventArgs e)
         {
 
+        }
+
+        private void AddPageStripButton(object sender, EventArgs e)
+        {
+            if (_slideList.Count() == 5)
+            {
+                return;
+            }
+            AddNewSlide();
+            CheckSlide();
+
+            RefreshUI();
+            HandleCanvasChanged();
+        }
+
+        private void AddNewSlide()
+        {
+            _presentationModel.OriginSlideIndex = (int)_presentationModel._currentSlideIndex;
+            _presentationModel._currentSlideIndex++;
+            _presentationModel.AddPage(_presentationModel._currentSlideIndex);
+        }
+        
+        // _slideButton_Click
+        private void ClickSlideButton(object sender, EventArgs e)
+        {
+            Button slide = sender as Button;
+
+            if (slide != null)
+            {
+                _presentationModel.OriginSlideIndex = _presentationModel._currentSlideIndex;
+                _presentationModel._currentSlideIndex = _slideList.IndexOf(slide);
+                _presentationModel.CheckSlide();
+            }
+
+            HandleCanvasChanged();
+            RefreshUI();
+            CheckSlide();
+        }
+
+        // check
+        private void CheckSlide()
+        {
+            _slideList[_presentationModel.OriginSlideIndex].FlatAppearance.BorderSize = 0;
+            _slideList[_presentationModel._currentSlideIndex].FlatAppearance.BorderSize = 2;
+        }
+
+        // add
+        public void HandlePageAdded()
+        {
+            _presentationModel.OriginSlideIndex = _presentationModel._currentSlideIndex - 1;
+            Button newButton = new Button();
+            newButton.Name = "_slideButton" + _slideList.Count().ToString();
+            newButton.Size = slideButtonSize;
+            newButton.Width -= 2;
+            newButton.FlatStyle = FlatStyle.Flat;
+            newButton.BackColor = Color.White;
+            newButton.FlatAppearance.BorderColor = Color.Blue;
+            newButton.FlatAppearance.BorderSize = 2;
+
+            System.Drawing.Point point = new System.Drawing.Point(0, (newButton.Height + 5) * _slideList.Count());
+            newButton.Location = point;
+            newButton.UseVisualStyleBackColor = true;
+            newButton.Click += new System.EventHandler(this.ClickSlideButton);
+            newButton.Paint += HandleButtonPaint;
+            _splitContainer2.Panel1.Controls.Add(newButton);
+            _slideList.Add(newButton);
+
+            _presentationModel._currentSlideIndex = _slideList.IndexOf(newButton);
+        }
+
+        // delete
+        public void HandlePageDeleted()
+        {
+            _splitContainer2.Panel1.Controls.RemoveAt(_presentationModel._currentSlideIndex);
+            _slideList.RemoveAt(_presentationModel._currentSlideIndex);
+            SetSlideLocation();
+            _presentationModel.SetOriginSlideIndex(_presentationModel._currentSlideIndex - 1);
+            _presentationModel.SetCurrentSlideIndex(_presentationModel._currentSlideIndex - 1);
+            _presentationModel.UnCheckSlide();
+            CheckSlide();
+        }
+
+        // set
+        private void SetSlideLocation()
+        {
+            foreach (Button slide in _slideList)
+            {
+                System.Drawing.Point point = new System.Drawing.Point(0, (slide.Height + 5) * _slideList.IndexOf(slide));
+                slide.Location = point;
+            }
         }
     }
 }

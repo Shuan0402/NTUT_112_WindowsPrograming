@@ -6,27 +6,30 @@ namespace Power_Point
 {
     public class MoveCommand : ICommand
     {
-        PowerPointModel _model;
-        Shapes _originShapes;
-        Shapes _currentShapes;
-        public MoveCommand(PowerPointModel model, Shapes originShapes, Shapes currentShapes)
+        readonly PowerPointModel _model;
+        readonly Shapes _originShapes;
+        readonly Shapes _currentShapes;
+        int _index;
+
+        public MoveCommand(PowerPointModel model, Shapes originShapes, Shapes currentShapes, int index)
         {
             _model = model;
-            _originShapes = originShapes.DeepCopy();
-            _currentShapes = currentShapes.DeepCopy();
+            _originShapes = originShapes.CopyDeep();
+            _currentShapes = currentShapes.CopyDeep();
+            _index = index;
         }
 
         // Execute
         public void Execute()
         {
-            _model._shapes = _currentShapes.DeepCopy();
+            _model.SetShapes(_index, _currentShapes);
             _model.NotifyModelChanged();
         }
 
         // Revoke
         public void Revoke()
         {
-            _model._shapes = _originShapes.DeepCopy();
+            _model.SetShapes(_index, _originShapes);
             _model.NotifyModelChanged();
         }
     }

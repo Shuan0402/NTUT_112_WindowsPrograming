@@ -33,11 +33,16 @@ namespace Power_Point
             return LEFT + X.ToString() + COMMA + Y.ToString() + RIGHT;
         }
 
-        public Point DeepCopy()
+        // 深度複製 Point
+        public Point CopyDeep()
         {
             Point copiedPoint = new Point(this.X, this.Y);
             return copiedPoint;
         }
 
+        public static implicit operator System.Drawing.Point(Point v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -17,3 +17,14 @@ C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsProgramin
 C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\obj\Debug\Power Point.csproj.CopyComplete
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\Appium.Net.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\Newtonsoft.Json.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\SeleniumExtras.PageObjects.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\System.Drawing.Common.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\WebDriver.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\WebDriver.Support.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\Appium.Net.xml
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\Newtonsoft.Json.xml
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\WebDriver.xml
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\bin\Debug\WebDriver.Support.xml
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\obj\Debug\Power_Point.Form2.resources
