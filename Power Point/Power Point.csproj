@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Command\AddCommand.cs" />
+    <Compile Include="Model\Command\AddSlideCommand.cs" />
     <Compile Include="Model\Command\ModifyCommand.cs" />
     <Compile Include="Model\Command\MoveCommand.cs" />
     <Compile Include="Model\Command\DeleteCommand.cs" />
@@ -93,15 +94,29 @@
     <Compile Include="Model\State\DrawState.cs" />
     <Compile Include="Model\State\IState.cs" />
     <Compile Include="Model\State\PointState.cs" />
-    <Compile Include="View\BindableToolStripButtonClass.cs" />
-    <Compile Include="View\DoubleBufferedPanel.cs" />
-    <Compile Include="View\Form1.cs" />
+    <Compile Include="View\BindableToolStripButtonClass.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\DoubleBufferedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Form2.cs" />
-    <Compile Include="View\Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="View\LoadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\LoadForm.Designer.cs">
+      <DependentUpon>LoadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ModalDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ModalDialogForm.Designer.cs">
+      <DependentUpon>ModalDialogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormGraphicsAdaptor.cs" />
     <Compile Include="View\IGraphics.cs" />
@@ -116,6 +131,12 @@
     <Compile Include="Model\ShapeManage\ShapeData.cs" />
     <Compile Include="Model\ShapeManage\ShapeFactory.cs" />
     <Compile Include="Model\ShapeManage\Shapes.cs" />
+    <Compile Include="View\SaveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SaveForm.Designer.cs">
+      <DependentUpon>SaveForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,8 +149,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="View\LoadForm.resx">
+      <DependentUpon>LoadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ModalDialogForm.resx">
+      <DependentUpon>ModalDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SaveForm.resx">
+      <DependentUpon>SaveForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

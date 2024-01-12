@@ -41,17 +41,19 @@
             this._introductionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._shapeStrip = new System.Windows.Forms.ToolStrip();
+            this._undoStripButton = new System.Windows.Forms.ToolStripButton();
+            this._redoStripButton = new System.Windows.Forms.ToolStripButton();
+            this._addPageStripButton = new System.Windows.Forms.ToolStripButton();
+            this._saveStripButton = new System.Windows.Forms.ToolStripButton();
+            this._loadStripButton = new System.Windows.Forms.ToolStripButton();
+            this._splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this._splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this._bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this._canvas = new Power_Point.DoubleBufferedPanel();
             this._lineStripButton = new BindableToolStripButton();
             this._rectangleStripButton = new BindableToolStripButton();
             this._circleStripButton = new BindableToolStripButton();
             this._arrowStripButton = new BindableToolStripButton();
-            this._undoStripButton = new System.Windows.Forms.ToolStripButton();
-            this._redoStripButton = new System.Windows.Forms.ToolStripButton();
-            this._addPageStripButton = new System.Windows.Forms.ToolStripButton();
-            this._splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this._splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this._canvas = new Power_Point.DoubleBufferedPanel();
-            this._bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this._dataGridShapeData)).BeginInit();
             this._groupBoxDataShow.SuspendLayout();
             this._menuStrip.SuspendLayout();
@@ -166,7 +168,7 @@
             this._introductionToolStripMenuItem});
             this._menuStrip.Location = new System.Drawing.Point(0, 0);
             this._menuStrip.Name = "_menuStrip";
-            this._menuStrip.Size = new System.Drawing.Size(1284, 31);
+            this._menuStrip.Size = new System.Drawing.Size(1284, 36);
             this._menuStrip.TabIndex = 4;
             this._menuStrip.Text = "menuStrip1";
             this._menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ClickMenuStrip);
@@ -195,55 +197,16 @@
             this._arrowStripButton,
             this._undoStripButton,
             this._redoStripButton,
-            this._addPageStripButton});
-            this._shapeStrip.Location = new System.Drawing.Point(0, 31);
+            this._addPageStripButton,
+            this._saveStripButton,
+            this._loadStripButton});
+            this._shapeStrip.Location = new System.Drawing.Point(0, 36);
             this._shapeStrip.Name = "_shapeStrip";
             this._shapeStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this._shapeStrip.Size = new System.Drawing.Size(1284, 33);
+            this._shapeStrip.Size = new System.Drawing.Size(1284, 38);
             this._shapeStrip.TabIndex = 5;
             this._shapeStrip.Text = "toolStrip1";
             this._shapeStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ClickArrowStripItem);
-            // 
-            // _lineStripButton
-            // 
-            this._lineStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._lineStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_lineStripButton.Image")));
-            this._lineStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._lineStripButton.Name = "_lineStripButton";
-            this._lineStripButton.Size = new System.Drawing.Size(34, 28);
-            this._lineStripButton.Text = "toolStripButton1";
-            this._lineStripButton.Click += new System.EventHandler(this.ClickLineStripButton);
-            // 
-            // _rectangleStripButton
-            // 
-            this._rectangleStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._rectangleStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_rectangleStripButton.Image")));
-            this._rectangleStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._rectangleStripButton.Name = "_rectangleStripButton";
-            this._rectangleStripButton.Size = new System.Drawing.Size(34, 28);
-            this._rectangleStripButton.Text = "toolStripButton2";
-            this._rectangleStripButton.Click += new System.EventHandler(this.ClickRectangleStripButton);
-            // 
-            // _circleStripButton
-            // 
-            this._circleStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._circleStripButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._circleStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_circleStripButton.Image")));
-            this._circleStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._circleStripButton.Name = "_circleStripButton";
-            this._circleStripButton.Size = new System.Drawing.Size(34, 28);
-            this._circleStripButton.Text = "toolStripButton3";
-            this._circleStripButton.Click += new System.EventHandler(this.ClickCircleStripButton);
-            // 
-            // _arrowStripButton
-            // 
-            this._arrowStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._arrowStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_arrowStripButton.Image")));
-            this._arrowStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._arrowStripButton.Name = "_arrowStripButton";
-            this._arrowStripButton.Size = new System.Drawing.Size(34, 28);
-            this._arrowStripButton.Text = "toolStripButton1";
-            this._arrowStripButton.Click += new System.EventHandler(this.ClickArrowStripButton);
             // 
             // _undoStripButton
             // 
@@ -252,7 +215,7 @@
             this._undoStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._undoStripButton.Name = "_undoStripButton";
             this._undoStripButton.Size = new System.Drawing.Size(34, 28);
-            this._undoStripButton.Text = "redoStripButton";
+            this._undoStripButton.Text = "Undo";
             this._undoStripButton.Click += new System.EventHandler(this.ClickUndoStripButton);
             // 
             // _redoStripButton
@@ -262,7 +225,7 @@
             this._redoStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._redoStripButton.Name = "_redoStripButton";
             this._redoStripButton.Size = new System.Drawing.Size(34, 28);
-            this._redoStripButton.Text = "toolStripButton1";
+            this._redoStripButton.Text = "Redo";
             this._redoStripButton.Click += new System.EventHandler(this.ClickRedoStripButton);
             // 
             // _addPageStripButton
@@ -272,14 +235,34 @@
             this._addPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._addPageStripButton.Name = "_addPageStripButton";
             this._addPageStripButton.Size = new System.Drawing.Size(34, 28);
-            this._addPageStripButton.Text = "toolStripButton1";
+            this._addPageStripButton.Text = "NewSlide";
             this._addPageStripButton.Click += new System.EventHandler(this.AddPageStripButton);
+            // 
+            // _saveStripButton
+            // 
+            this._saveStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._saveStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_saveStripButton.Image")));
+            this._saveStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._saveStripButton.Name = "_saveStripButton";
+            this._saveStripButton.Size = new System.Drawing.Size(34, 28);
+            this._saveStripButton.Text = "Save";
+            this._saveStripButton.Click += new System.EventHandler(this.ClicksaveStripButton);
+            // 
+            // _loadStripButton
+            // 
+            this._loadStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._loadStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_loadStripButton.Image")));
+            this._loadStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._loadStripButton.Name = "_loadStripButton";
+            this._loadStripButton.Size = new System.Drawing.Size(34, 28);
+            this._loadStripButton.Text = "Load";
+            this._loadStripButton.Click += new System.EventHandler(this._loadStripButton_Click);
             // 
             // _splitContainer1
             // 
             this._splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._splitContainer1.Location = new System.Drawing.Point(0, 64);
+            this._splitContainer1.Location = new System.Drawing.Point(0, 74);
             this._splitContainer1.Name = "_splitContainer1";
             // 
             // _splitContainer1.Panel1
@@ -290,7 +273,7 @@
             // 
             this._splitContainer1.Panel2.Controls.Add(this._groupBoxDataShow);
             this._splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintSplitContainer1Panel2);
-            this._splitContainer1.Size = new System.Drawing.Size(1284, 575);
+            this._splitContainer1.Size = new System.Drawing.Size(1284, 565);
             this._splitContainer1.SplitterDistance = 856;
             this._splitContainer1.TabIndex = 7;
             this._splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.MoveSplitContainer1Splitter);
@@ -306,7 +289,7 @@
             // _splitContainer2.Panel2
             // 
             this._splitContainer2.Panel2.Controls.Add(this._canvas);
-            this._splitContainer2.Size = new System.Drawing.Size(856, 575);
+            this._splitContainer2.Size = new System.Drawing.Size(856, 565);
             this._splitContainer2.SplitterDistance = 122;
             this._splitContainer2.TabIndex = 7;
             this._splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.MoveSplitContainer2Splitter);
@@ -322,6 +305,47 @@
             this._canvas.TabIndex = 6;
             this._canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintPanel);
             this._canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PressCanvasMouse);
+            // 
+            // _lineStripButton
+            // 
+            this._lineStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._lineStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_lineStripButton.Image")));
+            this._lineStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._lineStripButton.Name = "_lineStripButton";
+            this._lineStripButton.Size = new System.Drawing.Size(34, 33);
+            this._lineStripButton.Text = "Line";
+            this._lineStripButton.Click += new System.EventHandler(this.ClickLineStripButton);
+            // 
+            // _rectangleStripButton
+            // 
+            this._rectangleStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._rectangleStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_rectangleStripButton.Image")));
+            this._rectangleStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._rectangleStripButton.Name = "_rectangleStripButton";
+            this._rectangleStripButton.Size = new System.Drawing.Size(34, 28);
+            this._rectangleStripButton.Text = "Rectangle";
+            this._rectangleStripButton.Click += new System.EventHandler(this.ClickRectangleStripButton);
+            // 
+            // _circleStripButton
+            // 
+            this._circleStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._circleStripButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._circleStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_circleStripButton.Image")));
+            this._circleStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._circleStripButton.Name = "_circleStripButton";
+            this._circleStripButton.Size = new System.Drawing.Size(34, 28);
+            this._circleStripButton.Text = "Circle";
+            this._circleStripButton.Click += new System.EventHandler(this.ClickCircleStripButton);
+            // 
+            // _arrowStripButton
+            // 
+            this._arrowStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._arrowStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_arrowStripButton.Image")));
+            this._arrowStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._arrowStripButton.Name = "_arrowStripButton";
+            this._arrowStripButton.Size = new System.Drawing.Size(34, 28);
+            this._arrowStripButton.Text = "Arrow";
+            this._arrowStripButton.Click += new System.EventHandler(this.ClickArrowStripButton);
             // 
             // Form1
             // 
@@ -384,6 +408,8 @@
         private System.Windows.Forms.ToolStripButton _redoStripButton;
         private System.Windows.Forms.SplitContainer _splitContainer2;
         private System.Windows.Forms.ToolStripButton _addPageStripButton;
+        private System.Windows.Forms.ToolStripButton _saveStripButton;
+        private System.Windows.Forms.ToolStripButton _loadStripButton;
     }
 }
 

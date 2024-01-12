@@ -39,3 +39,5 @@ C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsProgramin
 C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\WebDriver.xml
 C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\WebDriver.Support.xml
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\WindowsInput.dll
+C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\bin\Debug\WindowsInput.xml

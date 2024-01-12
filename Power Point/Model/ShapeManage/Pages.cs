@@ -28,6 +28,7 @@ namespace Power_Point
             graphics.ClearAll();
             foreach(Shapes shapes in _pages)
             {
+                if(index > -1 && index < _pages.Count())
                 _pages[index].DrawButtonShape(graphics, rate);
             }
         }
@@ -51,7 +52,7 @@ namespace Power_Point
         // 將 shapes 中所有 shape 存進 shapedata 中
         public List<ShapeData> GetShapeData(int index)
         {
-            if(index > -1)
+            if(index > -1 && index < _pages.Count())
             {
                 return _pages[index].GetShapeData();
             }
@@ -116,6 +117,16 @@ namespace Power_Point
         public void UnSelected(int index)
         {
             _pages[index].IsSelected = false;
+        }
+
+        public int GetPageCount()
+        {
+            return _pages.Count();
+        }
+        
+        public void Clear()
+        {
+            _pages.Clear();
         }
     }
 }

@@ -94,7 +94,10 @@ namespace Power_Point
 
         public void SetLeftTopPoint(Point point)
         {
-            this.FirstPoint = point.CopyDeep();
+            if(point != null)
+            {
+                this.FirstPoint = point.CopyDeep();
+            }
         }
 
         public void SetRightBottomPoint(Point point)

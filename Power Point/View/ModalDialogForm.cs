@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Power_Point
 {
-    public partial class Form2 : Form
+    public partial class ModalDialogForm : Form
     {
         private double _leftTopX;
         private double _leftTopY;
@@ -33,7 +33,7 @@ namespace Power_Point
             }
         }
 
-        public Form2()
+        public ModalDialogForm()
         {
             InitializeComponent();
 

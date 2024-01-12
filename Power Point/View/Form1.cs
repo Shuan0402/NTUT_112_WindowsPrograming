@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -85,7 +86,7 @@ namespace Power_Point
             slideLocation = new System.Drawing.Point(0, 0);
             _slideList = new List<Button>();
             _presentationModel.OriginSlideIndex = -1;
-            _presentationModel._currentSlideIndex = -1;
+            _presentationModel.CurrentSlideIndex = -1;
             AddNewSlide();
             _slideList[0].FlatStyle = FlatStyle.Flat;
             _slideList[0].FlatAppearance.BorderColor = Color.Blue;
@@ -164,17 +165,15 @@ namespace Power_Point
 
         }
 
-        private void OpenForm2()
+        private void OpenModalDialogForm()
         {
-            using (Form2 modalDialog = new Form2())
+            using (ModalDialogForm modalDialog = new ModalDialogForm())
             {
                 if (modalDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // 存取 modalDialog 中的 TextBox 的值
                     LeftTopPoint = modalDialog.LeftTopPoint;
                     RightBottomPoint = modalDialog.RightBottomPoint;
 
-                    // 使用這些值進行其他處理
                 }
             }
         }
@@ -186,7 +185,7 @@ namespace Power_Point
             {
                 string selectedShape = _comboBoxShape.SelectedItem.ToString();
 
-                OpenForm2();
+                OpenModalDialogForm();
 
                 _presentationModel.AddDataGridViewShape(selectedShape, LeftTopPoint, RightBottomPoint);
                 
@@ -308,7 +307,7 @@ namespace Power_Point
         private void DeleteKeyDown(object sender, KeyEventArgs e)
         {
             _presentationModel.DeleteShape(-1, 0, e.KeyCode);
-            _presentationModel.DeletePage(_presentationModel._currentSlideIndex);
+            _presentationModel.DeletePage(_presentationModel.CurrentSlideIndex);
             ShowShapeList();
         }
 
@@ -432,9 +431,9 @@ namespace Power_Point
 
         private void AddNewSlide()
         {
-            _presentationModel.OriginSlideIndex = (int)_presentationModel._currentSlideIndex;
-            _presentationModel._currentSlideIndex++;
-            _presentationModel.AddPage(_presentationModel._currentSlideIndex);
+            _presentationModel.OriginSlideIndex = (int)_presentationModel.CurrentSlideIndex;
+            _presentationModel.CurrentSlideIndex++;
+            _presentationModel.AddPage(_presentationModel.CurrentSlideIndex);
         }
         
         // _slideButton_Click
@@ -444,8 +443,8 @@ namespace Power_Point
 
             if (slide != null)
             {
-                _presentationModel.OriginSlideIndex = _presentationModel._currentSlideIndex;
-                _presentationModel._currentSlideIndex = _slideList.IndexOf(slide);
+                _presentationModel.OriginSlideIndex = _presentationModel.CurrentSlideIndex;
+                _presentationModel.CurrentSlideIndex = _slideList.IndexOf(slide);
                 _presentationModel.CheckSlide();
             }
 
@@ -458,13 +457,13 @@ namespace Power_Point
         private void CheckSlide()
         {
             _slideList[_presentationModel.OriginSlideIndex].FlatAppearance.BorderSize = 0;
-            _slideList[_presentationModel._currentSlideIndex].FlatAppearance.BorderSize = 2;
+            _slideList[_presentationModel.CurrentSlideIndex].FlatAppearance.BorderSize = 2;
         }
 
         // add
         public void HandlePageAdded()
         {
-            _presentationModel.OriginSlideIndex = _presentationModel._currentSlideIndex - 1;
+            _presentationModel.OriginSlideIndex = _presentationModel.CurrentSlideIndex - 1;
             Button newButton = new Button();
             newButton.Name = "_slideButton" + _slideList.Count().ToString();
             newButton.Size = slideButtonSize;
@@ -482,17 +481,17 @@ namespace Power_Point
             _splitContainer2.Panel1.Controls.Add(newButton);
             _slideList.Add(newButton);
 
-            _presentationModel._currentSlideIndex = _slideList.IndexOf(newButton);
+            _presentationModel.CurrentSlideIndex = _slideList.IndexOf(newButton);
         }
 
         // delete
         public void HandlePageDeleted()
         {
-            _splitContainer2.Panel1.Controls.RemoveAt(_presentationModel._currentSlideIndex);
-            _slideList.RemoveAt(_presentationModel._currentSlideIndex);
+            _splitContainer2.Panel1.Controls.RemoveAt(_presentationModel.CurrentSlideIndex);
+            _slideList.RemoveAt(_presentationModel.CurrentSlideIndex);
             SetSlideLocation();
-            _presentationModel.SetOriginSlideIndex(_presentationModel._currentSlideIndex - 1);
-            _presentationModel.SetCurrentSlideIndex(_presentationModel._currentSlideIndex - 1);
+            _presentationModel.SetOriginSlideIndex(_presentationModel.CurrentSlideIndex - 1);
+            _presentationModel.SetCurrentSlideIndex(_presentationModel.CurrentSlideIndex - 1);
             _presentationModel.UnCheckSlide();
             CheckSlide();
         }
@@ -505,6 +504,38 @@ namespace Power_Point
                 System.Drawing.Point point = new System.Drawing.Point(0, (slide.Height + 5) * _slideList.IndexOf(slide));
                 slide.Location = point;
             }
+        }
+
+        private void ClicksaveStripButton(object sender, EventArgs e)
+        {
+            SaveForm saveForm = new SaveForm(this);
+            saveForm.ShowDialog();
+        }
+
+        public void SaveData()
+        {
+            string data = _presentationModel.GetData();
+            string path = "C:\\Users\\User\\Downloads\\GetData.txt";
+
+            File.WriteAllText(path, data);
+
+            Console.WriteLine("數據已成功寫入文件。");
+        }
+
+        public void LoadData()
+        {
+            string path = "C:\\Users\\User\\Downloads\\GetData.txt";
+            string[] lines = File.ReadAllLines(path);
+            _presentationModel.LoadData(lines);
+            _splitContainer2.Panel1.Controls.Clear();
+            _slideList.Clear();
+            HandleCanvasChanged();
+            HandlePageAdded();
+        }
+        private void _loadStripButton_Click(object sender, EventArgs e)
+        {
+            LoadForm loadForm = new LoadForm(this);
+            loadForm.ShowDialog();
         }
     }
 }

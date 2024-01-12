@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Power_Point
 {
@@ -287,14 +288,22 @@ namespace Power_Point
             return _shapes.IsSelected;
         }
 
+        // add
         public void AddPage(int index)
         {
+            //_commandManager.Execute(
+              //  new AddSlideCommand(this, _pages, index)
+            //);
             _pages.AddPage(index);
             NotifySlideAdd();
         }
 
+        // delete
         public void DeletePage(int index)
         {
+            //_commandManager.Execute(
+              //  new AddSlideCommand(_pages)
+            //);
             _pages.DeletePage(index);
             NotifySlideDelete();
         }
@@ -312,6 +321,16 @@ namespace Power_Point
         public void UnSelected(int index)
         {
             _pages.UnSelected(index);
+        }
+
+        public int GetPageCount()
+        {
+            return _pages.GetPageCount();
+        }
+
+        public void ClearPages()
+        {
+            _pages.Clear();
         }
     }
 }

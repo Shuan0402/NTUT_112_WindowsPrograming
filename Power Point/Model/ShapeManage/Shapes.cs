@@ -298,6 +298,17 @@ namespace Power_Point
             return newShapes;
         }
 
+        public void SetShapeDataList(List<ShapeData> shapeDataList)
+        {
+            _shapes.Clear();
+            foreach(ShapeData shapeData in shapeDataList)
+            {
+                Shape shape = new Shape();
+                shape.Name = shapeData.Name;
+                shape.Info = shapeData.Info;
+                _shapes.Add(shape);
+            }
+        }
     }
 }
 

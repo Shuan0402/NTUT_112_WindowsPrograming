@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Power_Point
@@ -115,7 +117,7 @@ namespace Power_Point
             }
         }
 
-        public int _currentSlideIndex
+        public int CurrentSlideIndex
         {
             get
             {
@@ -185,13 +187,13 @@ namespace Power_Point
         // 遍歷 Sahpes
         public List<ShapeData> GetShapeData()
         {
-            List<ShapeData> dataList = _model.GetShapeData(_currentSlideIndex);
+            List<ShapeData> dataList = _model.GetShapeData(CurrentSlideIndex);
             return dataList;
         }
 
         public void AddDataGridViewShape(string selectedShape, Point LeftTopPoint, Point RightBottomPoint)
         {
-            _model.AddDataGridViewShape(selectedShape, LeftTopPoint, RightBottomPoint, _currentSlideIndex);
+            _model.AddDataGridViewShape(selectedShape, LeftTopPoint, RightBottomPoint, CurrentSlideIndex);
             _model.IsFirstCreate = true;
         }
 
@@ -204,20 +206,20 @@ namespace Power_Point
             }
             else if ((rowIndex != -1 && columnIndex == 0) || (keys == Keys.Delete))
             {
-                _model.DeleteShape(rowIndex, _currentSlideIndex);
+                _model.DeleteShape(rowIndex, CurrentSlideIndex);
             }
         }
 
         // 壓下滑鼠
         public void PointerPressed(double x, double y)
         {
-            _model.PressPointer(x, y, _selectButtonType, _currentSlideIndex);
+            _model.PressPointer(x, y, _selectButtonType, CurrentSlideIndex);
         }
 
         // 放開滑鼠
         public void PointerReleased()
         {
-            _model.ReleasePointer(_currentSlideIndex);
+            _model.ReleasePointer(CurrentSlideIndex);
             _model.ChangeState(POINT);
             CheckArrow();
         }
@@ -225,19 +227,19 @@ namespace Power_Point
         // 滑鼠移動
         public void PointerMoved(double x, double y)
         {
-            _model.MovePointer(_currentSlideIndex, x, y);
+            _model.MovePointer(CurrentSlideIndex, x, y);
         }
 
         // 清除
         public void ClearShapes()
         {
-            _model.ClearShapes(_currentSlideIndex);
+            _model.ClearShapes(CurrentSlideIndex);
         }
 
         // 新增繪圖
         public void DrawPannel(FormsGraphicsAdaptor graphics, double rate)
         {
-            _model.DrawPannel(graphics, rate, _currentSlideIndex);
+            _model.DrawPannel(graphics, rate, CurrentSlideIndex);
         }
 
         // 新增繪圖
@@ -303,7 +305,7 @@ namespace Power_Point
         public void CheckSlide()
         {
             IsSlideChecked = true;
-            _model.UnSelected(_currentSlideIndex);
+            _model.UnSelected(CurrentSlideIndex);
         }
 
         public void UnCheckSlide()
@@ -337,11 +339,43 @@ namespace Power_Point
 
             if (index < 0)
             {
-                _currentSlideIndex = 0;
+                CurrentSlideIndex = 0;
             }
             else
             {
-                _currentSlideIndex = (int)index;
+                CurrentSlideIndex = (int)index;
+            }
+        }
+
+        public string GetData()
+        {
+            int pageCount = _model.GetPageCount();
+            string data = "";
+            for(int i = 0; i < pageCount; i++)
+            {
+                data += ("page: " + i.ToString() + "\n");
+                List<ShapeData> dataList = _model.GetShapeData(i);
+                for(int j = 0; j < dataList.Count(); j++)
+                {
+                    data += (dataList[j].Name + ": " + dataList[j].Info + "\n");
+                }
+            }
+            return data;
+        }
+        public void LoadData(string[] lines)
+        {
+            _model.ClearPages();
+            int index = 0;
+            foreach(string line in lines)
+            {
+                if(line.StartsWith("page: "))
+                {
+                    if(line != "page: 0\n")
+                    {
+                        AddPage(index);
+                        index++;
+                    }
+                }
             }
         }
     }

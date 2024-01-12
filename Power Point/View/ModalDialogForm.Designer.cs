@@ -1,7 +1,7 @@
 ﻿
 namespace Power_Point
 {
-    partial class Form2
+    partial class ModalDialogForm
     {
         /// <summary>
         /// Required designer variable.
