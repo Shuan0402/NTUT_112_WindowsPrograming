@@ -10,7 +10,7 @@ namespace Power_Point
         readonly Point _currentPoint = new Point(0, 0);
         readonly int _selectedIndex;
         private readonly PowerPointModel _model;
-        int _index;
+        readonly int _index;
 
         public ModifyCommand(PowerPointModel model, Point originPoint, Point currentPoint, int selectedIndex, int index)
         {

@@ -9,7 +9,7 @@ namespace Power_Point
         readonly PowerPointModel _model;
         readonly Shapes _originShapes;
         readonly Shapes _currentShapes;
-        int _index;
+        readonly int _index;
 
         public DrawCommand(PowerPointModel model, Shapes originShapes, Shapes currentShapes, int index)
         {

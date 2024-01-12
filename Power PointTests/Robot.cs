@@ -22,17 +22,11 @@ namespace Power_PointTests
         private WindowsDriver<WindowsElement> _driver;
         private Dictionary<string, string> _windowHandles;
         private string _root;
-        private const string CONTROL_NOT_FOUND_EXCEPTION = "The specific control is not found!!";
         private const string WIN_APP_DRIVER_URI = "http://127.0.0.1:4723";
 
+        // test
         [DllImport("user32.dll", SetLastError = true)]
         static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, int dwExtraInfo);
-
-        // 滑鼠事件
-        const uint MOUSEEVENTF_ABSOLUTE = 0x8000;
-        const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
-        const uint MOUSEEVENTF_LEFTUP = 0x0004;
-        const uint MOUSEEVENTF_MOVE = 0x0001;
 
         // constructor
         public Robot(string targetAppPath, string root)
@@ -129,6 +123,7 @@ namespace Power_PointTests
             SendKeys.SendWait("%{F4}");
         }
 
+        // test
         public void ClickDelete()
         {
             Actions actions = new Actions(_driver);
@@ -144,7 +139,7 @@ namespace Power_PointTests
         // 點擊資料表中的某個儲存格，以觸發相應的事件或驗證應用程式的行為
         public void ClickDataGridViewCellBy(string name, int rowIndex, string columnName)
         {
-            var dataGridView = _driver.FindElementByAccessibilityId(name);
+            _ = _driver.FindElementByAccessibilityId(name);
             _driver.FindElementByName($"{columnName} 資料列 {rowIndex}").Click();
         }
 
@@ -246,13 +241,10 @@ namespace Power_PointTests
             return _driver.FindElementByAccessibilityId(id);
         }
 
+        // test
         public void DeleteDataGridViewData(string name, int index)
         {
             var dataGridView = _driver.FindElementByAccessibilityId(name);
-
-            // 假設你要點擊第一行第一列的按鈕
-            int rowIndex = 0;
-            int columnIndex = 0;
 
             // 找到指定儲存格
             var cell = dataGridView.FindElementByName($"資料列 {index} 資料格 0");
@@ -264,6 +256,7 @@ namespace Power_PointTests
             button.Click();
         }
 
+        // test
         public void SetWindowsSize(int x, int y)
         {
             WindowsElement windowElement = _driver.FindElementByAccessibilityId("Form1");
@@ -281,6 +274,7 @@ namespace Power_PointTests
                 .Perform();
         }
 
+        // test
         public void AssertWindowsSize()
         {
             WindowsElement _canvas = _driver.FindElementByAccessibilityId("_canvas");

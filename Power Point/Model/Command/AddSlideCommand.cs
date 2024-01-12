@@ -26,7 +26,7 @@ namespace Power_Point
         // Revoke
         public void Revoke()
         {
-            _model._currentSlideIndex = _index - 1;
+            _model.CurrentSlideIndex = _index - 1;
             _pages.DeletePage(_index - 1);
             _model.NotifyModelChanged();
         }

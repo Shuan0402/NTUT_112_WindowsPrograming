@@ -50,7 +50,7 @@ namespace Power_Point
             this._leftTopPointLabelX.Size = new System.Drawing.Size(116, 23);
             this._leftTopPointLabelX.TabIndex = 0;
             this._leftTopPointLabelX.Text = "左上角座標 X";
-            this._leftTopPointLabelX.Click += new System.EventHandler(this._leftTopPointLabelX_Click);
+            this._leftTopPointLabelX.Click += new System.EventHandler(this.LeftTopPointLabelX_Click);
             // 
             // _leftTopPointLabelY
             // 
@@ -88,7 +88,7 @@ namespace Power_Point
             this._leftTopTextBoxX.Name = "_leftTopTextBoxX";
             this._leftTopTextBoxX.Size = new System.Drawing.Size(112, 29);
             this._leftTopTextBoxX.TabIndex = 4;
-            this._leftTopTextBoxX.TextChanged += new System.EventHandler(this._leftTopTextBoxX_TextChanged);
+            this._leftTopTextBoxX.TextChanged += new System.EventHandler(this.ChangrLeftTopTextBoxX_Text);
             // 
             // _leftTopTextBoxY
             // 
@@ -96,7 +96,7 @@ namespace Power_Point
             this._leftTopTextBoxY.Name = "_leftTopTextBoxY";
             this._leftTopTextBoxY.Size = new System.Drawing.Size(112, 29);
             this._leftTopTextBoxY.TabIndex = 5;
-            this._leftTopTextBoxY.TextChanged += new System.EventHandler(this._leftTopTextBoxY_TextChanged);
+            this._leftTopTextBoxY.TextChanged += new System.EventHandler(this.ChangeLeftTopTextBoxY_Text);
             // 
             // _rightBottomTextBox
             // 
@@ -104,7 +104,7 @@ namespace Power_Point
             this._rightBottomTextBoxX.Name = "_rightBottomTextBoxX";
             this._rightBottomTextBoxX.Size = new System.Drawing.Size(112, 29);
             this._rightBottomTextBoxX.TabIndex = 6;
-            this._rightBottomTextBoxX.TextChanged += new System.EventHandler(this._rightBottomTextBoxX_TextChanged);
+            this._rightBottomTextBoxX.TextChanged += new System.EventHandler(this.ChangeRightBottomTextBoxX_Text);
             // 
             // _rightBottomTextBoxY
             // 
@@ -112,7 +112,7 @@ namespace Power_Point
             this._rightBottomTextBoxY.Name = "_rightBottomTextBoxY";
             this._rightBottomTextBoxY.Size = new System.Drawing.Size(112, 29);
             this._rightBottomTextBoxY.TabIndex = 7;
-            this._rightBottomTextBoxY.TextChanged += new System.EventHandler(this._rightBottomTextBoxY_TextChanged);
+            this._rightBottomTextBoxY.TextChanged += new System.EventHandler(this.ChangeRightBottomTextBoxY_Text);
             // 
             // _okButton
             // 
@@ -122,7 +122,7 @@ namespace Power_Point
             this._okButton.TabIndex = 8;
             this._okButton.Text = "OK";
             this._okButton.UseVisualStyleBackColor = true;
-            this._okButton.Click += new System.EventHandler(this._okButton_Click);
+            this._okButton.Click += new System.EventHandler(this.ClickOkButton);
             // 
             // _cancelButton
             // 
@@ -132,7 +132,7 @@ namespace Power_Point
             this._cancelButton.TabIndex = 9;
             this._cancelButton.Text = "Cancel";
             this._cancelButton.UseVisualStyleBackColor = true;
-            this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
+            this._cancelButton.Click += new System.EventHandler(this.ClickCancelButton);
             // 
             // Form2
             // 

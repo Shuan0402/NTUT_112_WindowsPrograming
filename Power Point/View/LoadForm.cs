@@ -12,19 +12,21 @@ namespace Power_Point
 {
     public partial class LoadForm : Form
     {
-        Form1 _form;
+        readonly Form1 _form;
         public LoadForm(Form1 form)
         {
             InitializeComponent();
             _form = form;
         }
 
-        private void _cancelButton_Click(object sender, EventArgs e)
+        // test
+        private void ClickCancelButton(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void _loadButton_Click(object sender, EventArgs e)
+        // test
+        private void ClickLoadButton(object sender, EventArgs e)
         {
             _form.LoadData();
             this.Close();

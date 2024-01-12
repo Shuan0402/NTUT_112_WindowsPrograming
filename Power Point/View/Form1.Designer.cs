@@ -256,7 +256,7 @@
             this._loadStripButton.Name = "_loadStripButton";
             this._loadStripButton.Size = new System.Drawing.Size(34, 28);
             this._loadStripButton.Text = "Load";
-            this._loadStripButton.Click += new System.EventHandler(this._loadStripButton_Click);
+            this._loadStripButton.Click += new System.EventHandler(this.LoadStripButton_Click);
             // 
             // _splitContainer1
             // 

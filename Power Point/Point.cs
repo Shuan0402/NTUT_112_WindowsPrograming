@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Power_Point
 {
@@ -38,11 +40,6 @@ namespace Power_Point
         {
             Point copiedPoint = new Point(this.X, this.Y);
             return copiedPoint;
-        }
-
-        public static implicit operator System.Drawing.Point(Point v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

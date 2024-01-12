@@ -92,14 +92,16 @@ namespace Power_Point
             return (Shape)MemberwiseClone(); // 基本的 MemberwiseClone() 複製
         }
 
+        // test
         public void SetLeftTopPoint(Point point)
         {
-            if(point != null)
+            if (point != null)
             {
                 this.FirstPoint = point.CopyDeep();
             }
         }
 
+        // test
         public void SetRightBottomPoint(Point point)
         {
             this.EndPoint = point.CopyDeep();

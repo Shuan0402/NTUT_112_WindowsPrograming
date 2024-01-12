@@ -188,12 +188,12 @@
           <Reviews>
             <Smell>
               <Id>1</Id>
-              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PowerPointModel.cs on line 179.</SmellType>
+              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PowerPointModel.cs on line 216.</SmellType>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>Power Point</Project>
               <File>PowerPointModel.cs</File>
-              <Line>179</Line>
+              <Line>216</Line>
               <StartLine>0</StartLine>
               <StartCol>0</StartCol>
               <EndLine>0</EndLine>
@@ -203,12 +203,12 @@
             </Smell>
             <Smell>
               <Id>2</Id>
-              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PresantationModel.cs on line 28.</SmellType>
+              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PresantationModel.cs on line 32.</SmellType>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>Power Point</Project>
               <File>PresantationModel.cs</File>
-              <Line>28</Line>
+              <Line>32</Line>
               <StartLine>0</StartLine>
               <StartCol>0</StartCol>
               <EndLine>0</EndLine>
@@ -218,6 +218,102 @@
             </Smell>
             <Smell>
               <Id>3</Id>
+              <SmellType>ICS(變數-2)</SmellType>
+              <HashCode>Variable2.AddDataGridViewShape.LeftTopPoint</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>Pages.cs</File>
+              <Line>94</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>ICS(變數-2) 區域變數-函式參數命名規則與 class 成員變數相似，僅差在不以底線開始</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>4</Id>
+              <SmellType>ICS(變數-2)</SmellType>
+              <HashCode>Variable2.AddDataGridViewShape.RightBottomPoint</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>Pages.cs</File>
+              <Line>94</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>ICS(變數-2) 區域變數-函式參數命名規則與 class 成員變數相似，僅差在不以底線開始</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>5</Id>
+              <SmellType>ICS(空白與空行-9)</SmellType>
+              <HashCode>SpacingAndNewLine9</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>Shapes.cs</File>
+              <Line>310</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>ICS(空白與空行-9) 陣列初始化的左大括號後面，右大括號前面</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>6</Id>
+              <SmellType>ICS(空白與空行-9)</SmellType>
+              <HashCode>SpacingAndNewLine9</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>Shapes.cs</File>
+              <Line>312</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>ICS(空白與空行-9) 陣列初始化的左大括號後面，右大括號前面</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>7</Id>
+              <SmellType>ICS(變數-2)</SmellType>
+              <HashCode>Variable2.AddDataGridViewShape.LeftTop</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>Shapes.cs</File>
+              <Line>62</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>ICS(變數-2) 區域變數-函式參數命名規則與 class 成員變數相似，僅差在不以底線開始</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>8</Id>
+              <SmellType>ICS(變數-2)</SmellType>
+              <HashCode>Variable2.AddDataGridViewShape.RightBottom</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>Shapes.cs</File>
+              <Line>62</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>ICS(變數-2) 區域變數-函式參數命名規則與 class 成員變數相似，僅差在不以底線開始</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>9</Id>
               <SmellType>Unsuitable naming(名不符實)-BindableToolStripButton(bindable)</SmellType>
               <HashCode>UnsuitableNaming.Root.BindableToolStripButton.BindableToolStripButton</HashCode>
               <Severity>Red</Severity>
@@ -233,13 +329,13 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>4</Id>
-              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\Form1.cs on line 108.</SmellType>
+              <Id>10</Id>
+              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\Form1.cs on line 131.</SmellType>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>Power Point</Project>
               <File>Form1.cs</File>
-              <Line>108</Line>
+              <Line>131</Line>
               <StartLine>0</StartLine>
               <StartCol>0</StartCol>
               <EndLine>0</EndLine>
@@ -248,7 +344,7 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>5</Id>
+              <Id>11</Id>
               <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\FormGraphicsAdaptor.cs on line 23.</SmellType>
               <Severity>Red</Severity>
               <Weight>1</Weight>
@@ -263,47 +359,449 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>6</Id>
+              <Id>12</Id>
+              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\ModalDialogForm.cs on line 62.</SmellType>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>ModalDialogForm.cs</File>
+              <Line>62</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment />
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>13</Id>
+              <SmellType>A syntax error has been discovered in file C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs on line 143.</SmellType>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>Robot.cs</File>
+              <Line>143</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment />
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>14</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>52 目前物件 Power_Point.PointState，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Point，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.Point.X 以及 Power_Point.Point.X 以及 Power_Point.Point.Y 以及 Power_Point.Point.Y</HashCode>
+              <HashCode>311 目前物件 Power_Point.Shapes，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.ShapeData，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.ShapeData.Name 以及 Power_Point.ShapeData.Info</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\ShapeManage\Shapes.cs</File>
+              <Line>311</Line>
+              <StartLine>307</StartLine>
+              <StartCol>22</StartCol>
+              <EndLine>311</EndLine>
+              <EndCol>17</EndCol>
+              <Comment>目前物件 Power_Point.Shapes，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.ShapeData，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.ShapeData.Name 以及 Power_Point.ShapeData.Info</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>15</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>374 目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PowerPointModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PowerPointModel.GetShapeData(int) 以及 Power_Point.PowerPointModel.GetPageCount()</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PresantationModel.cs</File>
+              <Line>374</Line>
+              <StartLine>374</StartLine>
+              <StartCol>32</StartCol>
+              <EndLine>374</EndLine>
+              <EndCol>65</EndCol>
+              <Comment>目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PowerPointModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PowerPointModel.GetShapeData(int) 以及 Power_Point.PowerPointModel.GetPageCount()</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>16</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>375 目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PowerPointModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PowerPointModel.GetShapeData(int) 以及 Power_Point.PowerPointModel.GetPageCount()</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PresantationModel.cs</File>
+              <Line>375</Line>
+              <StartLine>375</StartLine>
+              <StartCol>31</StartCol>
+              <EndLine>375</EndLine>
+              <EndCol>51</EndCol>
+              <Comment>目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PowerPointModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PowerPointModel.GetShapeData(int) 以及 Power_Point.PowerPointModel.GetPageCount()</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>17</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>378 目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PowerPointModel，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.PowerPointModel.GetShapeData(int) 以及 Power_Point.PowerPointModel.GetShapeData(int) 以及 Power_Point.PowerPointModel.GetPageCount() 以及 Power_Point.PowerPointModel.GetShapeData(int)</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PresantationModel.cs</File>
+              <Line>378</Line>
+              <StartLine>377</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>378</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PowerPointModel，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.PowerPointModel.GetShapeData(int) 以及 Power_Point.PowerPointModel.GetShapeData(int) 以及 Power_Point.PowerPointModel.GetPageCount() 以及 Power_Point.PowerPointModel.GetShapeData(int)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>18</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>378 目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.ShapeData，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.ShapeData.Name 以及 Power_Point.ShapeData.Info</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PresantationModel.cs</File>
+              <Line>378</Line>
+              <StartLine>377</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>378</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.ShapeData，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.ShapeData.Name 以及 Power_Point.ShapeData.Info</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>19</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>381 目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PowerPointModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PowerPointModel.GetShapeData(int) 以及 Power_Point.PowerPointModel.GetShapeData(int)</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PresantationModel.cs</File>
+              <Line>381</Line>
+              <StartLine>380</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>381</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PowerPointModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PowerPointModel.GetShapeData(int) 以及 Power_Point.PowerPointModel.GetShapeData(int)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>20</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>381 目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.ShapeData，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.ShapeData.Name 以及 Power_Point.ShapeData.Info</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PresantationModel.cs</File>
+              <Line>381</Line>
+              <StartLine>380</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>381</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_Point.PresentationModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.ShapeData，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.ShapeData.Name 以及 Power_Point.ShapeData.Info</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>21</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>205 目前物件 Power_Point.PowerPointModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Pages，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.Pages.SelectShape(int, Power_Point.Point) 以及 Power_Point.Pages.SetSelectedIndex(int, int)</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\PowerPointModel.cs</File>
+              <Line>205</Line>
+              <StartLine>204</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>205</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_Point.PowerPointModel，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Pages，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.Pages.SelectShape(int, Power_Point.Point) 以及 Power_Point.Pages.SetSelectedIndex(int, int)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>22</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>55 目前物件 Power_Point.PointState，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Point，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.Point.X 以及 Power_Point.Point.X 以及 Power_Point.Point.Y 以及 Power_Point.Point.Y</HashCode>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>Power Point</Project>
               <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\Model\State\PointState.cs</File>
-              <Line>52</Line>
-              <StartLine>52</StartLine>
+              <Line>55</Line>
+              <StartLine>55</StartLine>
               <StartCol>16</StartCol>
-              <EndLine>52</EndLine>
+              <EndLine>55</EndLine>
               <EndCol>86</EndCol>
               <Comment>目前物件 Power_Point.PointState，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.Point，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：Power_Point.Point.X 以及 Power_Point.Point.X 以及 Power_Point.Point.Y 以及 Power_Point.Point.Y</Comment>
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>7</Id>
+              <Id>23</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>91 目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.GetShapeData() 以及 Power_Point.PresentationModel.GetShapeData()</HashCode>
+              <HashCode>114 目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.GetShapeData() 以及 Power_Point.PresentationModel.GetShapeData()</HashCode>
               <Severity>Warning</Severity>
               <Weight>1</Weight>
               <Project>Power Point</Project>
               <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\Form1.cs</File>
-              <Line>91</Line>
-              <StartLine>91</StartLine>
+              <Line>114</Line>
+              <StartLine>114</StartLine>
               <StartCol>23</StartCol>
-              <EndLine>91</EndLine>
+              <EndLine>114</EndLine>
               <EndCol>54</EndCol>
               <Comment>目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.GetShapeData() 以及 Power_Point.PresentationModel.GetShapeData()</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>24</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>309 目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.CurrentSlideIndex 以及 Power_Point.PresentationModel.DeletePage(int)</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\Form1.cs</File>
+              <Line>309</Line>
+              <StartLine>308</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>309</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.CurrentSlideIndex 以及 Power_Point.PresentationModel.DeletePage(int)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>25</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>437 目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.CurrentSlideIndex 以及 Power_Point.PresentationModel.AddPage(int)</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\Form1.cs</File>
+              <Line>437</Line>
+              <StartLine>436</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>437</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.CurrentSlideIndex 以及 Power_Point.PresentationModel.AddPage(int)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>26</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>494 目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.CurrentSlideIndex 以及 Power_Point.PresentationModel.SetOriginSlideIndex(int?)</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\Form1.cs</File>
+              <Line>494</Line>
+              <StartLine>493</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>494</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.CurrentSlideIndex 以及 Power_Point.PresentationModel.SetOriginSlideIndex(int?)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>27</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>495 目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.CurrentSlideIndex 以及 Power_Point.PresentationModel.SetCurrentSlideIndex(int?)</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power Point</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power Point\View\Form1.cs</File>
+              <Line>495</Line>
+              <StartLine>494</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>495</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_Point.Form1，使用物件的方法或屬性次數：0次，Envy到對象物件 Power_Point.PresentationModel，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：Power_Point.PresentationModel.CurrentSlideIndex 以及 Power_Point.PresentationModel.SetCurrentSlideIndex(int?)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>28</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>60 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Remote.RemoteWebDriver，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Remote.RemoteWebDriver.Dispose() 以及 OpenQA.Selenium.Remote.RemoteWebDriver.WindowHandles</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>60</Line>
+              <StartLine>59</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>60</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Remote.RemoteWebDriver，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Remote.RemoteWebDriver.Dispose() 以及 OpenQA.Selenium.Remote.RemoteWebDriver.WindowHandles</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>29</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>130 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Interactions.Actions，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Interactions.Actions.SendKeys(string) 以及 OpenQA.Selenium.Interactions.Actions.Perform()</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>130</Line>
+              <StartLine>129</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>130</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Interactions.Actions，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Interactions.Actions.SendKeys(string) 以及 OpenQA.Selenium.Interactions.Actions.Perform()</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>30</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>170 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Appium.AppiumWebElement，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Appium.AppiumWebElement.FindElementByName(string) 以及 OpenQA.Selenium.Appium.AppiumWebElement.FindElementsByXPath(string)</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>170</Line>
+              <StartLine>170</StartLine>
+              <StartCol>16</StartCol>
+              <EndLine>170</EndLine>
+              <EndCol>103</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Appium.AppiumWebElement，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Appium.AppiumWebElement.FindElementByName(string) 以及 OpenQA.Selenium.Appium.AppiumWebElement.FindElementsByXPath(string)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>31</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>173 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Appium.AppiumWebElement，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Appium.AppiumWebElement.FindElementByName(string) 以及 OpenQA.Selenium.Appium.AppiumWebElement.FindElementsByXPath(string)</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>173</Line>
+              <StartLine>173</StartLine>
+              <StartCol>28</StartCol>
+              <EndLine>173</EndLine>
+              <EndCol>46</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Appium.AppiumWebElement，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Appium.AppiumWebElement.FindElementByName(string) 以及 OpenQA.Selenium.Appium.AppiumWebElement.FindElementsByXPath(string)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>32</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>198 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Interactions.Actions，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement, int, int) 以及 OpenQA.Selenium.Interactions.Actions.Perform()</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>198</Line>
+              <StartLine>197</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>198</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Interactions.Actions，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement, int, int) 以及 OpenQA.Selenium.Interactions.Actions.Perform()</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>33</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>217 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Interactions.Actions，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：OpenQA.Selenium.Interactions.Actions.ClickAndHold() 以及 OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement, int, int) 以及 OpenQA.Selenium.Interactions.Actions.Release() 以及 OpenQA.Selenium.Interactions.Actions.Perform()</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>217</Line>
+              <StartLine>213</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>217</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Interactions.Actions，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：OpenQA.Selenium.Interactions.Actions.ClickAndHold() 以及 OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement, int, int) 以及 OpenQA.Selenium.Interactions.Actions.Release() 以及 OpenQA.Selenium.Interactions.Actions.Perform()</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>34</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>229 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Interactions.Actions，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：OpenQA.Selenium.Interactions.Actions.ClickAndHold() 以及 OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement, int, int) 以及 OpenQA.Selenium.Interactions.Actions.Release() 以及 OpenQA.Selenium.Interactions.Actions.Perform()</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>229</Line>
+              <StartLine>225</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>229</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Interactions.Actions，使用物件方法或屬性次數：4次，使用到的方法或屬性為以下：OpenQA.Selenium.Interactions.Actions.ClickAndHold() 以及 OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement, int, int) 以及 OpenQA.Selenium.Interactions.Actions.Release() 以及 OpenQA.Selenium.Interactions.Actions.Perform()</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>35</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>262 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Appium.AppiumWebElement，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Appium.AppiumWebElement.Location 以及 OpenQA.Selenium.Appium.AppiumWebElement.Size</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>262</Line>
+              <StartLine>262</StartLine>
+              <StartCol>16</StartCol>
+              <EndLine>262</EndLine>
+              <EndCol>78</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Appium.AppiumWebElement，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Appium.AppiumWebElement.Location 以及 OpenQA.Selenium.Appium.AppiumWebElement.Size</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>36</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>263 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Appium.AppiumWebElement，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Appium.AppiumWebElement.Location 以及 OpenQA.Selenium.Appium.AppiumWebElement.Size</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>263</Line>
+              <StartLine>263</StartLine>
+              <StartCol>16</StartCol>
+              <EndLine>263</EndLine>
+              <EndCol>79</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Appium.AppiumWebElement，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Appium.AppiumWebElement.Location 以及 OpenQA.Selenium.Appium.AppiumWebElement.Size</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>37</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>274 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Interactions.Actions，使用物件方法或屬性次數：5次，使用到的方法或屬性為以下：OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement, int, int) 以及 OpenQA.Selenium.Interactions.Actions.ClickAndHold() 以及 OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement, int, int) 以及 OpenQA.Selenium.Interactions.Actions.Release() 以及 OpenQA.Selenium.Interactions.Actions.Perform()</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>274</Line>
+              <StartLine>267</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>274</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Interactions.Actions，使用物件方法或屬性次數：5次，使用到的方法或屬性為以下：OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement, int, int) 以及 OpenQA.Selenium.Interactions.Actions.ClickAndHold() 以及 OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement, int, int) 以及 OpenQA.Selenium.Interactions.Actions.Release() 以及 OpenQA.Selenium.Interactions.Actions.Perform()</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>38</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>282 目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Appium.AppiumWebElement，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Appium.AppiumWebElement.Size 以及 OpenQA.Selenium.Appium.AppiumWebElement.Size</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>Power PointTests</Project>
+              <File>C:\Users\User\Desktop\NTUT\112-1\視窗程式設計\HW\NTUT_112_WindowsPrograming\Power PointTests\Robot.cs</File>
+              <Line>282</Line>
+              <StartLine>280</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>282</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 Power_PointTests.Robot，使用物件的方法或屬性次數：0次，Envy到對象物件 OpenQA.Selenium.Appium.AppiumWebElement，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：OpenQA.Selenium.Appium.AppiumWebElement.Size 以及 OpenQA.Selenium.Appium.AppiumWebElement.Size</Comment>
               <Auto>false</Auto>
             </Smell>
           </Reviews>
           <HashCodeIgnoreList />
           <HashCodeRequestIgnoreList>
             <string xsi:nil="true" />
-            <string>UnsuitableNaming.Root.BindableToolStripButton.BindableToolStripButton</string>
           </HashCodeRequestIgnoreList>
           <AnalysisFileManager>
             <AnalysisFiles>
               <AnalysisFile>
                 <RelativePath>Model\Command\AddCommand.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Model\Command\AddSlideCommand.cs</RelativePath>
                 <ProjectName>Power Point</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
@@ -370,7 +868,7 @@
               <AnalysisFile>
                 <RelativePath>Model\ShapeManage\Pages.cs</RelativePath>
                 <ProjectName>Power Point</ProjectName>
-                <AnalysisFileType>Unknown</AnalysisFileType>
+                <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Model\ShapeManage\ShapeData.cs</RelativePath>
@@ -468,6 +966,36 @@
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
+                <RelativePath>View\LoadForm.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>ViewOrController</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>View\LoadForm.Designer.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Designer</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>View\ModalDialogForm.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>ViewOrController</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>View\ModalDialogForm.Designer.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Designer</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>View\SaveForm.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>ViewOrController</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>View\SaveForm.Designer.cs</RelativePath>
+                <ProjectName>Power Point</ProjectName>
+                <AnalysisFileType>Designer</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>Model\Command\AddCommandTests.cs</RelativePath>
                 <ProjectName>Power PointTests</ProjectName>
                 <AnalysisFileType>Test</AnalysisFileType>
@@ -562,10 +1090,20 @@
                 <ProjectName>Power PointTests</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Robot.cs</RelativePath>
+                <ProjectName>Power PointTests</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>UITest.cs</RelativePath>
+                <ProjectName>Power PointTests</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>1945</ProductionLoc>
-          <TestLoc>3139</TestLoc>
+          <ProductionLoc>2687</ProductionLoc>
+          <TestLoc>3416</TestLoc>
         </CodeReview>
       </Data>
     </div>

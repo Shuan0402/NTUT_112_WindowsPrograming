@@ -27,10 +27,9 @@ namespace Power_Point
         const string IS_ARROW_CHECKED = "IsArrowChecked";
         private Size canvasSize;
         private Size slideButtonSize;
-        private System.Drawing.Point slideLocation;
         private double rate;
         private double slideButtonRate;
-        List<Button> _slideList;
+        readonly List<Button> _slideList;
         double slideButtonWidth;
 
         Point LeftTopPoint;
@@ -83,7 +82,6 @@ namespace Power_Point
             // slidebutton
             slideButtonWidth = _splitContainer2.SplitterDistance - 2;
             slideButtonSize = new Size((int)slideButtonWidth, (int)(slideButtonWidth * 9.0 / 16.0));
-            slideLocation = new System.Drawing.Point(0, 0);
             _slideList = new List<Button>();
             _presentationModel.OriginSlideIndex = -1;
             _presentationModel.CurrentSlideIndex = -1;
@@ -165,6 +163,7 @@ namespace Power_Point
 
         }
 
+        // test
         private void OpenModalDialogForm()
         {
             using (ModalDialogForm modalDialog = new ModalDialogForm())
@@ -416,6 +415,7 @@ namespace Power_Point
 
         }
 
+        // test
         private void AddPageStripButton(object sender, EventArgs e)
         {
             if (_slideList.Count() == 5)
@@ -429,6 +429,7 @@ namespace Power_Point
             HandleCanvasChanged();
         }
 
+        // test
         private void AddNewSlide()
         {
             _presentationModel.OriginSlideIndex = (int)_presentationModel.CurrentSlideIndex;
@@ -439,9 +440,7 @@ namespace Power_Point
         // _slideButton_Click
         private void ClickSlideButton(object sender, EventArgs e)
         {
-            Button slide = sender as Button;
-
-            if (slide != null)
+            if (sender is Button slide)
             {
                 _presentationModel.OriginSlideIndex = _presentationModel.CurrentSlideIndex;
                 _presentationModel.CurrentSlideIndex = _slideList.IndexOf(slide);
@@ -464,9 +463,11 @@ namespace Power_Point
         public void HandlePageAdded()
         {
             _presentationModel.OriginSlideIndex = _presentationModel.CurrentSlideIndex - 1;
-            Button newButton = new Button();
-            newButton.Name = "_slideButton" + _slideList.Count().ToString();
-            newButton.Size = slideButtonSize;
+            Button newButton = new Button
+            {
+                Name = "_slideButton" + _slideList.Count().ToString(),
+                Size = slideButtonSize
+            };
             newButton.Width -= 2;
             newButton.FlatStyle = FlatStyle.Flat;
             newButton.BackColor = Color.White;
@@ -506,12 +507,14 @@ namespace Power_Point
             }
         }
 
+        // test
         private void ClicksaveStripButton(object sender, EventArgs e)
         {
             SaveForm saveForm = new SaveForm(this);
             saveForm.ShowDialog();
         }
 
+        // test
         public void SaveData()
         {
             string data = _presentationModel.GetData();
@@ -522,6 +525,7 @@ namespace Power_Point
             Console.WriteLine("數據已成功寫入文件。");
         }
 
+        // load
         public void LoadData()
         {
             string path = "C:\\Users\\User\\Downloads\\GetData.txt";
@@ -530,12 +534,20 @@ namespace Power_Point
             _splitContainer2.Panel1.Controls.Clear();
             _slideList.Clear();
             HandleCanvasChanged();
-            HandlePageAdded();
+            for(int i = 0; i < _presentationModel.PagesCount; i++)
+            {
+                HandlePageAdded();
+            }
         }
-        private void _loadStripButton_Click(object sender, EventArgs e)
+
+        // load
+        private void LoadStripButton_Click(object sender, EventArgs e)
         {
             LoadForm loadForm = new LoadForm(this);
             loadForm.ShowDialog();
+
+            HandleButtonChanged();
+            ShowShapeList();
         }
     }
 }

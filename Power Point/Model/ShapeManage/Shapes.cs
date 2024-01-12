@@ -58,11 +58,12 @@ namespace Power_Point
             set;
         }
 
-        public string AddDataGridViewShape(string shapeType, Point LeftTopPoint, Point RightBottomPoint)
+        // test
+        public string AddDataGridViewShape(string shapeType, Point LeftTop, Point RightBottom)
         {
             Temp = _shapeFactory.CreateShape(shapeType);
-            Temp.SetLeftTopPoint(LeftTopPoint);
-            Temp.SetRightBottomPoint(RightBottomPoint);
+            Temp.SetLeftTopPoint(LeftTop);
+            Temp.SetRightBottomPoint(RightBottom);
             _shapes.Add(Temp);
             return Temp.Info;
         }
@@ -298,16 +299,26 @@ namespace Power_Point
             return newShapes;
         }
 
+        // test
         public void SetShapeDataList(List<ShapeData> shapeDataList)
         {
             _shapes.Clear();
-            foreach(ShapeData shapeData in shapeDataList)
+            foreach (ShapeData shapeData in shapeDataList)
             {
-                Shape shape = new Shape();
-                shape.Name = shapeData.Name;
-                shape.Info = shapeData.Info;
-                _shapes.Add(shape);
+                _shapes.Add(GetNewShape(shapeData));
             }
+        }
+
+        // test
+        private Shape GetNewShape(ShapeData shapeData)
+        {
+            Shape newShape = new Shape
+            {
+                Name = shapeData.Name,
+                Info = shapeData.Info
+            };
+
+            return newShape;
         }
     }
 }

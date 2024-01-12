@@ -31,7 +31,7 @@ namespace Power_Point
         {
             this._saveButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this._label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // _saveButton
@@ -42,7 +42,7 @@ namespace Power_Point
             this._saveButton.TabIndex = 0;
             this._saveButton.Text = "Save";
             this._saveButton.UseVisualStyleBackColor = true;
-            this._saveButton.Click += new System.EventHandler(this._saveButton_Click);
+            this._saveButton.Click += new System.EventHandler(this.ClickSaveButton);
             // 
             // _cancelButton
             // 
@@ -52,24 +52,24 @@ namespace Power_Point
             this._cancelButton.TabIndex = 1;
             this._cancelButton.Text = "Cancel";
             this._cancelButton.UseVisualStyleBackColor = true;
-            this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
+            this._cancelButton.Click += new System.EventHandler(this.ClickCancelButton);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(64, 67);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 23);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "是否確定要儲存?";
+            this._label1.AutoSize = true;
+            this._label1.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this._label1.Location = new System.Drawing.Point(64, 67);
+            this._label1.Name = "label1";
+            this._label1.Size = new System.Drawing.Size(145, 23);
+            this._label1.TabIndex = 2;
+            this._label1.Text = "是否確定要儲存?";
             // 
             // SaveForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(278, 194);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this._label1);
             this.Controls.Add(this._cancelButton);
             this.Controls.Add(this._saveButton);
             this.Name = "SaveForm";
@@ -83,6 +83,6 @@ namespace Power_Point
 
         private System.Windows.Forms.Button _saveButton;
         private System.Windows.Forms.Button _cancelButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label _label1;
     }
 }

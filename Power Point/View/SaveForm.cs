@@ -18,7 +18,7 @@ namespace Power_Point
             set;
         }
 
-        Form1 _form1;
+        readonly Form1 _form1;
 
         public SaveForm(Form1 form1)
         {
@@ -26,12 +26,14 @@ namespace Power_Point
             _form1 = form1;
         }
 
-        private void _cancelButton_Click(object sender, EventArgs e)
+        // test
+        private void ClickCancelButton(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private async void _saveButton_Click(object sender, EventArgs e)
+        // test
+        private async void ClickSaveButton(object sender, EventArgs e)
         {
             _saveButton.Enabled = false;
 
@@ -39,6 +41,7 @@ namespace Power_Point
             _form1.SaveData();
 
             _saveButton.Enabled = true;
+            this.Close();
         }
     }
 }

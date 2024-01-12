@@ -8,28 +8,47 @@ namespace Power_Point
 {
     public class Pages
     {
-        public List<Shapes> _pages = new List<Shapes>();
+        public List<Shapes> PagesList
+        {
+            get;
+            set;
+        }
+
+        public Pages()
+        {
+            PagesList = new List<Shapes>();
+        }
+
+        public int PagesCount
+        {
+            get
+            {
+                return PagesList.Count();
+            }
+        }
 
         // draw
         public void DrawShape(IGraphics graphics, double rate, int index)
         {
-            _pages[index].DrawShape(graphics, rate);
+            PagesList[index].DrawShape(graphics, rate);
         }
 
         // draw
         public void DrawSelect(IGraphics graphics, double rate, int index)
         {
-            _pages[index].DrawSelect(graphics, rate);
+            PagesList[index].DrawSelect(graphics, rate);
         }
 
         // draw
         public void DrawButton(IGraphics graphics, double rate, int index)
         {
             graphics.ClearAll();
-            foreach(Shapes shapes in _pages)
+            for (int i = 0; i < PagesList.Count(); i++)
             {
-                if(index > -1 && index < _pages.Count())
-                _pages[index].DrawButtonShape(graphics, rate);
+                if (index > -1 && index < PagesList.Count())
+                {
+                    PagesList[index].DrawButtonShape(graphics, rate);
+                }
             }
         }
 
@@ -37,96 +56,152 @@ namespace Power_Point
         public void AddPage(int index)
         {
             Shapes page = new Shapes();
-            _pages.Insert(index, page);
+            PagesList.Insert(index, page);
         }
 
         // delete
         public void DeletePage(int index)
         {
-            if(_pages.Count() > 1)
+            if (PagesList.Count() > 1)
             {
-                _pages.RemoveAt(index);
+                PagesList.RemoveAt(index);
             }
         }
 
         // 將 shapes 中所有 shape 存進 shapedata 中
         public List<ShapeData> GetShapeData(int index)
         {
-            if(index > -1 && index < _pages.Count())
+            if (index > -1 && index < PagesList.Count())
             {
-                return _pages[index].GetShapeData();
+                return PagesList[index].GetShapeData();
             }
-            return _pages[0].GetShapeData();
+            return PagesList[0].GetShapeData();
         }
 
+        // test
         public Shapes CopyDeep(int index)
         {
-            return _pages[index].CopyDeep();
+            if (index > -1 && index < PagesList.Count())
+            {
+                return PagesList[index].CopyDeep();
+            }
+            Shapes temps = new Shapes();
+            PagesList.Add(temps);
+            return PagesList[0].CopyDeep();
         }
 
+        // test
         public void AddDataGridViewShape(string shapeType, Point LeftTopPoint, Point RightBottomPoint, int index)
         {
-            _pages[index].AddDataGridViewShape(shapeType, LeftTopPoint, RightBottomPoint);
+            if (index > -1 && index < PagesList.Count())
+            {
+                PagesList[index].AddDataGridViewShape(shapeType, LeftTopPoint, RightBottomPoint);
+            }
         }
 
+        // test
         public void DeleteShape(int index, int slideIndex)
         {
-            _pages[slideIndex].DeleteShape(index);
+            if (index > -1 && index < PagesList.Count())
+            {
+                PagesList[slideIndex].DeleteShape(index);
+            }
         }
 
+        // test
         public int GetSelectedIndex(int index)
         {
-            return _pages[index].SelectedIndex;
+            if (index > -1 && index < PagesList.Count())
+            {
+                return PagesList[index].SelectedIndex;
+            }
+            return PagesList[0].SelectedIndex;
         }
 
+        // test
         public void SetSelectedIndex(int index, int slideIndex)
         {
-            _pages[slideIndex].SelectedIndex = index;
+            if (slideIndex > -1 && slideIndex < PagesList.Count())
+            {
+                PagesList[slideIndex].SelectedIndex = index;
+            }
         }
 
+        // test
         public void Clear(int index)
         {
-            _pages[index].Clear();
+            if (index > -1 && index < PagesList.Count())
+            {
+                PagesList[index].Clear();
+            }
         }
 
+        // test
         public int SelectShape(int index, Point point)
         {
-            return _pages[index].SelectShape(point);
+            if (index > -1 && index < PagesList.Count())
+            {
+                return PagesList[index].SelectShape(point);
+            }
+            return PagesList[0].SelectShape(point);
         }
 
+        // test
         public void SetSelectedShapeSize(int index, double pointX, double pointY)
         {
-            _pages[index].SetSelectedShapeSize(pointX, pointY);
+            if (index > -1 && index < PagesList.Count())
+            {
+                PagesList[index].SetSelectedShapeSize(pointX, pointY); 
+            }
         }
 
+        // test
         public void SetSelectedShapePosition(double width, double height, int index)
         {
-            _pages[index].SetSelectedShapePosition(width, height);
+            if (index > -1 && index < PagesList.Count())
+            {
+                PagesList[index].SetSelectedShapePosition(width, height);
+            }
         }
 
+        // test
         public void SetShapes(int index, Shapes shapes)
         {
-            _pages[index] = shapes.CopyDeep();
+            if (index > -1 && index < PagesList.Count())
+            {
+                PagesList[index] = shapes.CopyDeep();
+            }
         }
 
+        // test
         public bool IsInRightFloorPoint(int index, double pointX, double pointY)
         {
-            return _pages[index].IsInRightFloorPoint(pointX, pointY);
+            if (index > -1 && index < PagesList.Count())
+            {
+                return PagesList[index].IsInRightFloorPoint(pointX, pointY);
+            }
+            return PagesList[0].IsInRightFloorPoint(pointX, pointY);
         }
 
-        public void UnSelected(int index)
+        // test
+        public void SelectNot(int index)
         {
-            _pages[index].IsSelected = false;
+            if (index > -1 && index < PagesList.Count())
+            {
+                PagesList[index].IsSelected = false;
+            }
         }
 
+        // test
         public int GetPageCount()
         {
-            return _pages.Count();
+            return PagesList.Count();
         }
         
+        // test
         public void Clear()
         {
-            _pages.Clear();
+            PagesList.Clear();
         }
     }
 }

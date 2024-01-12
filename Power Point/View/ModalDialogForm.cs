@@ -46,6 +46,7 @@ namespace Power_Point
             _rightBottomTextBoxY.TextChanged += TextBox_TextChanged;
         }
 
+        // test
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
             bool allTextBoxesAreNumbers = AllTextBoxesAreNumbers();
@@ -53,6 +54,7 @@ namespace Power_Point
             _okButton.Enabled = allTextBoxesAreNumbers;
         }
 
+        // test
         private bool AllTextBoxesAreNumbers()
         {
             foreach (Control control in Controls)
@@ -75,6 +77,7 @@ namespace Power_Point
             return false;
         }
 
+        // test
         private void SetBoxNumber(string name, double value)
         {
             switch (name)
@@ -94,39 +97,45 @@ namespace Power_Point
             }
         }
 
-        private void _leftTopPointLabelX_Click(object sender, EventArgs e)
+        // test
+        private void LeftTopPointLabelX_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void _okButton_Click(object sender, EventArgs e)
+        // test
+        private void ClickOkButton(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-
-        private void _leftTopTextBoxX_TextChanged(object sender, EventArgs e)
+        // test
+        private void ChangrLeftTopTextBoxX_Text(object sender, EventArgs e)
         {
 
         }
 
-        private void _leftTopTextBoxY_TextChanged(object sender, EventArgs e)
+        // test
+        private void ChangeLeftTopTextBoxY_Text(object sender, EventArgs e)
         {
 
         }
 
-        private void _rightBottomTextBoxX_TextChanged(object sender, EventArgs e)
+        // test
+        private void ChangeRightBottomTextBoxX_Text(object sender, EventArgs e)
         {
 
         }
 
-        private void _rightBottomTextBoxY_TextChanged(object sender, EventArgs e)
+        // test
+        private void ChangeRightBottomTextBoxY_Text(object sender, EventArgs e)
         {
 
         }
 
-        private void _cancelButton_Click(object sender, EventArgs e)
+         //test
+        private void ClickCancelButton(object sender, EventArgs e)
         {
             this.Close();
         }

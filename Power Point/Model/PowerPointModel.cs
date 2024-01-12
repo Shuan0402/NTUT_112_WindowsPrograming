@@ -43,13 +43,13 @@ namespace Power_Point
             set;
         }
 
-        public int _originSlideIndex
+        public int OriginSlideIndex
         {
             get;
             set;
         }
 
-        public int _currentSlideIndex
+        public int CurrentSlideIndex
         {
             get;
             set;
@@ -91,6 +91,14 @@ namespace Power_Point
         {
             get;
             set;
+        }
+
+        public int PagesCount
+        {
+            get
+            {
+                return _pages.PagesCount;
+            }
         }
 
         // AddDataGridViewShape
@@ -233,13 +241,13 @@ namespace Power_Point
             switch (state)
             {
                 case DRAW:
-                    _mouse = new DrawState(this, _pages._pages[_currentSlideIndex]);
+                    _mouse = new DrawState(this, _pages.PagesList[CurrentSlideIndex]);
                     break;
                 case POINT:
-                    _mouse = new PointState(this, _pages._pages[_currentSlideIndex]);
+                    _mouse = new PointState(this, _pages.PagesList[CurrentSlideIndex]);
                     break;
                 case MODIFY:
-                    _mouse = new ModifyState(this, _pages._pages[_currentSlideIndex]);
+                    _mouse = new ModifyState(this, _pages.PagesList[CurrentSlideIndex]);
                     break;
             }
         }
@@ -308,26 +316,31 @@ namespace Power_Point
             NotifySlideDelete();
         }
 
+        // test
         public void NotifySlideAdd()
         {
             AddPageEvent?.Invoke();
         }
 
+        // test
         public void NotifySlideDelete()
         {
             DeletePageEvent?.Invoke();
         }
 
+        // test
         public void UnSelected(int index)
         {
-            _pages.UnSelected(index);
+            _pages.SelectNot(index);
         }
 
+        // test
         public int GetPageCount()
         {
             return _pages.GetPageCount();
         }
 
+        // test
         public void ClearPages()
         {
             _pages.Clear();

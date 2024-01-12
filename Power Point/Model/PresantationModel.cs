@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Power_Point
@@ -109,11 +111,11 @@ namespace Power_Point
         {
             get
             {
-                return _model._originSlideIndex;
+                return _model.OriginSlideIndex;
             }
             set
             {
-                _model._originSlideIndex = value;
+                _model.OriginSlideIndex = value;
             }
         }
 
@@ -121,11 +123,11 @@ namespace Power_Point
         {
             get
             {
-                return _model._currentSlideIndex;
+                return _model.CurrentSlideIndex;
             }
             set
             {
-                _model._currentSlideIndex = value;
+                _model.CurrentSlideIndex = value;
             }
         }
 
@@ -191,6 +193,7 @@ namespace Power_Point
             return dataList;
         }
 
+        // 新增
         public void AddDataGridViewShape(string selectedShape, Point LeftTopPoint, Point RightBottomPoint)
         {
             _model.AddDataGridViewShape(selectedShape, LeftTopPoint, RightBottomPoint, CurrentSlideIndex);
@@ -289,11 +292,13 @@ namespace Power_Point
             return _model.IsSelected();
         }
 
+        // test
         public void AddPage(int index)
         {
             _model.AddPage(index);
         }
 
+        // test
         public void DeletePage(int index)
         {
             if (IsSlideChecked)
@@ -302,17 +307,28 @@ namespace Power_Point
             }
         }
 
+        // test
         public void CheckSlide()
         {
             IsSlideChecked = true;
             _model.UnSelected(CurrentSlideIndex);
         }
 
+        // test
         public void UnCheckSlide()
         {
             IsSlideChecked = false;
         }
 
+        public int PagesCount
+        {
+            get
+            {
+                return _model.PagesCount;
+            }
+        }
+
+        // test
         public void SetOriginSlideIndex(int? index)
         {
             if (index == null)
@@ -330,6 +346,7 @@ namespace Power_Point
             }
         }
 
+        // test
         public void SetCurrentSlideIndex(int? index)
         {
             if (index == null)
@@ -347,6 +364,7 @@ namespace Power_Point
             }
         }
 
+        // test
         public string GetData()
         {
             int pageCount = _model.GetPageCount();
@@ -354,29 +372,73 @@ namespace Power_Point
             for(int i = 0; i < pageCount; i++)
             {
                 data += ("page: " + i.ToString() + "\n");
-                List<ShapeData> dataList = _model.GetShapeData(i);
-                for(int j = 0; j < dataList.Count(); j++)
+                List<ShapeData> dataList = GetShapeData(i);
+                for(int j = 0; j < GetListCount(dataList); j++)
                 {
                     data += (dataList[j].Name + ": " + dataList[j].Info + "\n");
                 }
             }
             return data;
         }
+
+        // test
+        private int GetListCount(List<ShapeData> shapeDatas)
+        {
+            return shapeDatas.Count();
+        }
+
+        // test
+        private List<ShapeData> GetShapeData(int index)
+        {
+            return _model.GetShapeData(index);
+        }
+
+        // test
         public void LoadData(string[] lines)
         {
             _model.ClearPages();
             int index = 0;
             foreach(string line in lines)
             {
+                Debug.Print(line);
                 if(line.StartsWith("page: "))
                 {
-                    if(line != "page: 0\n")
+                    if(line != "page: 0")
                     {
                         AddPage(index);
-                        index++;
                     }
+                    index++;
+                }
+                else
+                {
+                    _ = new string[2];
+                    string[] data = line.Split(new[] { ": " }, StringSplitOptions.None);
+                    _ = new List<Point>();
+                    List<Point> points = ParsePoints(data[1]);
+
+                    AddDataGridViewShape(data[0], points[0], points[1]);
                 }
             }
+            Debug.Print(_model.GetPageCount().ToString());
+        }
+
+        // 轉
+        public List<Point> ParsePoints(string input)
+        {
+            List<Point> points = new List<Point>();
+
+            MatchCollection matches = Regex.Matches(input, @"\((\d+),\s(\d+)\)");
+
+            foreach (Match match in matches)
+            {
+                int x = int.Parse(match.Groups[1].Value);
+                int y = int.Parse(match.Groups[2].Value);
+
+                Point point = new Point(x, y);
+                points.Add(point);
+            }
+
+            return points;
         }
     }
 }
